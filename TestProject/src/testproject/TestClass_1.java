@@ -10,5 +10,5 @@ package testproject;
  * @author Konstantin Georgiev
  */
 public class TestClass_1 {
-    
+    private static int test = 3;
 }
