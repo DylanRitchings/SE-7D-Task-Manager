@@ -10,12 +10,14 @@ package testproject1;
  * @author up818044
  */
 public class TestProject1 {
-
+    
+    private static int test = 3;
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        
     }
     
 }
