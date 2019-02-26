@@ -12,6 +12,7 @@ package testproject1;
 public class TestProject1 {
     
     private static int test = 3;
+    private static int test2 = 69;
     /**
      * @param args the command line arguments
      */
