@@ -17,7 +17,7 @@ public class Group_utils {
     protected ArrayList<String> groupTasks;
     protected ArrayList<String> groupSkills;
     
-    public Group_utils() {   /*  Creates a new instance of Triangle */
+    public Group_utils() {   /*  Creates a new instance of groups_utils */
     }
     public Group_utils(String name, ArrayList<String> members, String description, int Id, ArrayList<String> tasks, ArrayList<String> skills){
        groupName = name;
