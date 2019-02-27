@@ -16,6 +16,8 @@ public class TestProject1 {
     private static int test3 = 63;
     private static int test4 = 68;
     private static int test5 = 68;
+    private static int test6 = 70;
+    
     
     
     
