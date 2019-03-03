@@ -17,5 +17,4 @@ public class Leader
     {
         groupList = list_of_group;
     }
-    
 }
