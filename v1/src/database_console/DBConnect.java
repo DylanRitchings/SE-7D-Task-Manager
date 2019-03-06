@@ -7,8 +7,6 @@ package database_console;
 
 import java.sql.*;
 
-
-
 /**
  *
  * @author Dylan Ritchings
