@@ -16,10 +16,9 @@ import java.sql.*;
 public class DBConnect {
     public static void main (String[] args){
         
-        String host = "den1.mysql3.gear.host";
+        String host = "jdbc:mysql://den1.mysql3.gear.host:3306/teammanagerdb";
         String uName = "teammanagerdb";
         String uPass = "Bc85NMS--V6h";
-        
         try {
             Connection con = DriverManager.getConnection( host,uName,uPass);
         } catch (SQLException err) {
