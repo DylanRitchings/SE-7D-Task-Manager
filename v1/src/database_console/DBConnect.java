@@ -18,6 +18,7 @@ public class DBConnect {
     String uPass = "Bc85NMS--V6h";
     private Connection con;
     private Statement st;
+    private ResultSet rs;
 
     public ResultSet getMembers() {
         try {
@@ -26,9 +27,9 @@ public class DBConnect {
             String query = "SELECT * FROM member";
 
             // create the java statement
-            Statement st = con.createStatement();
+            st = con.createStatement();
             // execute the query, and get a java resultset
-            ResultSet rs = st.executeQuery(query);
+            rs = st.executeQuery(query);
 
             // iterate through the java resultset
             while (rs.next()) {
