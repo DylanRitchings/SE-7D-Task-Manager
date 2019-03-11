@@ -13,15 +13,16 @@ import java.sql.*;
  */
 public class DBConnect {
 
-    public static void main(String[] args) {
+    String host = "jdbc:mysql://den1.mysql3.gear.host:3306/teammanagerdb";
+    String uName = "teammanagerdb";
+    String uPass = "Bc85NMS--V6h";
+    private Connection con;
+    private Statement st;
 
-        String host = "jdbc:mysql://den1.mysql3.gear.host:3306/teammanagerdb";
-        String uName = "teammanagerdb";
-        String uPass = "Bc85NMS--V6h";
+    public ResultSet getMembers() {
         try {
-            Connection con = DriverManager.getConnection(host, uName, uPass);
+            con = DriverManager.getConnection(host, uName, uPass);
 
-            
             String query = "SELECT * FROM member";
 
             // create the java statement
@@ -36,15 +37,14 @@ public class DBConnect {
                 String lastName = rs.getString("Member_Surname");
                 String email = rs.getString("Member_Email");
 
-
                 // print the results
                 System.out.format("%s, %s, %s, %s\n", id, firstName, lastName, email);
             }
             st.close();
-            }catch (Exception e) {
+        } catch (SQLException e) {
             System.err.println("Got an exception! ");
             System.err.println(e.getMessage());
         }
-
-        }
+        return (rs);
     }
+}
