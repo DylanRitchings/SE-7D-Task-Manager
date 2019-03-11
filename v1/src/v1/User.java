@@ -1,5 +1,6 @@
 package v1;
 
+import database_console.DBConnect.*;
 import java.util.*;
 
 /**
@@ -28,5 +29,6 @@ public class User {
         password = u_Password;
         numTasksDone = u_NumTasksDone;
         bestSkills = u_BestSkills;
+        
     }
 }
