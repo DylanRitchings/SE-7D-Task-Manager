@@ -12,15 +12,39 @@ import java.sql.*;
  * @author Dylan Ritchings
  */
 public class DBConnect {
-    public static void main (String[] args){
-        
+
+    public static void main(String[] args) {
+
         String host = "jdbc:mysql://den1.mysql3.gear.host:3306/teammanagerdb";
         String uName = "teammanagerdb";
         String uPass = "Bc85NMS--V6h";
         try {
-            Connection con = DriverManager.getConnection( host,uName,uPass);
-        } catch (SQLException err) {
-            System.out.println(err.getMessage());
+            Connection con = DriverManager.getConnection(host, uName, uPass);
+
+            
+            String query = "SELECT * FROM member";
+
+            // create the java statement
+            Statement st = con.createStatement();
+            // execute the query, and get a java resultset
+            ResultSet rs = st.executeQuery(query);
+
+            // iterate through the java resultset
+            while (rs.next()) {
+                int id = rs.getInt("Member_ID");
+                String firstName = rs.getString("Member_Forename");
+                String lastName = rs.getString("Member_Surname");
+                String email = rs.getString("Member_Email");
+
+
+                // print the results
+                System.out.format("%s, %s, %s, %s\n", id, firstName, lastName, email);
+            }
+            st.close();
+            }catch (Exception e) {
+            System.err.println("Got an exception! ");
+            System.err.println(e.getMessage());
+        }
+
         }
     }
-}
