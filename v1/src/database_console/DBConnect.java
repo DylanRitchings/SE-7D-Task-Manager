@@ -17,7 +17,6 @@ public class DBConnect {
         String host = "den1.mysql3.gear.host";
         String uName = "teammanagerdb";
         String uPass = "Bc85NMS--V6h";
-        String test = "test";
        
         try {
             Connection con = DriverManager.getConnection( host,uName,uPass);
