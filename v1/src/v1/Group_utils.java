@@ -25,6 +25,6 @@ public class Group_utils {
        groupId = Id;
        groupTasks = tasks;
        groupSkills = skills;
-       
+       ///////
     }
 }
