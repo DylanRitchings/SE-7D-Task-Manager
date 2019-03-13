@@ -22,10 +22,9 @@ public class DBConnect {
         String uPass = "Bc85NMS--V6h";
         
         
-        //insert into query
-        
+        //insert into query       
                 
-        String insert = "INSERT INTO member(Member_ForeName, Member_SurName, Member_email) VALUES('ddfgdsf','f', 'twady@nmail.com')";
+        String insert = "INSERT INTO member(Member_ForeName, Member_SurName, Member_email) VALUES('Chuck','Norris', 'ChuckNorris@gnmail.com')";
 
         try (Connection con = DriverManager.getConnection(host, uName, uPass);
                 PreparedStatement pst = con.prepareStatement(insert)) {
@@ -35,15 +34,15 @@ public class DBConnect {
             int rs;
             rs = stat.executeUpdate(insert);
             
-//            String firstName = ("roger");
-//            String lastName = ("rabbit");
-//            String email = ("carrots@nmail.com");
+            String firstName = ("roger");
+            String lastName = ("rabbit");
+            String email = ("carrots@nmail.com");
             
                 
-//            pst.setString(1,"roger");
-//            pst.setString(2,"rabbit");
-//            pst.setString(3,"carrots@nmail.com");
-//            pst.executeUpdate();
+            pst.setString(1,"roger");
+            pst.setString(2,"rabbit");
+            pst.setString(3,"carrots@nmail.com");
+            pst.executeUpdate();
             
             System.out.println("A new member has been inserted");
 
@@ -53,6 +52,30 @@ public class DBConnect {
             lgr.log(Level.SEVERE, ex.getMessage(), ex);
 
         }
+        
+        
+        //delete from query        
+        
+        String delete = "DELETE FROM member WHERE Member_ID = 20";
+
+        try (Connection con = DriverManager.getConnection(host, uName, uPass);
+                PreparedStatement pst = con.prepareStatement(delete)) {
+            // create the java statement
+            Statement stat = con.createStatement();
+            // execute the query, and get a java resultset
+            int rs;
+            rs = stat.executeUpdate(delete);
+            
+            
+            System.out.println("A new member has been deleted");
+
+        } catch (SQLException ex) {
+
+            Logger lgr = Logger.getLogger(DBConnect.class.getName());
+            lgr.log(Level.SEVERE, ex.getMessage(), ex);
+
+        }
+        
         
         
         //select from query
@@ -70,7 +93,8 @@ public class DBConnect {
             ResultSet rs = st.executeQuery(query);
 
             // iterate through the java resultset
-            while (rs.next()) {
+            while (rs.next()) 
+            {
                 int id = rs.getInt("Member_ID");
                 String firstName = rs.getString("Member_Forename");
                 String lastName = rs.getString("Member_Surname");
@@ -84,17 +108,6 @@ public class DBConnect {
             }catch (Exception e) {
             System.err.println("Got an exception! ");
             System.err.println(e.getMessage());
-        }
-
-        
-
-
-        
-        
-        
-        
-        
-        
-        
+            }       
         }
     }
