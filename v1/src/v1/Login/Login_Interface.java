@@ -8,6 +8,10 @@ package v1.Login;
 import java.awt.Color;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -296,13 +300,38 @@ public class Login_Interface extends javax.swing.JFrame {
         ResultSet rs;
         
         // get the username and password
-        String username = jTextField_Email.getText();
+        String email = jTextField_Email.getText();
         String password = String.valueOf(jPasswordField.getPassword());
         
         //create a select query to check if the username and the password exist in the database
-        String query = "SELECT * FROM 'user' WHERE 'emal' = ? AND 'password' = ?";
+        String query = "SELECT * FROM `user` WHERE `User_Email` = ? AND `User_Password` = ?";
         
-        st = DBConnect.getConnection().prepareStatement(query);
+        try {
+            st = loginConnect.getConnection().prepareStatement(query);
+            
+            st.setString(1, email);
+            st.setString(2, password);
+            rs = st.executeQuery();
+            
+            if(rs.next())
+            {
+                //Show a new form
+                LoggedIN form = new LoggedIN();
+                form.setVisible(true);
+                form.pack();
+                form.setLocationRelativeTo(null);
+                //Close the current form (login form)
+                this.dispose();
+            }
+            else
+            {
+                //error message
+                JOptionPane.showMessageDialog(null, "Invalid email / password", "Login Error",2);
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(loginConnect.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
         
         
