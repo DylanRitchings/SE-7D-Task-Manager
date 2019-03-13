@@ -326,7 +326,7 @@ public class Login_Interface extends javax.swing.JFrame {
             else
             {
                 //error message
-                JOptionPane.showMessageDialog(null, "Invalid email / password", "Login Error",2);
+                JOptionPane.showMessageDialog(null, "Invalid email or password", "Login Error",2);
             }
             
         } catch (SQLException ex) {
