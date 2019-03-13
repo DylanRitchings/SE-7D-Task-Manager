@@ -15,6 +15,7 @@ public class New_group
     private String newGroupName;
     private String newGroupDescription;
     private ArrayList<String> newSkillsRequest;
+    private int a;
     
     public New_group() 
     {        
