@@ -93,7 +93,8 @@ public class DBConnect {
             ResultSet rs = st.executeQuery(query);
 
             // iterate through the java resultset
-            while (rs.next()) {
+            while (rs.next()) 
+            {
                 int id = rs.getInt("Member_ID");
                 String firstName = rs.getString("Member_Forename");
                 String lastName = rs.getString("Member_Surname");
@@ -107,17 +108,6 @@ public class DBConnect {
             }catch (Exception e) {
             System.err.println("Got an exception! ");
             System.err.println(e.getMessage());
-        }
-
-        
-
-
-        
-        
-        
-        
-        
-        
-        
+            }   
         }
     }
