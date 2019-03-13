@@ -23,6 +23,7 @@ public class DBConnect {
         String uPass = "Bc85NMS--V6h";
         
         
+
 //        //insert into query
 //        
 //                
@@ -66,9 +67,66 @@ public class DBConnect {
         
 
 
+        //insert into query       
+                
+        String insert = "INSERT INTO member(Member_ForeName, Member_SurName, Member_email) VALUES('Chuck','Norris', 'ChuckNorris@gnmail.com')";
+
+        try (Connection con = DriverManager.getConnection(host, uName, uPass);
+                PreparedStatement pst = con.prepareStatement(insert)) {
+            // create the java statement
+            Statement stat = con.createStatement();
+            // execute the query, and get a java resultset
+            int rs;
+            rs = stat.executeUpdate(insert);
+            
+            String firstName = ("roger");
+            String lastName = ("rabbit");
+            String email = ("carrots@nmail.com");
+            
+                
+            pst.setString(1,"roger");
+            pst.setString(2,"rabbit");
+            pst.setString(3,"carrots@nmail.com");
+            pst.executeUpdate();
+            
+            System.out.println("A new member has been inserted");
+
+
+
 
 
 //select from query
+
+        }
+        
+        
+        //delete from query        
+        
+        String delete = "DELETE FROM member WHERE Member_ID = 20";
+
+        try (Connection con = DriverManager.getConnection(host, uName, uPass);
+                PreparedStatement pst = con.prepareStatement(delete)) {
+            // create the java statement
+            Statement stat = con.createStatement();
+            // execute the query, and get a java resultset
+            int rs;
+            rs = stat.executeUpdate(delete);
+            
+            
+            System.out.println("A new member has been deleted");
+
+        } catch (SQLException ex) {
+
+            Logger lgr = Logger.getLogger(DBConnect.class.getName());
+            lgr.log(Level.SEVERE, ex.getMessage(), ex);
+
+        }
+        
+        
+        
+        //select from query
+        
+
         
         try {
             Connection con = DriverManager.getConnection(host, uName, uPass);
@@ -82,6 +140,7 @@ public class DBConnect {
             ResultSet rs = st.executeQuery(query);
 
             // iterate through the java resultset
+
             while (rs.next()) {
                 int id = rs.getInt("User_ID");
                 String firstName = rs.getString("User_Forename");
@@ -92,6 +151,15 @@ public class DBConnect {
                 String numTasksDone;
                 numTasksDone = rs.getString("" + "User_NumTasksDone");
 
+            while (rs.next()) 
+            {
+                int id = rs.getInt("Member_ID");
+                String firstName = rs.getString("Member_Forename");
+                String lastName = rs.getString("Member_Surname");
+                String email = rs.getString("Member_Email");
+
+
+
                 // print the results
                 System.out.format("%s, %s, %s, %s, %s, %s, %s  \n", id, firstName, lastName, email, password, userName, numTasksDone);
             }
@@ -99,17 +167,6 @@ public class DBConnect {
             }catch (SQLException e) {
             System.err.println("Got an exception! ");
             System.err.println(e.getMessage());
-        }
-
-        
-
-
-        
-        
-        
-        
-        
-        
-        
+            }       
         }
     }
