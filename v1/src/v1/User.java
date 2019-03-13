@@ -23,6 +23,7 @@ public class User {
     private String password;
     private Integer numTasksDone;
     private ArrayList<String> bestSkills;
+    private Integer a;
     
     public User (String u_FName, String u_LName, String u_Email, 
                  Integer u_UserID, String u_UserName, String u_Password, 
@@ -51,7 +52,7 @@ public class User {
         
         
         
-        String insert = "INSERT INTO user(User_Forename, User_Surname, User_Email, User_Password, User_Username, User_NumTasksDone) VALUES('z', 'b', 'n', '1234', 'blah', 4)";
+        String insert = "INSERT INTO user(User_Forename, User_Surname, User_Email, User_Password, User_Username, User_NumTasksDone) VALUES('a', 'b', 'n', '1234', 'blah', 4)";
 
         try (Connection con = DriverManager.getConnection(host, uName, uPass);
                 PreparedStatement pst = con.prepareStatement(insert)) {
