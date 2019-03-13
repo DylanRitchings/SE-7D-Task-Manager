@@ -24,7 +24,7 @@ public class DBConnect {
         
         //insert into query       
                 
-        String insert = "INSERT INTO User(User_ForeName, User_SurName, User_email) VALUES('Chuck','Norris', 'ChuckNorris@gnmail.com')";
+        String insert = "INSERT INTO member(Member_ForeName, Member_SurName, Member_email) VALUES('Chuck','Norris', 'ChuckNorris@gnmail.com')";
 
         try (Connection con = DriverManager.getConnection(host, uName, uPass);
                 PreparedStatement pst = con.prepareStatement(insert)) {
@@ -56,7 +56,7 @@ public class DBConnect {
         
         //delete from query        
         
-        String delete = "DELETE FROM User WHERE User_ID = 20";
+        String delete = "DELETE FROM member WHERE Member_ID = 20";
 
         try (Connection con = DriverManager.getConnection(host, uName, uPass);
                 PreparedStatement pst = con.prepareStatement(delete)) {
@@ -85,7 +85,7 @@ public class DBConnect {
             Connection con = DriverManager.getConnection(host, uName, uPass);
 
             
-            String query = "SELECT * FROM User";
+            String query = "SELECT * FROM member";
 
             // create the java statement
             Statement st = con.createStatement();
@@ -95,10 +95,10 @@ public class DBConnect {
             // iterate through the java resultset
             while (rs.next()) 
             {
-                int id = rs.getInt("User_ID");
-                String firstName = rs.getString("User_Forename");
-                String lastName = rs.getString("User_Surname");
-                String email = rs.getString("User_Email");
+                int id = rs.getInt("Member_ID");
+                String firstName = rs.getString("Member_Forename");
+                String lastName = rs.getString("Member_Surname");
+                String email = rs.getString("Member_Email");
 
 
                 // print the results
@@ -110,8 +110,4 @@ public class DBConnect {
             System.err.println(e.getMessage());
             }       
         }
-
-    static Object getConnection() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
     }
