@@ -8,6 +8,7 @@ package database_console;
 import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import v1.User;
 
 /**
  *
@@ -22,47 +23,58 @@ public class DBConnect {
         String uPass = "Bc85NMS--V6h";
         
         
-        //insert into query
-        
-                
-        String insert = "INSERT INTO member(Member_ForeName, Member_SurName, Member_email) VALUES('ddfgdsf','f', 'twady@nmail.com')";
+//        //insert into query
+//        
+//                
+//        String insert = "INSERT INTO member(Member_ForeName, Member_SurName, Member_email) VALUES('ddfgdsf','f', 'twady@nmail.com')";
+//
+//        try (Connection con = DriverManager.getConnection(host, uName, uPass);
+//                PreparedStatement pst = con.prepareStatement(insert)) {
+//            // create the java statement
+//            Statement stat = con.createStatement();
+//            // execute the query, and get a java resultset
+//            int rs;
+//            rs = stat.executeUpdate(insert);
+//            
+////            String firstName = ("roger");
+////            String lastName = ("rabbit");
+////            String email = ("carrots@nmail.com");
+//            
+//                
+////            pst.setString(1,"roger");
+////            pst.setString(2,"rabbit");
+////            pst.setString(3,"carrots@nmail.com");
+////            pst.executeUpdate();
+//            
+//            System.out.println("A new member has been inserted");
+//
+//        } catch (SQLException ex) {
+//
+//            Logger lgr = Logger.getLogger(DBConnect.class.getName());
+//            lgr.log(Level.SEVERE, ex.getMessage(), ex);
+////needs stat.close();
+//        }
+//        
+  
 
-        try (Connection con = DriverManager.getConnection(host, uName, uPass);
-                PreparedStatement pst = con.prepareStatement(insert)) {
-            // create the java statement
-            Statement stat = con.createStatement();
-            // execute the query, and get a java resultset
-            int rs;
-            rs = stat.executeUpdate(insert);
-            
-//            String firstName = ("roger");
-//            String lastName = ("rabbit");
-//            String email = ("carrots@nmail.com");
-            
-                
-//            pst.setString(1,"roger");
-//            pst.setString(2,"rabbit");
-//            pst.setString(3,"carrots@nmail.com");
-//            pst.executeUpdate();
-            
-            System.out.println("A new member has been inserted");
 
-        } catch (SQLException ex) {
-
-            Logger lgr = Logger.getLogger(DBConnect.class.getName());
-            lgr.log(Level.SEVERE, ex.getMessage(), ex);
-
-        }
+       //call to user
+        
+        User.insert();
         
         
-        //select from query
         
+
+
+
+
+//select from query
         
         try {
             Connection con = DriverManager.getConnection(host, uName, uPass);
 
             
-            String query = "SELECT * FROM member";
+            String query = "SELECT * FROM User";
 
             // create the java statement
             Statement st = con.createStatement();
@@ -71,17 +83,20 @@ public class DBConnect {
 
             // iterate through the java resultset
             while (rs.next()) {
-                int id = rs.getInt("Member_ID");
-                String firstName = rs.getString("Member_Forename");
-                String lastName = rs.getString("Member_Surname");
-                String email = rs.getString("Member_Email");
-
+                int id = rs.getInt("User_ID");
+                String firstName = rs.getString("User_Forename");
+                String lastName = rs.getString("User_Surname");
+                String email = rs.getString("User_Email");
+                String password = rs.getString("User_Password");
+                String userName = rs.getString("User_Username");
+                String numTasksDone;
+                numTasksDone = rs.getString("" + "User_NumTasksDone");
 
                 // print the results
-                System.out.format("%s, %s, %s, %s\n", id, firstName, lastName, email);
+                System.out.format("%s, %s, %s, %s, %s, %s, %s  \n", id, firstName, lastName, email, password, userName, numTasksDone);
             }
             st.close();
-            }catch (Exception e) {
+            }catch (SQLException e) {
             System.err.println("Got an exception! ");
             System.err.println(e.getMessage());
         }
