@@ -66,10 +66,11 @@ public class Register_Interface extends javax.swing.JFrame {
         ResultSet rs;
         boolean email_exist = false;
         
-        String query = "SELECT * FROM 'user' WHERE 'User_Email' = ?";
+        String query = "SELECT * FROM `user` WHERE `User_Email` = ?";
         
         try {
             st = loginConnect.getConnection().prepareStatement(query);
+            
             st.setString(1, email);
             rs = st.executeQuery();
             
@@ -311,31 +312,34 @@ public class Register_Interface extends javax.swing.JFrame {
         String Sname = jTextField_Surname.getText();
         String email = jTextField_Email.getText();
         String pass1 = String.valueOf(jPasswordField1.getPassword());
-
+        String pass2 = String.valueOf(jPasswordField2.getPassword());
+        
         if(verifyFields())
         {
             if(!checkEmail(email))
             {
                 PreparedStatement ps;
-                ResultSet rs;
-                String registerUserQuery = "INSERT INTO 'user'('User_ForeName', 'User_Surname'', 'User_Email', 'User_Password') VALUES (?,?,?,?)";
+                ResultSet rs;         
+                String registerUserQuery = "INSERT INTO `user`(`User_Forename`, `User_Surname`, `User_Email`, `User_Password`) VALUES (?,?,?,?)";
                 
                 try {
                     ps = loginConnect.getConnection().prepareStatement(registerUserQuery);
                     ps.setString(1, Fname);
                     ps.setString(2, Sname);
                     ps.setString(3, email);
-                    ps.setString(4, pass1);
+                    ps.setString(4, pass1);                                      
                     
                     if(ps.executeUpdate() != 0)
                     {
-                        JOptionPane.showMessageDialog(null, "Your account has been registered");
+                        //Registration successful message
+                        JOptionPane.showMessageDialog(null, "Your account has been Registered", "Account Registered",2);                       
                     }
                     else
                     {
-                        JOptionPane.showMessageDialog(null, "YError");
+                        //error message
+                        JOptionPane.showMessageDialog(null, "Invalid inputs", "Error",2);
                     }
-                                      
+                    
                 } catch (SQLException ex) {
                     Logger.getLogger(Register_Interface.class.getName()).log(Level.SEVERE, null, ex);
                 }
