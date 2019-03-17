@@ -42,20 +42,12 @@ public class User {
        //insert into query
     }
         
-       public static void insert () {
+       public static void insert (String uFName, String uSName, String uEmail, String uPassword, String uUsername, Integer numTasksDone) {
 //           
         String host = "jdbc:mysql://den1.mysql3.gear.host:3306/teammanagerdb";
         String uName = "teammanagerdb";
         String uPass = "Bc85NMS--V6h";
-        
-        String uFName = "Obi-Wan";
-        String uSName = "Kenobi";
-        String uEmail = "obiWanKenobi@general.com";
-        String uPassword = "highGround";
-        String uUsername = "GeneralKenobi";
-        Integer numTasksDone = 66;
-        
-        
+                        
         
         String insert = "INSERT INTO user(User_Forename, User_Surname, User_Email, User_Password, User_Username, User_NumTasksDone) VALUES(?, ?, ?, ?, ?, ?)";
 
