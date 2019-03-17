@@ -42,25 +42,41 @@ public class User {
        //insert into query
     }
         
-       public static void insert (String uForeName,String uSName, String uEmail, String uPassword, String uUsername, Integer numTasksDone ) {
+       public static void insert () {
 //           
         String host = "jdbc:mysql://den1.mysql3.gear.host:3306/teammanagerdb";
         String uName = "teammanagerdb";
         String uPass = "Bc85NMS--V6h";
         
+        String uFName = "Obi-Wan";
+        String uSName = "Kenobi";
+        String uEmail = "obiWanKenobi@general.com";
+        String uPassword = "highGround";
+        String uUsername = "GeneralKenobi";
+        Integer numTasksDone = 66;
         
         
         
-        
-        String insert = "INSERT INTO user(User_Forename, User_Surname, User_Email, User_Password, User_Username, User_NumTasksDone) VALUES( " + uForeName + ", " + uSName + ", " + uEmail + ", " + uPassword + ", " + uUsername + ", " + numTasksDone + " )";
+        String insert = "INSERT INTO user(User_Forename, User_Surname, User_Email, User_Password, User_Username, User_NumTasksDone) VALUES(?, ?, ?, ?, ?, ?)";
 
-        try (Connection con = DriverManager.getConnection(host, uName, uPass);
-                PreparedStatement pst = con.prepareStatement(insert)) {
+        try (Connection con = DriverManager.getConnection(host, uName, uPass);) {
+            
+            PreparedStatement pst = con.prepareStatement(insert);
+            pst.setString(1, uFName);
+            pst.setString(2, uSName);
+            pst.setString(3, uEmail);
+            pst.setString(4, uPassword);
+            pst.setString(5, uUsername);
+            pst.setInt(6, numTasksDone);
+            
+            pst.executeUpdate();
+            pst.close();
+            
             // create the java statement
-            Statement stat = con.createStatement();
+            //Statement stat = con.createStatement();
             // execute the query, and get a java resultset
-            int rs;
-            rs = stat.executeUpdate(insert);
+            //int rs;
+            //rs = stat.executeUpdate(insert);
             
 //            String firstName = ("roger");
 //            String lastName = ("rabbit");
@@ -82,6 +98,7 @@ public class User {
 
         }
         }
+       
        
     }
     
