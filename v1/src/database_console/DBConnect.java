@@ -61,7 +61,7 @@ public class DBConnect {
 
        //call to user
         
-        User.insert();
+        //User.insert("Obi-Wan", "Kenobi", "obiwanKenobi@general.com", "highGround", "HelloThere", 66);
         
         
         
