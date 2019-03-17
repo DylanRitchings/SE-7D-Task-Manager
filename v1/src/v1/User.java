@@ -42,13 +42,16 @@ public class User {
        //insert into query
     }
         
+Konstantin-Variable_passing_experiment
        public static void insert (String uFName, String uSName, String uEmail, 
                                   String uPassword, String uUsername, 
                                   Integer numTasksDone) {
-//           
+          
         String host = "jdbc:mysql://den1.mysql3.gear.host:3306/teammanagerdb";
         String uName = "teammanagerdb";
         String uPass = "Bc85NMS--V6h";
+  
+Konstantin-Variable_passing_experiment
                         
         // The question marks in the values brackets are SQL's equivalent to 
         // variables.
