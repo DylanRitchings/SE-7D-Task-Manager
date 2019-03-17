@@ -98,6 +98,9 @@ public class DBConnect {
 //select from query
 
         }
+        catch (Exception e) {
+            
+        }
         
         
         //delete from query        
@@ -150,18 +153,9 @@ public class DBConnect {
                 String userName = rs.getString("User_Username");
                 String numTasksDone;
                 numTasksDone = rs.getString("" + "User_NumTasksDone");
-
-            while (rs.next()) 
-            {
-                int id = rs.getInt("Member_ID");
-                String firstName = rs.getString("Member_Forename");
-                String lastName = rs.getString("Member_Surname");
-                String email = rs.getString("Member_Email");
-
-
-
-                // print the results
+                
                 System.out.format("%s, %s, %s, %s, %s, %s, %s  \n", id, firstName, lastName, email, password, userName, numTasksDone);
+
             }
             st.close();
             }catch (SQLException e) {
