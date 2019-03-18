@@ -85,8 +85,7 @@ public class DBConnect {
             // execute the query, and get a java resultset
             int rs;
             rs = stat.executeUpdate(delete);
-            
-            
+
             System.out.println("A new user has been deleted");
 
         } catch (SQLException ex) {
