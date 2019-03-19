@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package v1;
 import database_console.DBConnect;
 import java.sql.Connection;
@@ -30,10 +25,10 @@ public class Leader
         groupList = list_of_group;
     }
     
-    /*
+    /**
     *  Remove a member from a group
-    * @param memberID, groupID
-    * @return 
+    * @param memberID
+    * @param groupID
     * @throw 
     * @pre 
     * @modifies 
@@ -56,30 +51,52 @@ public class Leader
             
             
             System.out.println("A new user has been deleted");
-            stat.close();
+        stat.close();
         } catch (SQLException ex) {
 
             Logger lgr = Logger.getLogger(DBConnect.class.getName());
             lgr.log(Level.SEVERE, ex.getMessage(), ex);
 
         }
-    }
     
-    /*
-    *  Remove a member from a group
-    * @param taskID, userID, groupID
-    * @return 
+    }
+    /**
+    *  Assign a task to a member
+    * @param taskID
+    * @param groupID
+    * @param userID
     * @throw 
     * @pre 
     * @modifies 
     * @post 
     * @bound 
     */
-    public void assignTaskToMember(int taskID,int userID, int groupID)
+
+    public static void assignTaskToMember(int taskID, int groupID, int userID)
     {
         String host = "jdbc:mysql://den1.mysql3.gear.host:3306/teammanagerdb";
         String uName = "teammanagerdb";
         String uPass = "Bc85NMS--V6h";
-        String assignToMemberQ = "INSERT INTO ";
+        String assignToMemberQ = "INSERT INTO user_member_group(Task_ID,Group_ID,User_ID) "
+                + "VALUES(?, ?, ?)";
+        
+        try (Connection con = DriverManager.getConnection(host, uName, uPass);
+            PreparedStatement pst = con.prepareStatement(assignToMemberQ)) {
+            pst.setInt(1, taskID);
+            pst.setInt(2, groupID);
+            pst.setInt(3, userID);
+            pst.executeUpdate();
+            pst.close();
+            // create the java statement
+    
+            
+            
+            System.out.println("User: " + userID + " has been assigned to task: " + taskID);
+        } catch (SQLException ex) {
+
+            Logger lgr = Logger.getLogger(DBConnect.class.getName());
+            lgr.log(Level.SEVERE, ex.getMessage(), ex);
+
+        }
     }
 }
