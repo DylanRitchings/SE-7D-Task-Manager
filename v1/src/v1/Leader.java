@@ -40,7 +40,7 @@ public class Leader
     * @post 
     * @bound 
     */
-    public void DeleteMember(int memberID, int groupID){
+    public void deleteMember(int memberID, int groupID){
         String host = "jdbc:mysql://den1.mysql3.gear.host:3306/teammanagerdb";
         String uName = "teammanagerdb";
         String uPass = "Bc85NMS--V6h";
@@ -56,13 +56,30 @@ public class Leader
             
             
             System.out.println("A new user has been deleted");
-
+            stat.close();
         } catch (SQLException ex) {
 
             Logger lgr = Logger.getLogger(DBConnect.class.getName());
             lgr.log(Level.SEVERE, ex.getMessage(), ex);
 
         }
+    }
     
+    /*
+    *  Remove a member from a group
+    * @param taskID, userID, groupID
+    * @return 
+    * @throw 
+    * @pre 
+    * @modifies 
+    * @post 
+    * @bound 
+    */
+    public void assignTaskToMember(int taskID,int userID, int groupID)
+    {
+        String host = "jdbc:mysql://den1.mysql3.gear.host:3306/teammanagerdb";
+        String uName = "teammanagerdb";
+        String uPass = "Bc85NMS--V6h";
+        String assignToMemberQ = "INSERT INTO ";
     }
 }
