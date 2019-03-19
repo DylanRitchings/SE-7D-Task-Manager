@@ -8,7 +8,11 @@ package database_console;
 import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import v1.User;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 /**
  *
@@ -18,16 +22,20 @@ public class DBConnect {
     
     public static Connection databaseConnect()
     {
-        String host = "jdbc:mysql://den1.mysql3.gear.host:3306/teammanagerdb";
-        String uName = "teammanagerdb";
-        String uPass = "Bc85NMS--V6h";
+
         
+        //START ERROR
         try {
+            String host = "jdbc:mysql://den1.mysql3.gear.host:3306/teammanagerdb";
+            String uName = "teammanagerdb";
+            String uPass = "Bc85NMS--V6h";
             Connection con = DriverManager.getConnection(host, uName, uPass);
+            System.out.println("FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF");
             return con;
-            
+         
         }
             catch (SQLException e) {
+            System.err.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
             System.err.println("Got an exception! ");
             System.err.println(e.getMessage()); 
             return null;
@@ -38,6 +46,7 @@ public class DBConnect {
     public static void databaseInput(String statement)
     {
         Connection con = databaseConnect();
+        System.out.println(con);
         try{
             Statement stat = con.createStatement();
             int rs;
@@ -48,6 +57,7 @@ public class DBConnect {
             System.err.println(e.getMessage()); 
             
         }
+        
     }
     
     public static void databaseOutput(String statement)
