@@ -36,30 +36,37 @@ public class Leader
     * @bound 
     */
     public void deleteMember(int memberID, int groupID){
-        String host = "jdbc:mysql://den1.mysql3.gear.host:3306/teammanagerdb";
-        String uName = "teammanagerdb";
-        String uPass = "Bc85NMS--V6h";
-        String deleteMemQ = "DELETE FROM user_in_group WHERE User_ID = " + memberID + " AND group_ID = " + groupID;
         
-        try (Connection con = DriverManager.getConnection(host, uName, uPass);
-            PreparedStatement pst = con.prepareStatement(deleteMemQ)) {
-            // create the java statement
-            Statement stat = con.createStatement();
-            // execute the query, and get a java resultset
-            int rs;
-            rs = stat.executeUpdate(deleteMemQ);
-            
-            
-            System.out.println("A new user has been deleted");
-        stat.close();
-        } catch (SQLException ex) {
-
-            Logger lgr = Logger.getLogger(DBConnect.class.getName());
-            lgr.log(Level.SEVERE, ex.getMessage(), ex);
-
-        }
-    
+        String statement = "DELETE FROM user_in_group WHERE User_ID = " + memberID + " AND group_ID = " + groupID;
+        DBConnect.databaseInput(statement);
     }
+        
+        
+        //OLD
+//        String host = "jdbc:mysql://den1.mysql3.gear.host:3306/teammanagerdb";
+//        String uName = "teammanagerdb";
+//        String uPass = "Bc85NMS--V6h";
+//        String deleteMemQ = "DELETE FROM user_in_group WHERE User_ID = " + memberID + " AND group_ID = " + groupID;
+//        
+//        try (Connection con = DriverManager.getConnection(host, uName, uPass);
+//            PreparedStatement pst = con.prepareStatement(deleteMemQ)) {
+//            // create the java statement
+//            Statement stat = con.createStatement();
+//            // execute the query, and get a java resultset
+//            int rs;
+//            rs = stat.executeUpdate(deleteMemQ);
+//            
+//            
+//            System.out.println("A new user has been deleted");
+//        stat.close();
+//        } catch (SQLException ex) {
+//
+//            Logger lgr = Logger.getLogger(DBConnect.class.getName());
+//            lgr.log(Level.SEVERE, ex.getMessage(), ex);
+//
+//        }
+//    
+//    }
     /**
     *  Assign a task to a member
     * @param taskID
