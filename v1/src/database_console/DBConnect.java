@@ -1,4 +1,3 @@
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -16,7 +15,45 @@ import v1.User;
  * @author Dylan Ritchings
  */
 public class DBConnect {
+    
+    public static Connection databaseConnect()
+    {
+        String host = "jdbc:mysql://den1.mysql3.gear.host:3306/teammanagerdb";
+        String uName = "teammanagerdb";
+        String uPass = "Bc85NMS--V6h";
+        
+        try {
+            Connection con = DriverManager.getConnection(host, uName, uPass);
+            return con;
+            
+        }
+            catch (SQLException e) {
+            System.err.println("Got an exception! ");
+            System.err.println(e.getMessage()); 
+            return null;
+        }       
+           
+    }
 
+    public static void databaseInput(String statement)
+    {
+        Connection con = databaseConnect();
+        try{
+            Statement stat = con.createStatement();
+            int rs;
+            rs = stat.executeUpdate(statement);
+        }
+        catch (SQLException e) {
+            System.err.println("Got an exception! ");
+            System.err.println(e.getMessage()); 
+            
+        }
+    }
+    
+    public static void databaseOutput(String statement)
+    {
+        
+    }
     public static void main(String[] args) {
 
         String host = "jdbc:mysql://den1.mysql3.gear.host:3306/teammanagerdb";
@@ -24,64 +61,112 @@ public class DBConnect {
         String uPass = "Bc85NMS--V6h";
         
         
-        //delete from query        
-        
-//        String delete = "DELETE FROM user WHERE User_ID = 14";
+
+//        //insert into query
+//        
+//                
+//        String insert = "INSERT INTO member(Member_ForeName, Member_SurName, Member_email) VALUES('ddfgdsf','f', 'twady@nmail.com')";
 //
 //        try (Connection con = DriverManager.getConnection(host, uName, uPass);
-//                PreparedStatement pst = con.prepareStatement(delete)) {
+//                PreparedStatement pst = con.prepareStatement(insert)) {
 //            // create the java statement
 //            Statement stat = con.createStatement();
 //            // execute the query, and get a java resultset
 //            int rs;
-//            rs = stat.executeUpdate(delete);
+//            rs = stat.executeUpdate(insert);
 //            
+////            String firstName = ("roger");
+////            String lastName = ("rabbit");
+////            String email = ("carrots@nmail.com");
 //            
-//            System.out.println("A new user has been deleted");
+//                
+////            pst.setString(1,"roger");
+////            pst.setString(2,"rabbit");
+////            pst.setString(3,"carrots@nmail.com");
+////            pst.executeUpdate();
+//            
+//            System.out.println("A new member has been inserted");
 //
 //        } catch (SQLException ex) {
 //
 //            Logger lgr = Logger.getLogger(DBConnect.class.getName());
 //            lgr.log(Level.SEVERE, ex.getMessage(), ex);
-//
+////needs stat.close();
 //        }
-        User.insert("uName", "Name", "uPass", "uPass", "uName", 7);
-        User.delete(7);
-        User.selectAll();
+//        
+  
+
+
+       
+
+//call to user.insert
+        
+        
+
+
+     
+                
+ 
+        
+        
+        //delete from query        
+        
+        String delete = "DELETE FROM user WHERE User_ID = 14";
+
+        try (Connection con = DriverManager.getConnection(host, uName, uPass);
+                PreparedStatement pst = con.prepareStatement(delete)) {
+            // create the java statement
+            Statement stat = con.createStatement();
+            // execute the query, and get a java resultset
+            int rs;
+            rs = stat.executeUpdate(delete);
+
+            System.out.println("A new user has been deleted");
+
+        } catch (SQLException ex) {
+
+            Logger lgr = Logger.getLogger(DBConnect.class.getName());
+            lgr.log(Level.SEVERE, ex.getMessage(), ex);
+
+        }
+        
+        
         
         //select from query
-             
-//        try {
-//            Connection con = DriverManager.getConnection(host, uName, uPass);
-//
-//            
-//            String query = "SELECT * FROM User";
-//
-//            // create the java statement
-//            Statement st = con.createStatement();
-//            // execute the query, and get a java resultset
-//            ResultSet rs = st.executeQuery(query);
-//
-//            // iterate through the java resultset
-//
-//            while (rs.next()) {
-//                int id = rs.getInt("User_ID");
-//                String firstName = rs.getString("User_Forename");
-//                String lastName = rs.getString("User_Surname");
-//                String email = rs.getString("User_Email");
-//                String password = rs.getString("User_Password");
-//                String userName = rs.getString("User_Username");
-//                String numTasksDone;
-//                numTasksDone = rs.getString("" + "User_NumTasksDone");
-//                
-//                System.out.format("%s, %s, %s, %s, %s, %s, %s  \n", id, firstName, lastName, email, password, userName, numTasksDone);
-//
-//            }
-//            st.close();
-//            }catch (SQLException e) {
-//            System.err.println("Got an exception! ");
-//            System.err.println(e.getMessage());
-//            
-//            }       
+        
+
+        
+        try {
+            Connection con = DriverManager.getConnection(host, uName, uPass);
+
+            
+            String query = "SELECT * FROM User";
+
+            // create the java statement
+            Statement st = con.createStatement();
+            // execute the query, and get a java resultset
+            ResultSet rs = st.executeQuery(query);
+
+            // iterate through the java resultset
+
+            while (rs.next()) {
+                int id = rs.getInt("User_ID");
+                String firstName = rs.getString("User_Forename");
+                String lastName = rs.getString("User_Surname");
+                String email = rs.getString("User_Email");
+                String password = rs.getString("User_Password");
+                String userName = rs.getString("User_Username");
+                String numTasksDone;
+                numTasksDone = rs.getString("" + "User_NumTasksDone");
+                
+                System.out.format("%s, %s, %s, %s, %s, %s, %s  \n", id, firstName, lastName, email, password, userName, numTasksDone);
+
+            }
+            st.close();
+            }catch (SQLException e) {
+            System.err.println("Got an exception! ");
+            System.err.println(e.getMessage());
+            
+            }       
         }
-}
+    }
