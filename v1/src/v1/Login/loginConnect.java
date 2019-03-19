@@ -31,11 +31,7 @@ public class loginConnect {
         datasource.setDatabaseName(dbname);
         datasource.setPortNumber(portnumber);
                 
-        try {
-            cnx = datasource.getConnection();
-        } catch (SQLException ex) {
-            Logger.getLogger("Get Connection ->" + loginConnect.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        cnx = datasource.getConnection();
         
         return cnx;
     }       
