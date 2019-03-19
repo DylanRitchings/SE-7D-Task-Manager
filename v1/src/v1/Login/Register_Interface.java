@@ -39,12 +39,17 @@ public class Register_Interface extends javax.swing.JFrame {
         String pass2 = String.valueOf(jPasswordField2.getPassword());
         
         //Checks if the field is empty
-        if(Fname.trim().equals("") || Sname.trim().equals("") || email.trim().equals("") || pass1.trim().equals("") || pass2.trim().equals(""))
+        if(Fname.trim().equals("") || Sname.trim().equals("") || email.trim().equals(""))
         {
             JOptionPane.showMessageDialog(null, "There are one or more empty fields", "Error: Empty Fields", 2);
             return false;
         }
-        
+        //Checks if the password has at least 7 characters in it
+        if(pass1.length() <= 7 || pass2.length() <=7)
+        {
+            JOptionPane.showMessageDialog(null, "Your Password is not strong enough, it must be at least 7 characters", "Error: Password not strong enough", 2);
+            return false;
+        }    
         //Checks if the two password matches each other
         else if(pass1.equals(pass2))
         {
