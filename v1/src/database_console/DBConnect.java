@@ -15,29 +15,38 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 /**
- *TEST
- * @author Dylan Ritchings
- */
+*@since 1/3/2019
+*@version 
+*@author Dylan Ritchings,
+*@see
+*@inv
+*/
+
+
 public class DBConnect {
     
+    
     /**
-     * 
-     * @return 
+     * Creates a connection to the database
+     * @return Connection
+     * @throw SQLException
+     * @pre 
+     * @modifies host, uName, uPass
+     * @post 
+     *
      */
+
     public static Connection databaseConnect()
     {
 
         
-        //START ERROR
         try {
             String host = "jdbc:mysql://den1.mysql3.gear.host:3306/teammanagerdb";
             String uName = "teammanagerdb";
             String uPass = "Bc85NMS--V6h";
             
-            //ERROR
             Connection con = DriverManager.getConnection(host, uName, uPass);
             return con;
-         //END ERROR
         }
             catch (SQLException e) {
             System.err.println("Got an exception! ");
@@ -47,6 +56,15 @@ public class DBConnect {
            
     }
 
+    /**
+     * Executes statement to database.
+     * @return Connection
+     * @throw SQLException
+     * @pre 
+     * @modifies host, uName, uPass
+     * @post 
+     * @param statement
+     */
     public static void databaseInput(String statement)
     {
         Connection con = databaseConnect();
@@ -63,8 +81,13 @@ public class DBConnect {
         
     }
     
+    /**
+     *
+     * @param statement
+     */
     public static void databaseOutput(String statement)
     {
+        Connection con = databaseConnect();
         
     }
 }
