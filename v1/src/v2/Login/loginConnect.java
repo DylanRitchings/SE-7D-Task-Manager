@@ -8,7 +8,7 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author thewa
+ * @author 818044
  */
 public class loginConnect {
     
