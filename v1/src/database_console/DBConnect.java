@@ -81,9 +81,10 @@ public class DBConnect {
     }
     
     /**
-     *
+     * Returns the ResultSet of a given query
      * @param query
      * @return ResultSet
+     * @throw SQLException
      */
     public static ResultSet databaseSelect(String query)
     {
@@ -91,7 +92,7 @@ public class DBConnect {
         try {
             ResultSet rs = stat.executeQuery(query);
             return rs;
-        } catch (Exception ex) {
+        } catch (SQLException ex) {
             Logger.getLogger(DBConnect.class.getName()).log(Level.SEVERE, null, ex);
             return null;
         }   
