@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package v2.Login;
 
 import java.awt.Color;
@@ -16,7 +11,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author up818044
+ * @author 818044
  */
 public class Login_Interface extends javax.swing.JFrame {
 
@@ -339,6 +334,11 @@ public class Login_Interface extends javax.swing.JFrame {
         PreparedStatement st;
         ResultSet rs;
         
+        /**
+         * @param email
+         * @param password
+         * 
+         */
         // get the username and password
         String email = jTextField_Email.getText();
         String password = String.valueOf(jPasswordField.getPassword());
