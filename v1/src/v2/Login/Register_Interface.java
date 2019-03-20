@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package v2.Login;
 
 import java.awt.Color;
@@ -15,7 +10,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author thewa
+ * @author 818044
  */
 public class Register_Interface extends javax.swing.JFrame {
 
@@ -29,6 +24,14 @@ public class Register_Interface extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
     }
 
+    /**
+     * @param Fname
+     * @param Sname
+     * @param email
+     * @param pass1
+     * @param pass2
+     * @return 
+     */
     //This function will verify the empty fields
     public boolean verifyFields()
     {
@@ -64,6 +67,11 @@ public class Register_Interface extends javax.swing.JFrame {
         }
     }
     
+    /**
+     *
+     * @param email
+     * @return 
+     */
     //This function will check if the email entered already exists in the database 
     public boolean checkEmail(String email)
     {
@@ -312,7 +320,7 @@ public class Register_Interface extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton_RegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_RegisterActionPerformed
-        
+       
         String Fname = jTextField_FName.getText();
         String Sname = jTextField_Surname.getText();
         String email = jTextField_Email.getText();
