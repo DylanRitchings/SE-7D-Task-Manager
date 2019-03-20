@@ -58,7 +58,6 @@ public class DBConnect {
 
     /**
      * Executes statement to database.
-     * @return Connection
      * @throw SQLException
      * @pre 
      * @modifies host, uName, uPass
@@ -87,7 +86,7 @@ public class DBConnect {
      */
     public static void databaseOutput(String statement)
     {
-        Connection con = databaseConnect();
+        //Connection con = databaseConnect();
         
     }
 }
