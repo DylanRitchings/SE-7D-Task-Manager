@@ -15,7 +15,8 @@ public class V1 {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        User.insert("Anakin", "Skywalker", "anakinSkywalker@Darkside.com", "youUnderestimateMyPower", "ASkywalker", 66);
+      
+        //Leader.assignTaskToMember(123, 123, 123);
     }
     
 }
