@@ -36,7 +36,7 @@ public class DBConnect {
      *
      */
 
-    public static Connection databaseConnect()
+    public static Statement databaseConnect()
     {
 
         
@@ -46,7 +46,8 @@ public class DBConnect {
             String uPass = "Bc85NMS--V6h";
             
             Connection con = DriverManager.getConnection(host, uName, uPass);
-            return con;
+            Statement stat = con.createStatement();
+            return stat;
         }
             catch (SQLException e) {
             System.err.println("Got an exception! ");
@@ -62,15 +63,14 @@ public class DBConnect {
      * @pre 
      * @modifies host, uName, uPass
      * @post 
-     * @param statement
+     * @param query
      */
-    public static void databaseInput(String statement)
+    public static void databaseInput(String query)
     {
-        Connection con = databaseConnect();
+        Statement stat = databaseConnect();
         try{
-            Statement stat = con.createStatement();
             int rs;
-            rs = stat.executeUpdate(statement);
+            rs = stat.executeUpdate(query);
         }
         catch (SQLException e) {
             System.err.println("Got an exception! ");
@@ -82,13 +82,21 @@ public class DBConnect {
     
     /**
      *
-     * @param statement
+     * @param query
+     * @return ResultSet
      */
-    public static void databaseOutput(String statement)
+    public static ResultSet databaseSelect(String query)
     {
-        //Connection con = databaseConnect();
-        
+        Statement stat = databaseConnect();
+        try {
+            ResultSet rs = stat.executeQuery(query);
+            return rs;
+        } catch (SQLException ex) {
+            Logger.getLogger(DBConnect.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }   
     }
+    
 }
     
 //    public static void main(String[] args) {
