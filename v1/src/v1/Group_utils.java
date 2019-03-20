@@ -33,7 +33,7 @@ public class Group_utils {
     public static ArrayList getMembers(int groupID)
     {
         String query1 = "SELECT User_ID FROM user_in_group WHERE Group_ID =" + groupID;
-        ResultSet userIDrs = DBConnect.databaseOutput(query1);
+        ResultSet userIDrs = DBConnect.databaseSelect(query1);
 
         
     }
