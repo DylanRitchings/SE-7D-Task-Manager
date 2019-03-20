@@ -7,7 +7,7 @@ package v2.Login;
 
 /**
  *
- * @author thewa
+ * @author 818044
  */
 public class LoggedIN extends javax.swing.JFrame {
 
