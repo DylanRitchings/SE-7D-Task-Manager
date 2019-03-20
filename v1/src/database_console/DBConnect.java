@@ -8,23 +8,146 @@ package database_console;
 import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import v1.User;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 /**
- *
- * @author Dylan Ritchings
- */
+*@since 1/3/2019
+*@version 
+*@author Dylan Ritchings,
+*@see
+*@inv
+*/
+
+
 public class DBConnect {
+    
+    
+    /**
+     * Creates a connection to the database
+     * @return Connection
+     * @throw SQLException
+     * @pre 
+     * @modifies host, uName, uPass
+     * @post 
+     *
+     */
 
-    public static void main(String[] args) {
+    public static Connection databaseConnect()
+    {
 
-        String host = "jdbc:mysql://den1.mysql3.gear.host:3306/teammanagerdb";
-        String uName = "teammanagerdb";
-        String uPass = "Bc85NMS--V6h";
+        
+        try {
+            String host = "jdbc:mysql://den1.mysql3.gear.host:3306/teammanagerdb";
+            String uName = "teammanagerdb";
+            String uPass = "Bc85NMS--V6h";
+            
+            Connection con = DriverManager.getConnection(host, uName, uPass);
+            return con;
+        }
+            catch (SQLException e) {
+            System.err.println("Got an exception! ");
+            System.err.println(e.getMessage()); 
+            return null;
+        }       
+           
+    }
+
+    /**
+     * Executes statement to database.
+     * @throw SQLException
+     * @pre 
+     * @modifies host, uName, uPass
+     * @post 
+     * @param statement
+     */
+    public static void databaseInput(String statement)
+    {
+        Connection con = databaseConnect();
+        try{
+            Statement stat = con.createStatement();
+            int rs;
+            rs = stat.executeUpdate(statement);
+        }
+        catch (SQLException e) {
+            System.err.println("Got an exception! ");
+            System.err.println(e.getMessage()); 
+            
+        }
+        
+    }
+    
+    /**
+     *
+     * @param statement
+     */
+    public static void databaseOutput(String statement)
+    {
+        //Connection con = databaseConnect();
+        
+    }
+}
+    
+//    public static void main(String[] args) {
+//
+//        String host = "jdbc:mysql://den1.mysql3.gear.host:3306/teammanagerdb";
+//        String uName = "teammanagerdb";
+//        String uPass = "Bc85NMS--V6h";
+//        
+//        
+
+//        //insert into query
+//        
+//                
+//        String insert = "INSERT INTO member(Member_ForeName, Member_SurName, Member_email) VALUES('ddfgdsf','f', 'twady@nmail.com')";
+//
+//        try (Connection con = DriverManager.getConnection(host, uName, uPass);
+//                PreparedStatement pst = con.prepareStatement(insert)) {
+//            // create the java statement
+//            Statement stat = con.createStatement();
+//            // execute the query, and get a java resultset
+//            int rs;
+//            rs = stat.executeUpdate(insert);
+//            
+////            String firstName = ("roger");
+////            String lastName = ("rabbit");
+////            String email = ("carrots@nmail.com");
+//            
+//                
+////            pst.setString(1,"roger");
+////            pst.setString(2,"rabbit");
+////            pst.setString(3,"carrots@nmail.com");
+////            pst.executeUpdate();
+//            
+//            System.out.println("A new member has been inserted");
+//
+//        } catch (SQLException ex) {
+//
+//            Logger lgr = Logger.getLogger(DBConnect.class.getName());
+//            lgr.log(Level.SEVERE, ex.getMessage(), ex);
+////needs stat.close();
+//        }
+//        
+  
+
+
+       
+
+//call to user.insert
         
         
-        //delete from query        
-        
+
+
+     
+                
+ 
+//        
+//        
+//        //delete from query        
+//        
 //        String delete = "DELETE FROM user WHERE User_ID = 14";
 //
 //        try (Connection con = DriverManager.getConnection(host, uName, uPass);
@@ -34,8 +157,7 @@ public class DBConnect {
 //            // execute the query, and get a java resultset
 //            int rs;
 //            rs = stat.executeUpdate(delete);
-//            
-//            
+//
 //            System.out.println("A new user has been deleted");
 //
 //        } catch (SQLException ex) {
@@ -44,12 +166,13 @@ public class DBConnect {
 //            lgr.log(Level.SEVERE, ex.getMessage(), ex);
 //
 //        }
-        User.insert("uName", "Name", "uPass", "uPass", "uName", 7);
-        User.delete(7);
-        User.selectAll();
-        
-        //select from query
-             
+//        
+//        
+//        
+//        //select from query
+//        
+//
+//        
 //        try {
 //            Connection con = DriverManager.getConnection(host, uName, uPass);
 //
@@ -82,5 +205,5 @@ public class DBConnect {
 //            System.err.println(e.getMessage());
 //            
 //            }       
-        }
-}
+//        }
+//    }
