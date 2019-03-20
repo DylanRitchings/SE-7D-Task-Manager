@@ -5,6 +5,8 @@
  */
 package v1;
 import java.util.*;
+import database_console.DBConnect;
+import java.sql.ResultSet;
 /**
  *
  * @author Dylan Ritchings
@@ -26,5 +28,13 @@ public class Group_utils {
        groupTasks = tasks;
        groupSkills = skills;
        
+    }
+    
+    public static ArrayList getMembers(int groupID)
+    {
+        String query1 = "SELECT User_ID FROM user_in_group WHERE Group_ID =" + groupID;
+        ResultSet userIDrs = DBConnect.databaseOutput(query1);
+
+        
     }
 }
