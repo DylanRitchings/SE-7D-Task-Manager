@@ -74,27 +74,37 @@ public class Group_utils {
         ArrayList<String> forename = new ArrayList<>();
         ArrayList<String> surname = new ArrayList<>();
         ArrayList<String> email = new ArrayList<>();
-        ArrayList<String> numTasksDone = new ArrayList<>();
-        memDetails.add(id);
-        memDetails.add(forename);
-        memDetails.add(surname);
-        memDetails.add(email);
-        memDetails.add(numTasksDone);
-        //create Id,forename,surname... etc lists
+        ArrayList<String> tasksDone = new ArrayList<>();
+       
         
         //ID, Forename, Surname, Email, NumTasksDone
         for (int user = 0; user <= userIDList.size(); user++)
         {        
             String query ;
-            query = "SELECT User_ID, User_Forename, User_Surname, User_Email, User_NumTasksDone FROM user WHERE User_ID =" + userIDList(user) + ";";
+            query = "SELECT User_ID, User_Forename, User_Surname, User_Email, User_NumTasksDone FROM user WHERE User_ID =" + userIDList.get(user) + ";";
             ResultSet userDetails = DBConnect.databaseSelect(query);
-            
+            try {
+                // iterate through the java resultset
+                while (userDetails.next()) {
+                    id.add(userDetails.getString("User_ID"));
+                    forename.add(userDetails.getString("User_Forename"));
+                    surname.add(userDetails.getString("User_Surname"));
+                    email.add(userDetails.getString("User_Email"));
+                    tasksDone.add(userDetails.getString("User_NumTasksDone"));                    
+                }
+                
+            } catch (SQLException ex) {
+                Logger.getLogger(Group_utils.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            }
+        memDetails.add(id);
+        memDetails.add(forename);
+        memDetails.add(surname);
+        memDetails.add(email);
+        memDetails.add(tasksDone);
+        return memDetails;
             //Split user details up and input into lists
         }
         
     }
 
-    private static java.lang.String userIDList(int user) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-}
