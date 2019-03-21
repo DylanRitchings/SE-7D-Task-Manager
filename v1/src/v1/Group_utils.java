@@ -4,7 +4,13 @@
  * and open the template in the editor.
  */
 package v1;
+import static com.sun.org.apache.xalan.internal.xsltc.compiler.util.Type.String;
 import java.util.*;
+import database_console.DBConnect;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 /**
  *
  * @author Dylan Ritchings
@@ -26,5 +32,41 @@ public class Group_utils {
        groupTasks = tasks;
        groupSkills = skills;
        
+    }
+    
+    /**
+     * Creates an ArrayList of memberIDs that are in a group.
+     * @param groupID
+     * @return ArrayList
+     * @throw Exception
+     * @pre 
+     * @modifies 
+     * @post 
+     * @bound 
+     *
+     */
+
+    public static ArrayList getMemberIDs(int groupID)
+    {
+        String query = "SELECT User_ID FROM user_in_group WHERE Group_ID =" + groupID+";";
+        
+        //Send query to DBConnect
+        ResultSet userIDrs = DBConnect.databaseSelect(query);
+        ArrayList<String> userIDList;
+        userIDList = new ArrayList<>();
+        
+        try {
+            //Loop through userID result set and input user IDs into array list
+            while (userIDrs.next()) {
+                userIDList.add(userIDrs.getString("User_ID"));
+            }
+            return userIDList;
+        } catch (Exception ex) {
+            Logger.getLogger(Group_utils.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+        
+
+        
     }
 }
