@@ -71,6 +71,7 @@ public class DBConnect {
             Statement stat = databaseConnect();
             int rs;
             rs = stat.executeUpdate(query);
+            stat.close();
         }
         catch (SQLException e) {
             System.err.println("Got an exception! ");
@@ -91,6 +92,7 @@ public class DBConnect {
         Statement stat = databaseConnect();
         try {
             ResultSet rs = stat.executeQuery(query);
+            stat.close();
             return rs;
         } catch (SQLException ex) {
             Logger.getLogger(DBConnect.class.getName()).log(Level.SEVERE, null, ex);
