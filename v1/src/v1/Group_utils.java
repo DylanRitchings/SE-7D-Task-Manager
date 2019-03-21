@@ -70,6 +70,16 @@ public class Group_utils {
     {
         ArrayList<String> userIDList = getMemberIDs(groupID);
         ArrayList<ArrayList<String>> memDetails = new ArrayList<>();
+        ArrayList<String> id = new ArrayList<>();
+        ArrayList<String> forename = new ArrayList<>();
+        ArrayList<String> surname = new ArrayList<>();
+        ArrayList<String> email = new ArrayList<>();
+        ArrayList<String> numTasksDone = new ArrayList<>();
+        memDetails.add(id);
+        memDetails.add(forename);
+        memDetails.add(surname);
+        memDetails.add(email);
+        memDetails.add(numTasksDone);
         //create Id,forename,surname... etc lists
         
         //ID, Forename, Surname, Email, NumTasksDone
@@ -78,6 +88,7 @@ public class Group_utils {
             String query ;
             query = "SELECT User_ID, User_Forename, User_Surname, User_Email, User_NumTasksDone FROM user WHERE User_ID =" + userIDList(user) + ";";
             ResultSet userDetails = DBConnect.databaseSelect(query);
+            
             //Split user details up and input into lists
         }
         
