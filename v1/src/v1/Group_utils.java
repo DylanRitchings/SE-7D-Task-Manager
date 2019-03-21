@@ -65,8 +65,8 @@ public class Group_utils {
             Logger.getLogger(Group_utils.class.getName()).log(Level.SEVERE, null, ex);
             return null;
         }
-        
-
+    }
+    public static ArrayList getMemberDetails(ArrayList group){
         
     }
 }
