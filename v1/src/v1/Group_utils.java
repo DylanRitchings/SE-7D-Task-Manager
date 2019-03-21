@@ -16,23 +16,23 @@ import java.util.logging.Logger;
  * @author Dylan Ritchings
  */
 public class Group_utils {
-    protected String  groupName;
-    protected ArrayList<String> memberList;
-    protected String groupDescription;
-    protected int groupId;
-    protected ArrayList<String> groupTasks;
-    protected ArrayList<String> groupSkills;
-    
-    public Group_utils() {   /*  Creates a new instance of groups_utils */
-    }
-    public Group_utils(String name, ArrayList<String> members, String description, int Id, ArrayList<String> tasks, ArrayList<String> skills){
-       groupName = name;
-       memberList = members;
-       groupId = Id;
-       groupTasks = tasks;
-       groupSkills = skills;
-       
-    }
+//    protected String  groupName;
+//    protected ArrayList<String> memberList;
+//    protected String groupDescription;
+//    protected int groupId;
+//    protected ArrayList<String> groupTasks;
+//    protected ArrayList<String> groupSkills;
+//    
+//    public Group_utils() {   /*  Creates a new instance of groups_utils */
+//    }
+//    public Group_utils(String name, ArrayList<String> members, String description, int Id, ArrayList<String> tasks, ArrayList<String> skills){
+//       groupName = name;
+//       memberList = members;
+//       groupId = Id;
+//       groupTasks = tasks;
+//       groupSkills = skills;
+//       
+//    }
     
     /**
      * Creates an ArrayList of memberIDs that are in a group.
@@ -46,7 +46,7 @@ public class Group_utils {
      *
      */
 
-    public static ArrayList getMemberIDs(int groupID)
+    private static ArrayList getMemberIDs(int groupID)
     {
         String query = "SELECT User_ID FROM user_in_group WHERE Group_ID =" + groupID+";";
         
@@ -66,7 +66,24 @@ public class Group_utils {
             return null;
         }
     }
-    public static ArrayList getMemberDetails(ArrayList group){
+    public static ArrayList getMemberDetails(int groupID)
+    {
+        ArrayList<String> userIDList = getMemberIDs(groupID);
+        ArrayList<ArrayList<String>> memDetails = new ArrayList<>();
+        //create Id,forename,surname... etc lists
         
+        //ID, Forename, Surname, Email, NumTasksDone
+        for (int user = 0; user <= userIDList.size(); user++)
+        {        
+            String query ;
+            query = "SELECT User_ID, User_Forename, User_Surname, User_Email, User_NumTasksDone FROM user WHERE User_ID =" + userIDList(user) + ";";
+            ResultSet userDetails = DBConnect.databaseSelect(query);
+            //Split user details up and input into lists
+        }
+        
+    }
+
+    private static java.lang.String userIDList(int user) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
