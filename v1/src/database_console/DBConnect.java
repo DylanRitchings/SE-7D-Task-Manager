@@ -36,7 +36,7 @@ public class DBConnect {
      *
      */
 
-    public static Statement databaseConnect()
+    private static Statement databaseConnect()
     {
 
         
@@ -69,8 +69,8 @@ public class DBConnect {
     {
         try{
             Statement stat = databaseConnect();
-            int rs;
-            rs = stat.executeUpdate(query);
+            stat.executeUpdate(query);
+            stat.close();
         }
         catch (SQLException e) {
             System.err.println("Got an exception! ");
