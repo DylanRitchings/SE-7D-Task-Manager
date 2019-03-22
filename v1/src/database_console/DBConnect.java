@@ -36,7 +36,7 @@ public class DBConnect {
      *
      */
 
-    public static Statement databaseConnect()
+    private static Statement databaseConnect()
     {
 
         
@@ -69,8 +69,7 @@ public class DBConnect {
     {
         try{
             Statement stat = databaseConnect();
-            int rs;
-            rs = stat.executeUpdate(query);
+            stat.executeUpdate(query);
             stat.close();
         }
         catch (SQLException e) {
@@ -92,7 +91,6 @@ public class DBConnect {
         Statement stat = databaseConnect();
         try {
             ResultSet rs = stat.executeQuery(query);
-            stat.close();
             return rs;
         } catch (SQLException ex) {
             Logger.getLogger(DBConnect.class.getName()).log(Level.SEVERE, null, ex);
