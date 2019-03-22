@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package v1;
-import static com.sun.org.apache.xalan.internal.xsltc.compiler.util.Type.String;
+
 import java.util.*;
 import database_console.DBConnect;
 import java.sql.ResultSet;
@@ -56,16 +56,25 @@ public class Group_utils {
         userIDList = new ArrayList<>();
         
         try {
-            //Loop through userID result set and input user IDs into array list
+            //Iterate through userID result set and input user IDs into array list
             while (userIDrs.next()) {
                 userIDList.add(userIDrs.getString("User_ID"));
             }
+            userIDrs.close();
             return userIDList;
         } catch (Exception ex) {
             Logger.getLogger(Group_utils.class.getName()).log(Level.SEVERE, null, ex);
             return null;
         }
     }
+    
+    /**
+     * Creates and array list of array lists each containing information about members in a specified group.
+     * @param groupID
+     * @return memDetails
+     * @throw SQLException
+     * 
+     */
     public static ArrayList getMemberDetails(int groupID)
     {
         ArrayList<String> userIDList = getMemberIDs(groupID);
@@ -77,8 +86,8 @@ public class Group_utils {
         ArrayList<String> tasksDone = new ArrayList<>();
        
         
-        //ID, Forename, Surname, Email, NumTasksDone
-        for (int user = 0; user <= userIDList.size(); user++)
+       //Iterate through each user ID in userIDList
+        for (int user = 0; user <= userIDList.size()-1; user++)
         {        
             String query ;
             query = "SELECT User_ID, User_Forename, User_Surname, User_Email, User_NumTasksDone FROM user WHERE User_ID =" + userIDList.get(user) + ";";
@@ -92,6 +101,7 @@ public class Group_utils {
                     email.add(userDetails.getString("User_Email"));
                     tasksDone.add(userDetails.getString("User_NumTasksDone"));                    
                 }
+                userDetails.close();
                 
             } catch (SQLException ex) {
                 Logger.getLogger(Group_utils.class.getName()).log(Level.SEVERE, null, ex);
