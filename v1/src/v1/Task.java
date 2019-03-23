@@ -41,6 +41,13 @@ public class Task extends javax.swing.JFrame {
         startTime_month_comboBox = new javax.swing.JComboBox<>();
         startTime_day_label = new javax.swing.JLabel();
         startDate_day_box = new javax.swing.JComboBox<>();
+        finish_time_label = new javax.swing.JLabel();
+        finishTime_year_comboBox = new javax.swing.JComboBox<>();
+        finishTime_year_label = new javax.swing.JLabel();
+        finishTime_month_label = new javax.swing.JLabel();
+        finishTime_month_comboBox = new javax.swing.JComboBox<>();
+        finishTime_day_label = new javax.swing.JLabel();
+        finishDate_day_box = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -78,10 +85,39 @@ public class Task extends javax.swing.JFrame {
 
         startTime_day_label.setText("Day:");
 
-        startDate_day_box.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
+        startDate_day_box.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "- -", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
         startDate_day_box.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 startDate_day_boxActionPerformed(evt);
+            }
+        });
+
+        finish_time_label.setText("Finish time");
+
+        finishTime_year_comboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2019", "2020", "2021", "2022", "2023", "2024", "2025", "2026", "2027", "2028", "2029", "2030" }));
+        finishTime_year_comboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                finishTime_year_comboBoxActionPerformed(evt);
+            }
+        });
+
+        finishTime_year_label.setText("Year :");
+
+        finishTime_month_label.setText("Month :");
+
+        finishTime_month_comboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12" }));
+        finishTime_month_comboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                finishTime_month_comboBoxActionPerformed(evt);
+            }
+        });
+
+        finishTime_day_label.setText("Day:");
+
+        finishDate_day_box.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "- -", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
+        finishDate_day_box.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                finishDate_day_boxActionPerformed(evt);
             }
         });
 
@@ -91,28 +127,43 @@ public class Task extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(64, 64, 64)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(description_label)
-                    .addComponent(title_label)
-                    .addComponent(startTime_label))
-                .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(heading_label, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(startTime_year_label)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(startTime_year_comboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addComponent(startTime_month_label)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(startTime_month_comboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(startTime_day_label)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(startDate_day_box, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(jScrollPane1)
-                        .addComponent(title_text_field)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(finish_time_label)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(finishTime_year_label)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(finishTime_year_comboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(finishTime_month_label)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(finishTime_month_comboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(finishTime_day_label)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(finishDate_day_box, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(description_label)
+                            .addComponent(title_label)
+                            .addComponent(startTime_label))
+                        .addGap(29, 29, 29)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(heading_label, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(startTime_year_label)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(startTime_year_comboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(startTime_month_label)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(startTime_month_comboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(startTime_day_label)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(startDate_day_box, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane1)
+                            .addComponent(title_text_field))))
                 .addContainerGap(151, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -137,7 +188,17 @@ public class Task extends javax.swing.JFrame {
                     .addComponent(startTime_month_comboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(startTime_day_label)
                     .addComponent(startDate_day_box, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(201, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(finish_time_label)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(finishTime_year_label)
+                        .addComponent(finishTime_year_comboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(finishTime_month_label)
+                        .addComponent(finishTime_month_comboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(finishTime_day_label)
+                        .addComponent(finishDate_day_box, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(157, Short.MAX_VALUE))
         );
 
         pack();
@@ -157,19 +218,25 @@ public class Task extends javax.swing.JFrame {
         // deciding how many days a selected month has
         List<String> high_months_list = Arrays.asList(high_months);
         
-        
-        if ((year_input_number % 4 != 0) && month_input == "02") {
-            startDate_day_box.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28"}));
+        /*
+         The length of the days of the getItemCount's is off by 1 because the
+         day combo box also has a default "- -" entry in it. This is to 
+         prevent user mistakes when the system is updating the day list while
+         users are changing the desired year / month.
+        */
+        if ((year_input_number % 4 != 0) && month_input == "02" && (startDate_day_box.getItemCount() != 29)) {
+            startDate_day_box.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {"- -", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28"}));
         }
-        else if ((year_input_number % 4 == 0) && month_input == "02") {
-            startDate_day_box.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29"}));
+        else if ((year_input_number % 4 == 0) && month_input == "02" && (startDate_day_box.getItemCount() != 30)) {
+            startDate_day_box.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {"- -", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29"}));
         }
-        else if (high_months_list.contains(month_input)) {
-            startDate_day_box.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31"}));       
+        else if (high_months_list.contains(month_input) && (startDate_day_box.getItemCount() != 32)) {
+            startDate_day_box.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {"- -", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31"}));       
         }
-        else {
-            startDate_day_box.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30"}));
+        else if (!high_months_list.contains(month_input) && month_input != "02" && startDate_day_box.getItemCount() != 31) {
+            startDate_day_box.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {"- -", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30"}));
         }
+
     }
     
     private void startTime_year_comboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startTime_year_comboBoxActionPerformed
@@ -177,12 +244,24 @@ public class Task extends javax.swing.JFrame {
     }//GEN-LAST:event_startTime_year_comboBoxActionPerformed
 
     private void startDate_day_boxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startDate_day_boxActionPerformed
-        
+        // TODO add your handling code here:
     }//GEN-LAST:event_startDate_day_boxActionPerformed
 
     private void startTime_month_comboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startTime_month_comboBoxActionPerformed
         validate_days();
     }//GEN-LAST:event_startTime_month_comboBoxActionPerformed
+
+    private void finishTime_year_comboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_finishTime_year_comboBoxActionPerformed
+        validate_days();
+    }//GEN-LAST:event_finishTime_year_comboBoxActionPerformed
+
+    private void finishTime_month_comboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_finishTime_month_comboBoxActionPerformed
+        validate_days();
+    }//GEN-LAST:event_finishTime_month_comboBoxActionPerformed
+
+    private void finishDate_day_boxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_finishDate_day_boxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_finishDate_day_boxActionPerformed
 
     /**
      * @param args the command line arguments
@@ -222,6 +301,13 @@ public class Task extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel description_label;
     private javax.swing.JTextArea description_text_field;
+    private javax.swing.JComboBox<String> finishDate_day_box;
+    private javax.swing.JLabel finishTime_day_label;
+    private javax.swing.JComboBox<String> finishTime_month_comboBox;
+    private javax.swing.JLabel finishTime_month_label;
+    private javax.swing.JComboBox<String> finishTime_year_comboBox;
+    private javax.swing.JLabel finishTime_year_label;
+    private javax.swing.JLabel finish_time_label;
     private javax.swing.JLabel heading_label;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JComboBox<String> startDate_day_box;
