@@ -6,6 +6,7 @@
 package v1;
 
 import java.util.*;
+import javax.swing.JComboBox;
 /**
  *
  * @author Konstantin Georgiev
@@ -40,14 +41,14 @@ public class Task extends javax.swing.JFrame {
         startTime_month_label = new javax.swing.JLabel();
         startTime_month_comboBox = new javax.swing.JComboBox<>();
         startTime_day_label = new javax.swing.JLabel();
-        startDate_day_box = new javax.swing.JComboBox<>();
+        startTime_day_comboBox = new javax.swing.JComboBox<>();
         finish_time_label = new javax.swing.JLabel();
         finishTime_year_comboBox = new javax.swing.JComboBox<>();
         finishTime_year_label = new javax.swing.JLabel();
         finishTime_month_label = new javax.swing.JLabel();
         finishTime_month_comboBox = new javax.swing.JComboBox<>();
         finishTime_day_label = new javax.swing.JLabel();
-        finishDate_day_box = new javax.swing.JComboBox<>();
+        finishTime_day_comboBox = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -85,10 +86,10 @@ public class Task extends javax.swing.JFrame {
 
         startTime_day_label.setText("Day:");
 
-        startDate_day_box.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "- -", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
-        startDate_day_box.addActionListener(new java.awt.event.ActionListener() {
+        startTime_day_comboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "- -", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
+        startTime_day_comboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                startDate_day_boxActionPerformed(evt);
+                startTime_day_comboBoxActionPerformed(evt);
             }
         });
 
@@ -114,10 +115,10 @@ public class Task extends javax.swing.JFrame {
 
         finishTime_day_label.setText("Day:");
 
-        finishDate_day_box.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "- -", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
-        finishDate_day_box.addActionListener(new java.awt.event.ActionListener() {
+        finishTime_day_comboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "- -", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
+        finishTime_day_comboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                finishDate_day_boxActionPerformed(evt);
+                finishTime_day_comboBoxActionPerformed(evt);
             }
         });
 
@@ -141,7 +142,7 @@ public class Task extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(finishTime_day_label)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(finishDate_day_box, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(finishTime_day_comboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(description_label)
@@ -161,7 +162,7 @@ public class Task extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(startTime_day_label)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(startDate_day_box, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(startTime_day_comboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jScrollPane1)
                             .addComponent(title_text_field))))
                 .addContainerGap(151, Short.MAX_VALUE))
@@ -187,29 +188,28 @@ public class Task extends javax.swing.JFrame {
                     .addComponent(startTime_month_label)
                     .addComponent(startTime_month_comboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(startTime_day_label)
-                    .addComponent(startDate_day_box, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(startTime_day_comboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(finish_time_label)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(finishTime_year_label)
                         .addComponent(finishTime_year_comboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(finishTime_month_label)
                         .addComponent(finishTime_month_comboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(finishTime_day_label)
-                        .addComponent(finishDate_day_box, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(finishTime_day_comboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(finish_time_label))
                 .addContainerGap(157, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void validate_days () {
-        String year_input = (String)startTime_year_comboBox.getSelectedItem();
+    private void validate_days (JComboBox<String> year_comboBox, JComboBox<String> month_comboBox, JComboBox<String> day_comboBox) {
+        String year_input = (String)year_comboBox.getSelectedItem();
         Integer year_input_number = Integer.parseInt(year_input);
         
-        String month_input = (String)startTime_month_comboBox.getSelectedItem();
-        String day_input = (String)startTime_month_comboBox.getSelectedItem();
+        String month_input = (String)month_comboBox.getSelectedItem();
         
         // Make a String Array
         String[] high_months = new String[]{"01","03","05","07","08","10","12"};
@@ -224,44 +224,44 @@ public class Task extends javax.swing.JFrame {
          prevent user mistakes when the system is updating the day list while
          users are changing the desired year / month.
         */
-        if ((year_input_number % 4 != 0) && month_input == "02" && (startDate_day_box.getItemCount() != 29)) {
-            startDate_day_box.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {"- -", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28"}));
+        if ((year_input_number % 4 != 0) && month_input == "02" && (day_comboBox.getItemCount() != 29)) {
+            day_comboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {"- -", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28"}));
         }
-        else if ((year_input_number % 4 == 0) && month_input == "02" && (startDate_day_box.getItemCount() != 30)) {
-            startDate_day_box.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {"- -", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29"}));
+        else if ((year_input_number % 4 == 0) && month_input == "02" && (day_comboBox.getItemCount() != 30)) {
+            day_comboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {"- -", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29"}));
         }
-        else if (high_months_list.contains(month_input) && (startDate_day_box.getItemCount() != 32)) {
-            startDate_day_box.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {"- -", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31"}));       
+        else if (high_months_list.contains(month_input) && (day_comboBox.getItemCount() != 32)) {
+            day_comboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {"- -", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31"}));       
         }
-        else if (!high_months_list.contains(month_input) && month_input != "02" && startDate_day_box.getItemCount() != 31) {
-            startDate_day_box.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {"- -", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30"}));
+        else if (!high_months_list.contains(month_input) && month_input != "02" && day_comboBox.getItemCount() != 31) {
+            day_comboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {"- -", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30"}));
         }
 
     }
     
     private void startTime_year_comboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startTime_year_comboBoxActionPerformed
-        validate_days();
+        validate_days(startTime_year_comboBox, startTime_month_comboBox, startTime_day_comboBox);
     }//GEN-LAST:event_startTime_year_comboBoxActionPerformed
 
-    private void startDate_day_boxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startDate_day_boxActionPerformed
+    private void startTime_day_comboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startTime_day_comboBoxActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_startDate_day_boxActionPerformed
+    }//GEN-LAST:event_startTime_day_comboBoxActionPerformed
 
     private void startTime_month_comboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startTime_month_comboBoxActionPerformed
-        validate_days();
+        validate_days(startTime_year_comboBox, startTime_month_comboBox, startTime_day_comboBox);
     }//GEN-LAST:event_startTime_month_comboBoxActionPerformed
 
     private void finishTime_year_comboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_finishTime_year_comboBoxActionPerformed
-        validate_days();
+        validate_days(finishTime_year_comboBox, finishTime_month_comboBox, finishTime_day_comboBox);
     }//GEN-LAST:event_finishTime_year_comboBoxActionPerformed
 
     private void finishTime_month_comboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_finishTime_month_comboBoxActionPerformed
-        validate_days();
+        validate_days(finishTime_year_comboBox, finishTime_month_comboBox, finishTime_day_comboBox);
     }//GEN-LAST:event_finishTime_month_comboBoxActionPerformed
 
-    private void finishDate_day_boxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_finishDate_day_boxActionPerformed
+    private void finishTime_day_comboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_finishTime_day_comboBoxActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_finishDate_day_boxActionPerformed
+    }//GEN-LAST:event_finishTime_day_comboBoxActionPerformed
 
     /**
      * @param args the command line arguments
@@ -301,7 +301,7 @@ public class Task extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel description_label;
     private javax.swing.JTextArea description_text_field;
-    private javax.swing.JComboBox<String> finishDate_day_box;
+    private javax.swing.JComboBox<String> finishTime_day_comboBox;
     private javax.swing.JLabel finishTime_day_label;
     private javax.swing.JComboBox<String> finishTime_month_comboBox;
     private javax.swing.JLabel finishTime_month_label;
@@ -310,7 +310,7 @@ public class Task extends javax.swing.JFrame {
     private javax.swing.JLabel finish_time_label;
     private javax.swing.JLabel heading_label;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JComboBox<String> startDate_day_box;
+    private javax.swing.JComboBox<String> startTime_day_comboBox;
     private javax.swing.JLabel startTime_day_label;
     private javax.swing.JLabel startTime_label;
     private javax.swing.JComboBox<String> startTime_month_comboBox;

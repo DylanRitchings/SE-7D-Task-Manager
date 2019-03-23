@@ -39,7 +39,7 @@
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="finishTime_day_label" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="finishDate_day_box" min="-2" max="-2" attributes="0"/>
+                      <Component id="finishTime_day_comboBox" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -61,7 +61,7 @@
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="startTime_day_label" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="startDate_day_box" min="-2" max="-2" attributes="0"/>
+                              <Component id="startTime_day_comboBox" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Component id="jScrollPane1" alignment="0" max="32767" attributes="0"/>
                           <Component id="title_text_field" alignment="0" max="32767" attributes="0"/>
@@ -95,19 +95,19 @@
                   <Component id="startTime_month_label" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="startTime_month_comboBox" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="startTime_day_label" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="startDate_day_box" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="startTime_day_comboBox" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="finish_time_label" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Group type="103" alignment="3" groupAlignment="3" attributes="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="103" alignment="0" groupAlignment="3" attributes="0">
                       <Component id="finishTime_year_label" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="finishTime_year_comboBox" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="finishTime_month_label" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="finishTime_month_comboBox" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="finishTime_day_label" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="finishDate_day_box" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="finishTime_day_comboBox" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
+                  <Component id="finish_time_label" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="157" max="32767" attributes="0"/>
           </Group>
@@ -223,7 +223,7 @@
         <Property name="text" type="java.lang.String" value="Day:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JComboBox" name="startDate_day_box">
+    <Component class="javax.swing.JComboBox" name="startTime_day_comboBox">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="32">
@@ -263,7 +263,7 @@
         </Property>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="startDate_day_boxActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="startTime_day_comboBoxActionPerformed"/>
       </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
@@ -341,7 +341,7 @@
         <Property name="text" type="java.lang.String" value="Day:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JComboBox" name="finishDate_day_box">
+    <Component class="javax.swing.JComboBox" name="finishTime_day_comboBox">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="32">
@@ -381,7 +381,7 @@
         </Property>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="finishDate_day_boxActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="finishTime_day_comboBoxActionPerformed"/>
       </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
