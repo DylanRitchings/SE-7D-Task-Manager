@@ -10,6 +10,8 @@ import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import database_console.*;
 import java.sql.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 /**
  *
  * @author Konstantin Georgiev
@@ -307,8 +309,34 @@ public class Task extends javax.swing.JFrame {
                  start_year == finish_year && start_month == finish_month && (start_day > finish_day || finish_day < start_day)) {
             JOptionPane.showMessageDialog(null, "Start time has to be earlier than finish time.", "Input Error", 2);
         }
-        else {
-            JOptionPane.showMessageDialog(null, "Task creation successful", "Task created", 1);
+    }
+    
+    private void validate_Email() {
+        String user_email = assignee_text_field.getText();
+
+        String select = "SELECT * FROM `user` WHERE `User_Email` = ? ";
+        ResultSet rs;
+        
+        try (Connection con = DBConnect.databaseConnect();) {
+            
+            PreparedStatement pst = con.prepareStatement(select);
+            pst.setString(1, user_email);
+            
+            rs = pst.executeQuery();
+            
+            if (rs.next()) {
+                JOptionPane.showMessageDialog(null, "Task creation successful", "Task created", 1);
+            }
+            else {
+                JOptionPane.showMessageDialog(null, "No user registered with this email", "Input Error", 2);
+            }
+
+
+        } catch (SQLException ex) {
+
+            Logger lgr = Logger.getLogger(DBConnect.class.getName());
+            lgr.log(Level.SEVERE, ex.getMessage(), ex);
+
         }
     }
     
@@ -342,11 +370,7 @@ public class Task extends javax.swing.JFrame {
 
     private void createTask_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createTask_buttonActionPerformed
         validate_Inputs();
-        DBConnect.databaseConnect();
-        
-        PreparedStatement pst;
-        ResultSet rs;
-        
+        validate_Email();
         
     }//GEN-LAST:event_createTask_buttonActionPerformed
 
