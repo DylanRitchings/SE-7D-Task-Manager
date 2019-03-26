@@ -116,9 +116,10 @@ public class Group_utils {
             //Split user details up and input into lists
         }
     public static String createGroup(String name, String description){
-            String insertGroup = "INSERT INTO Groups Group_Name,Group_Description VALUES("+name+ "," + description +");";
+            String insertGroup = "INSERT INTO Groups (Group_Name, Group_Description) VALUES("+name+ "," + description +");";
             try{
                 DBConnect.databaseInput(insertGroup);
+                //DBConnect.databaseInput(insertLeader); <--- FINISH
                 return "Group created sucessfully";
                 
             } catch (Exception ex){
@@ -126,6 +127,10 @@ public class Group_utils {
             }
             
             
+            
+            
+            
     }
 }
+
 
