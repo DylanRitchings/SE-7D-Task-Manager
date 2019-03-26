@@ -360,6 +360,8 @@ public class Login_Interface extends javax.swing.JFrame {
                 form.setVisible(true);
                 form.pack();
                 form.setLocationRelativeTo(null);
+                //Passes the email to the LoggedIN interface
+                form.jTextField_userEmail.setText(email);
                 //Close the current form (login form)
                 this.dispose();
             }
