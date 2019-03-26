@@ -326,6 +326,7 @@ public class Task extends javax.swing.JFrame {
             
             if (rs.next()) {
                 JOptionPane.showMessageDialog(null, "Task creation successful", "Task created", 1);
+                this.dispose();
             }
             else {
                 JOptionPane.showMessageDialog(null, "No user registered with this email", "Input Error", 2);
