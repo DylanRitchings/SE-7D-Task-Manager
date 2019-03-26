@@ -3,15 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
             <file>file://Su2/ur/UP818044/Desktop/SE-7D-Task-Manager/v1/src/database_console/DBConnect.java</file>
-=======
-
-            <file>file:/C:/Users/Konstantin%20Georgiev/Desktop/INSE_Coursework_real/v1/src/v1/V1.java</file>
-            <file>file:/C:/Users/Konstantin%20Georgiev/Desktop/INSE_Coursework_real/v1/src/v1/User.java</file>
-            <file>file:/C:/Users/Konstantin%20Georgiev/Desktop/INSE_Coursework_real/v1/src/database_console/DBConnect.java</file>
-
->>>>>>> 1c451d733da867ab5bb8d9248ec0b3fd396ee0bb
+            <file>file://Su2/ur/UP818044/Desktop/SE-7D-Task-Manager/v1/src/v2/Login/LoggedIN.java</file>
+            <file>file://Su2/ur/UP818044/Desktop/SE-7D-Task-Manager/v1/src/v2/Login/loginConnect.java</file>
         </group>
     </open-files>
 </project-private>
