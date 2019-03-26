@@ -8,6 +8,8 @@ package v1;
 import java.util.*;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
+import database_console.*;
+import java.sql.*;
 /**
  *
  * @author Konstantin Georgiev
@@ -340,6 +342,12 @@ public class Task extends javax.swing.JFrame {
 
     private void createTask_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createTask_buttonActionPerformed
         validate_Inputs();
+        DBConnect.databaseConnect();
+        
+        PreparedStatement pst;
+        ResultSet rs;
+        
+        
     }//GEN-LAST:event_createTask_buttonActionPerformed
 
     /**
