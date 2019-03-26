@@ -62,7 +62,7 @@ public class Group_utils {
             }
             userIDrs.close();
             return userIDList;
-        } catch (Exception ex) {
+        } catch (SQLException ex) {
             Logger.getLogger(Group_utils.class.getName()).log(Level.SEVERE, null, ex);
             return null;
         }
@@ -115,6 +115,17 @@ public class Group_utils {
         return memDetails;
             //Split user details up and input into lists
         }
-        
+    public static String createGroup(String name, String description){
+            String insertGroup = "INSERT INTO Groups Group_Name,Group_Description VALUES("+name+ "," + description +");";
+            try{
+                DBConnect.databaseInput(insertGroup);
+                return "Group created sucessfully";
+                
+            } catch (Exception ex){
+                return "Error in creating group";
+            }
+            
+            
     }
+}
 
