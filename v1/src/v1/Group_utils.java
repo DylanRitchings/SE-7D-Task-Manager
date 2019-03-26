@@ -62,7 +62,7 @@ public class Group_utils {
             }
             userIDrs.close();
             return userIDList;
-        } catch (Exception ex) {
+        } catch (SQLException ex) {
             Logger.getLogger(Group_utils.class.getName()).log(Level.SEVERE, null, ex);
             return null;
         }
@@ -115,6 +115,82 @@ public class Group_utils {
         return memDetails;
             //Split user details up and input into lists
         }
-        
+    /**
+     * Creates a group and assigns the user who created the group as a leader
+     * @param name
+     * @param description
+     * @param userID (Maybe)
+     * @return String
+     * 
+     */
+    
+    
+    public static String createGroup(String name, String description){
+            String insertGroup = "INSERT INTO Groups (Group_Name, Group_Description) VALUES('"+name+ "','" + description +"');";
+            try{
+                DBConnect.databaseInput(insertGroup);
+                //DBConnect.databaseInput(insertLeader); <--- FINISH
+                return "Group created sucessfully";
+                
+            } catch (Exception ex){
+                return "Error in creating group";
+            }
     }
+    
+    private static ArrayList getTaskIDs(int groupID)
+    {
+        ArrayList<String> taskIDList = new ArrayList<>();
+        String taskIDQuery = "SELECT Task_ID FROM User_Member_Group WHERE Group_ID =" + groupID+");";
+        ResultSet taskIDrs = DBConnect.databaseSelect(taskIDQuery);
+        try {
+            //Iterate through tasksID result set and input tasks IDs into array list
+            while (taskIDrs.next()) {
+                taskIDList .add(taskIDrs.getString("Task_ID"));
+            }
+            taskIDrs.close();
+            return taskIDList;
+        } catch (SQLException ex) {
+            Logger.getLogger(Group_utils.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+    }
+    
+    /**
+     *
+     * @param groupID
+     * @return ArrayList
+     */
+    public static ArrayList getSkillIDs(int groupID)
+    {
+        String query = "SELECT Skill_ID FROM group_skills WHERE Group_ID =" + groupID+";";
+        
+        //Send query to DBConnect
+        ResultSet skillIDrs = DBConnect.databaseSelect(query);
+        ArrayList<String> skillIDList;
+        skillIDList = new ArrayList<>();
+        
+        try {
+            //Iterate through userID result set and input user IDs into array list
+            while (skillIDrs .next()) {
+                skillIDList.add(skillIDrs .getString("Skill_ID"));
+            }
+            skillIDrs.close();
+            return skillIDList;
+        } catch (SQLException ex) {
+            Logger.getLogger(Group_utils.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+//    public static ResultSet getTaskDetails(int groupID){
+//        ArrayList taskIDList = getTaskIDs(groupID);
+//        for (int user = 0; user <= taskIDList.size()-1; user++)
+//            {
+//                
+//            }
+//        return
+//        
+//    }
+//            
+                        
+}
+
 
