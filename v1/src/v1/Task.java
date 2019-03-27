@@ -325,6 +325,7 @@ public class Task extends javax.swing.JFrame {
             rs = pst.executeQuery();
             
             if (rs.next()) {
+
                 JOptionPane.showMessageDialog(null, "Task creation successful", "Task created", 1);
                 this.dispose();
             }
@@ -333,6 +334,43 @@ public class Task extends javax.swing.JFrame {
             }
 
 
+        } catch (SQLException ex) {
+
+            Logger lgr = Logger.getLogger(DBConnect.class.getName());
+            lgr.log(Level.SEVERE, ex.getMessage(), ex);
+
+        }
+    }
+    
+    private void create_task () {
+        String task_title = title_text_field.getText();
+        String task_start = (String)startTime_year_comboBox.getSelectedItem() + "-" +
+                            (String)startTime_month_comboBox.getSelectedItem() + "-" +
+                            (String)startTime_day_comboBox.getSelectedItem();
+        String task_deadline = (String)finishTime_year_comboBox.getSelectedItem() + "-" +
+                               (String)finishTime_month_comboBox.getSelectedItem() + "-" +
+                               (String)finishTime_day_comboBox.getSelectedItem();
+        String task_description = description_text_field.getText();
+        Integer is_complete = 0;
+        String user_email = assignee_text_field.getText();
+        
+
+        String insert = "INSERT INTO task (Task_Title, task_start, task_deadline, Task_Description, Is_Complete, assignee_email)" +  
+                        "VALUES (?, ?, ?, ?, ?, ?)";
+        
+        try (Connection con = DBConnect.databaseConnect();) {
+            
+            PreparedStatement pst = con.prepareStatement(insert);
+            pst.setString(1, task_title);
+            pst.setString(2, task_start);
+            pst.setString(3, task_deadline);
+            pst.setString(4, task_description);
+            pst.setInt(5, is_complete);
+            pst.setString(6, user_email);            
+            
+            pst.executeUpdate();
+            pst.close();
+            
         } catch (SQLException ex) {
 
             Logger lgr = Logger.getLogger(DBConnect.class.getName());
@@ -372,7 +410,7 @@ public class Task extends javax.swing.JFrame {
     private void createTask_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createTask_buttonActionPerformed
         validate_Inputs();
         validate_Email();
-        
+        create_task();
     }//GEN-LAST:event_createTask_buttonActionPerformed
 
     /**
