@@ -131,7 +131,7 @@ public class Group_utils {
             String fName = memDetails.get(1).get(x);
             String sName = memDetails.get(2).get(x);
             
-            memberList.addElement(fName + " " + sName);
+            MemberList.addElement(fName + " " + sName);
             memNames[x]=(fName + " " + sName);
             
         }
