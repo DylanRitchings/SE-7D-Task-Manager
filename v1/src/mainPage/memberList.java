@@ -1,4 +1,4 @@
-// java Program to create a simple JList 
+
 import java.awt.event.*; 
 import java.awt.*; 
 import javax.swing.*; 
@@ -13,10 +13,10 @@ class solve extends JFrame
    
   
     //main class 
-    public static void main(String[] args) 
+    public static JLabel memList()
     { 
         //create a new frame  
-        f = new JFrame("frame"); 
+        //f = new JFrame("frame"); 
           
         //create a object 
         solve s=new solve(); 
@@ -26,7 +26,7 @@ class solve extends JFrame
           
         //create a new label 
         JLabel l= new JLabel("Select member"); 
-  
+        
         //String array to store weekdays 
         String week[]= { "Monday","Tuesday","Wednesday", 
                          "Thursday","Friday","Saturday","Sunday"}; 
@@ -40,12 +40,13 @@ class solve extends JFrame
         //add list to panel 
         p.add(b); 
    
-        f.add(p); 
+       // f.add(p); 
           
         //set the size of frame 
-        f.setSize(400,400); 
+        //f.setSize(400,400); 
            
-        f.show(); 
+        //f.show(); 
+        return l;
     } 
       
       
