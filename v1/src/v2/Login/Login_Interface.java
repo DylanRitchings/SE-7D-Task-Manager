@@ -339,7 +339,7 @@ public class Login_Interface extends javax.swing.JFrame {
          * @param password
          * 
          */
-        // get the username and password
+        // get the email and password
         String email = jTextField_Email.getText();
         String password = String.valueOf(jPasswordField.getPassword());
         
