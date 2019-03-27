@@ -9,9 +9,9 @@ import database_console.DBConnect;
 import java.awt.event.ActionListener;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import javax.swing.DefaultListModel;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
-import v1.Group_utils;
 
 /**
  *
@@ -23,9 +23,11 @@ public class Members_In_Group_Interace extends javax.swing.JFrame {
      * Creates new form Members_In_Group_Interace
      */
     public Members_In_Group_Interace() {
+        
         initComponents();
     }
-
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -38,9 +40,10 @@ public class Members_In_Group_Interace extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList2 = new javax.swing.JList();
+        memberList = new javax.swing.JList();
         jLabel1 = new javax.swing.JLabel();
         skillCombo = new javax.swing.JComboBox<String>();
+        jButton1 = new javax.swing.JButton();
 
         jList1.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
@@ -51,55 +54,69 @@ public class Members_In_Group_Interace extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jList2.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane1.setViewportView(jList2);
+        //memberList.setModel(new javax.swing.AbstractListModel(){
+            //    String [] strings = Group_utils.getMemNames(123);
+            //    public int getSize() {return strings.length;}
+            //    public Object getElemntAt(int i) { return string[i]; }
+            //});
+    jScrollPane1.setViewportView(memberList);
+    memberList.getAccessibleContext().setAccessibleName("");
 
-        jLabel1.setText("Members");
+    jLabel1.setText("Members");
 
-        skillCombo.setMaximumRowCount(10);
-        skillCombo.setToolTipText("");
-        skillCombo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                skillComboActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1)
-                    .addComponent(skillCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(21, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(skillCombo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(24, Short.MAX_VALUE))
-        );
-
-        int groupID = 123;
-        ArrayList skills = Group_utils.getSkills(groupID);
-        for (Object skill : skills) {
-            skillCombo.addItem((String) skill);
+    skillCombo.setMaximumRowCount(10);
+    skillCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Skills", "SQL", "Python", "Java", "HTML" }));
+    skillCombo.setToolTipText("");
+    skillCombo.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            skillComboActionPerformed(evt);
         }
-        skillCombo.getAccessibleContext().setAccessibleName("");
+    });
 
-        pack();
+    jButton1.setText("jButton1");
+    jButton1.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            jButton1ActionPerformed(evt);
+        }
+    });
+
+    javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+    getContentPane().setLayout(layout);
+    layout.setHorizontalGroup(
+        layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGroup(layout.createSequentialGroup()
+            .addGap(21, 21, 21)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabel1)
+                .addGroup(layout.createSequentialGroup()
+                    .addComponent(skillCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(58, 58, 58)
+                    .addComponent(jButton1)))
+            .addContainerGap(21, Short.MAX_VALUE))
+    );
+    layout.setVerticalGroup(
+        layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGroup(layout.createSequentialGroup()
+            .addContainerGap()
+            .addComponent(jLabel1)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(skillCombo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jButton1))
+            .addGap(18, 18, 18)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addContainerGap(28, Short.MAX_VALUE))
+    );
+
+    int groupID = 123;
+    ArrayList skills = Group_utils.getSkills(groupID);
+    for (Object skill : skills) {
+        skillCombo.addItem((String) skill);
+    }
+    skillCombo.getAccessibleContext().setAccessibleName("");
+
+    pack();
     }// </editor-fold>//GEN-END:initComponents
 
     
@@ -112,11 +129,21 @@ public class Members_In_Group_Interace extends javax.swing.JFrame {
 //        });
     }//GEN-LAST:event_skillComboActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        String[] memArray = Group_utils.getMemNames(123);
+        DefaultListModel memListModel = new DefaultListModel();
+        for (int i = 0; i<=20; i++){
+            memListModel.addElement(i);
+        }
+        memberList.setModel(memListModel);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
 
     /**
      * @param args the command line arguments
      */
     public void main(String args[]) {
+        
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -139,23 +166,30 @@ public class Members_In_Group_Interace extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(Members_In_Group_Interace.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        int groupID = 123;
-        ArrayList skills = Group_utils.getSkills(groupID);
-        JComboBox roomList = new JComboBox(skills.toArray());
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Members_In_Group_Interace().setVisible(true);
-            }
-        });
+        String[] memArray = Group_utils.getMemNames(123);
+        DefaultListModel memListModel = new DefaultListModel();
+        for (int i = 0; i<=20; i++){
+            memListModel.addElement(i);
+        }
+        memberList.setModel(memListModel);
+//        int groupID = 123;
+//        ArrayList skills = Group_utils.getSkills(groupID);
+//        JComboBox roomList = new JComboBox(skills.toArray());
+//        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new Members_In_Group_Interace().setVisible(true);
+//            }
+//        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JList jList1;
-    private javax.swing.JList jList2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JList memberList;
     private javax.swing.JComboBox<String> skillCombo;
     // End of variables declaration//GEN-END:variables
 }
