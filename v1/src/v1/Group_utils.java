@@ -11,6 +11,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.DefaultListModel;
+import mainPage.*;
 /**
  *
  * @author Dylan Ritchings
@@ -46,7 +48,7 @@ public class Group_utils {
      *
      */
 
-    private static ArrayList getMemberIDs(int groupID)
+    public static ArrayList getMemIDs(int groupID)
     {
         String query = "SELECT User_ID FROM user_in_group WHERE Group_ID =" + groupID+";";
         
@@ -75,9 +77,9 @@ public class Group_utils {
      * @throw SQLException
      * 
      */
-    public static ArrayList getMemberDetails(int groupID)
+    public static ArrayList getMemDetails(int groupID)
     {
-        ArrayList<String> userIDList = getMemberIDs(groupID);
+        ArrayList<String> userIDList = getMemIDs(groupID);
         ArrayList<ArrayList<String>> memDetails = new ArrayList<>();
         ArrayList<String> id = new ArrayList<>();
         ArrayList<String> forename = new ArrayList<>();
@@ -115,6 +117,33 @@ public class Group_utils {
         return memDetails;
             //Split user details up and input into lists
         }
+    
+     public static String[] getMemNames(int groupID)
+    {
+        
+        //ArrayList<String> memNames = new ArrayList<>();
+        ArrayList<ArrayList<String>> memDetails;
+       
+        memDetails = getMemDetails(groupID);
+        String memNames[] = new String[memDetails.get(0).size()];
+        for (int x = 0; x < memDetails.get(0).size(); x++)
+        {
+            String fName = memDetails.get(1).get(x);
+            String sName = memDetails.get(2).get(x);
+            
+            memberList.addElement(fName + " " + sName);
+            memNames[x]=(fName + " " + sName);
+            
+        }
+        return memNames;
+        
+    }
+     
+//    public static void fillMemList (int groupID){
+//        public void putTextNow (JLabel label) {
+//        Members_In_Group_Interface.memList.;
+//    }
+    
     /**
      * Creates a group and assigns the user who created the group as a leader
      * @param name
@@ -124,6 +153,8 @@ public class Group_utils {
      * 
      */
     
+ 
+   
     
     public static String createGroup(String name, String description){
             String insertGroup = "INSERT INTO Groups (Group_Name, Group_Description) VALUES('"+name+ "','" + description +"');";
@@ -160,7 +191,7 @@ public class Group_utils {
      * @param groupID
      * @return ArrayList
      */
-    public static ArrayList getSkillIDs(int groupID)
+    private static ArrayList getSkillIDs(int groupID)
     {
         String query = "SELECT Skill_ID FROM group_skills WHERE Group_ID =" + groupID+";";
         
@@ -180,6 +211,25 @@ public class Group_utils {
             Logger.getLogger(Group_utils.class.getName()).log(Level.SEVERE, null, ex);
             return null;
         }
+        
+    }
+    
+    public static ArrayList getSkills(int groupID){
+        ArrayList skillIDList = Group_utils.getSkillIDs(groupID);
+        ArrayList<String> skills = new ArrayList<>();
+        for (Object skillIDList1 : skillIDList) {
+            String query = "SELECT skill FROM skills where ID =" + skillIDList1 + ";";
+            ResultSet skillrs = DBConnect.databaseSelect(query);
+            try {
+                skills.add(skillrs.getString("skill"));
+                
+            } catch (SQLException ex) {
+                Logger.getLogger(Group_utils.class.getName()).log(Level.SEVERE, null, ex);
+                return null;
+            }
+        }
+        return skills;
+    }
 //    public static ResultSet getTaskDetails(int groupID){
 //        ArrayList taskIDList = getTaskIDs(groupID);
 //        for (int user = 0; user <= taskIDList.size()-1; user++)
@@ -192,5 +242,7 @@ public class Group_utils {
 //            
                         
 }
+
+
 
 
