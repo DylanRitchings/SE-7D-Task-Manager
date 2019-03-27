@@ -278,7 +278,7 @@ public class Task_Create extends javax.swing.JFrame {
         }
     }
     
-    private void validate_Inputs () {
+    private boolean validate_Inputs () {
         
         Integer start_year = Integer.parseInt((String)startTime_year_comboBox.getSelectedItem());
         Integer finish_year = Integer.parseInt((String)finishTime_year_comboBox.getSelectedItem());
@@ -291,27 +291,36 @@ public class Task_Create extends javax.swing.JFrame {
                 
         if (assignee_text_field.getText().trim().equals("")) {
             JOptionPane.showMessageDialog(null, "Assignee email field cannot be empty.", "Input Error", 2);
+            return false;
         }
         else if (title_text_field.getText().trim().equals("")) {
             JOptionPane.showMessageDialog(null, "Title field cannot be empty.", "Input Error", 2);
+            return false;
         }
         else if (description_text_field.getText().trim().equals("")) {
             JOptionPane.showMessageDialog(null, "Description field cannot be empty.", "Input Error", 2);
+            return false;
         }
         else if (startTime_day_comboBox.getSelectedItem() == "00") {
             JOptionPane.showMessageDialog(null, "Day field of Start time cannot be 00", "Input Error", 2);
+            return false;
         }
         else if (finishTime_day_comboBox.getSelectedItem() == "00") {
             JOptionPane.showMessageDialog(null, "Day field of Finish time cannot be 00", "Input Error", 2);
+            return false;
         }
         else if (start_year > finish_year || finish_year < start_year ||
                  start_year == finish_year && (start_month > finish_month || finish_month < start_month) ||
                  start_year == finish_year && start_month == finish_month && (start_day > finish_day || finish_day < start_day)) {
             JOptionPane.showMessageDialog(null, "Start time has to be earlier than finish time.", "Input Error", 2);
+            return false;
+        }
+        else {
+            return true;
         }
     }
     
-    private void validate_Email() {
+    private boolean validate_Email() {
         String user_email = assignee_text_field.getText();
 
         String select = "SELECT * FROM `user` WHERE `User_Email` = ? ";
@@ -326,11 +335,11 @@ public class Task_Create extends javax.swing.JFrame {
             
             if (rs.next()) {
 
-                JOptionPane.showMessageDialog(null, "Task creation successful", "Task created", 1);
-                this.dispose();
+                return true;
             }
             else {
                 JOptionPane.showMessageDialog(null, "No user registered with this email", "Input Error", 2);
+                return false;
             }
 
 
@@ -340,6 +349,7 @@ public class Task_Create extends javax.swing.JFrame {
             lgr.log(Level.SEVERE, ex.getMessage(), ex);
 
         }
+        return false;
     }
     
     private void create_task () {
@@ -370,6 +380,9 @@ public class Task_Create extends javax.swing.JFrame {
             
             pst.executeUpdate();
             pst.close();
+            
+            JOptionPane.showMessageDialog(null, "Task creation successful", "Task created", 1);
+            this.dispose();
             
         } catch (SQLException ex) {
 
@@ -408,9 +421,11 @@ public class Task_Create extends javax.swing.JFrame {
     }//GEN-LAST:event_assignee_text_fieldActionPerformed
 
     private void createTask_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createTask_buttonActionPerformed
-        validate_Inputs();
-        validate_Email();
-        create_task();
+        
+        if (validate_Inputs() && validate_Email()) {
+            create_task();
+        }
+        
     }//GEN-LAST:event_createTask_buttonActionPerformed
 
     /**
