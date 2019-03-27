@@ -123,8 +123,6 @@ public class Group_utils {
      * @return String
      * 
      */
-    
-    
     public static String createGroup(String name, String description){
             String insertGroup = "INSERT INTO Groups (Group_Name, Group_Description) VALUES('"+name+ "','" + description +"');";
             try{
@@ -133,7 +131,7 @@ public class Group_utils {
                 return "Group created sucessfully";
                 
             } catch (Exception ex){
-                return "Error in creating group";
+               return "Error in creating group";
             }
     }
     
