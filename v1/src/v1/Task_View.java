@@ -5,23 +5,22 @@
  */
 package v1;
 
-import java.util.*;
-import javax.swing.JComboBox;
-import javax.swing.JOptionPane;
-import database_console.*;
-import java.sql.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.awt.Color;
+
 /**
  *
  * @author Konstantin Georgiev
  */
-public class Task_Create extends javax.swing.JFrame {
+public class Task_View extends javax.swing.JFrame {
 
     /**
-     * Creates new form Task
+     * Creates new form Task_View
      */
-    public Task_Create() {
+    public Task_View() {
+        initComponents();
+    }
+    
+    public Task_View(String assignee_email, String title, String description) {
         initComponents();
     }
 
@@ -34,7 +33,28 @@ public class Task_Create extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        jFrame1 = new javax.swing.JFrame();
+        jFrame2 = new javax.swing.JFrame();
+        jFrame3 = new javax.swing.JFrame();
+        jPopupMenu1 = new javax.swing.JPopupMenu();
+        jPopupMenu2 = new javax.swing.JPopupMenu();
+        jPopupMenu3 = new javax.swing.JPopupMenu();
+        jCheckBox1 = new javax.swing.JCheckBox();
+        jPopupMenu4 = new javax.swing.JPopupMenu();
+        jDialog1 = new javax.swing.JDialog();
+        jDialog2 = new javax.swing.JDialog();
+        startTime_month_label = new javax.swing.JLabel();
+        assignee_Label = new javax.swing.JLabel();
+        startTime_month_comboBox = new javax.swing.JComboBox<>();
+        assignee_text_field = new javax.swing.JTextField();
+        startTime_day_label = new javax.swing.JLabel();
+        createTask_button = new javax.swing.JButton();
+        startTime_day_comboBox = new javax.swing.JComboBox<>();
+        finish_time_label = new javax.swing.JLabel();
+        finishTime_year_comboBox = new javax.swing.JComboBox<>();
+        finishTime_year_label = new javax.swing.JLabel();
+        finishTime_month_label = new javax.swing.JLabel();
+        finishTime_month_comboBox = new javax.swing.JComboBox<>();
         heading_label = new javax.swing.JLabel();
         description_label = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -43,51 +63,72 @@ public class Task_Create extends javax.swing.JFrame {
         title_text_field = new javax.swing.JTextField();
         startTime_label = new javax.swing.JLabel();
         startTime_year_comboBox = new javax.swing.JComboBox<>();
-        startTime_year_label = new javax.swing.JLabel();
-        startTime_month_label = new javax.swing.JLabel();
-        startTime_month_comboBox = new javax.swing.JComboBox<>();
-        startTime_day_label = new javax.swing.JLabel();
-        startTime_day_comboBox = new javax.swing.JComboBox<>();
-        finish_time_label = new javax.swing.JLabel();
-        finishTime_year_comboBox = new javax.swing.JComboBox<>();
-        finishTime_year_label = new javax.swing.JLabel();
-        finishTime_month_label = new javax.swing.JLabel();
-        finishTime_month_comboBox = new javax.swing.JComboBox<>();
         finishTime_day_label = new javax.swing.JLabel();
+        startTime_year_label = new javax.swing.JLabel();
         finishTime_day_comboBox = new javax.swing.JComboBox<>();
-        assignee_Label = new javax.swing.JLabel();
-        assignee_text_field = new javax.swing.JTextField();
-        createTask_button = new javax.swing.JButton();
 
-        jLabel1.setText("jLabel1");
+        javax.swing.GroupLayout jFrame1Layout = new javax.swing.GroupLayout(jFrame1.getContentPane());
+        jFrame1.getContentPane().setLayout(jFrame1Layout);
+        jFrame1Layout.setHorizontalGroup(
+            jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        jFrame1Layout.setVerticalGroup(
+            jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout jFrame2Layout = new javax.swing.GroupLayout(jFrame2.getContentPane());
+        jFrame2.getContentPane().setLayout(jFrame2Layout);
+        jFrame2Layout.setHorizontalGroup(
+            jFrame2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        jFrame2Layout.setVerticalGroup(
+            jFrame2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout jFrame3Layout = new javax.swing.GroupLayout(jFrame3.getContentPane());
+        jFrame3.getContentPane().setLayout(jFrame3Layout);
+        jFrame3Layout.setHorizontalGroup(
+            jFrame3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        jFrame3Layout.setVerticalGroup(
+            jFrame3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+        );
+
+        jCheckBox1.setText("jCheckBox1");
+
+        javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
+        jDialog1.getContentPane().setLayout(jDialog1Layout);
+        jDialog1Layout.setHorizontalGroup(
+            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        jDialog1Layout.setVerticalGroup(
+            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout jDialog2Layout = new javax.swing.GroupLayout(jDialog2.getContentPane());
+        jDialog2.getContentPane().setLayout(jDialog2Layout);
+        jDialog2Layout.setHorizontalGroup(
+            jDialog2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        jDialog2Layout.setVerticalGroup(
+            jDialog2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        heading_label.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
-        heading_label.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        heading_label.setText("Task");
-
-        description_label.setText("Description");
-
-        description_text_field.setColumns(20);
-        description_text_field.setLineWrap(true);
-        description_text_field.setRows(5);
-        jScrollPane1.setViewportView(description_text_field);
-
-        title_label.setText("Title");
-
-        startTime_label.setText("Start time");
-
-        startTime_year_comboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2019", "2020", "2021", "2022", "2023", "2024", "2025", "2026", "2027", "2028", "2029", "2030" }));
-        startTime_year_comboBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                startTime_year_comboBoxActionPerformed(evt);
-            }
-        });
-
-        startTime_year_label.setText("Year :");
-
         startTime_month_label.setText("Month :");
+
+        assignee_Label.setText("Assignee email");
 
         startTime_month_comboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12" }));
         startTime_month_comboBox.addActionListener(new java.awt.event.ActionListener() {
@@ -96,7 +137,20 @@ public class Task_Create extends javax.swing.JFrame {
             }
         });
 
+        assignee_text_field.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                assignee_text_fieldActionPerformed(evt);
+            }
+        });
+
         startTime_day_label.setText("Day:");
+
+        createTask_button.setText("Create task");
+        createTask_button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                createTask_buttonActionPerformed(evt);
+            }
+        });
 
         startTime_day_comboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
         startTime_day_comboBox.addActionListener(new java.awt.event.ActionListener() {
@@ -125,27 +179,36 @@ public class Task_Create extends javax.swing.JFrame {
             }
         });
 
+        heading_label.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
+        heading_label.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        heading_label.setText("Task");
+
+        description_label.setText("Description");
+
+        description_text_field.setColumns(20);
+        description_text_field.setLineWrap(true);
+        description_text_field.setRows(5);
+        jScrollPane1.setViewportView(description_text_field);
+
+        title_label.setText("Title");
+
+        startTime_label.setText("Start time");
+
+        startTime_year_comboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2019", "2020", "2021", "2022", "2023", "2024", "2025", "2026", "2027", "2028", "2029", "2030" }));
+        startTime_year_comboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                startTime_year_comboBoxActionPerformed(evt);
+            }
+        });
+
         finishTime_day_label.setText("Day:");
+
+        startTime_year_label.setText("Year :");
 
         finishTime_day_comboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
         finishTime_day_comboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 finishTime_day_comboBoxActionPerformed(evt);
-            }
-        });
-
-        assignee_Label.setText("Assignee email");
-
-        assignee_text_field.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                assignee_text_fieldActionPerformed(evt);
-            }
-        });
-
-        createTask_button.setText("Create task");
-        createTask_button.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                createTask_buttonActionPerformed(evt);
             }
         });
 
@@ -199,7 +262,7 @@ public class Task_Create extends javax.swing.JFrame {
                         .addComponent(finishTime_day_label)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(finishTime_day_comboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(42, Short.MAX_VALUE))
+                .addContainerGap(89, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -239,194 +302,43 @@ public class Task_Create extends javax.swing.JFrame {
                     .addComponent(finish_time_label))
                 .addGap(32, 32, 32)
                 .addComponent(createTask_button)
-                .addContainerGap(37, Short.MAX_VALUE))
+                .addContainerGap(10, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void validate_days (JComboBox<String> year_comboBox, JComboBox<String> month_comboBox, JComboBox<String> day_comboBox) {
-        String year_input = (String)year_comboBox.getSelectedItem();
-        Integer year_input_number = Integer.parseInt(year_input);
-        
-        String month_input = (String)month_comboBox.getSelectedItem();
-        
-        // Make a String Array
-        String[] high_months = new String[]{"01","03","05","07","08","10","12"};
-        
-        // Convert the String Array to a list so that it can be searched when 
-        // deciding how many days a selected month has
-        List<String> high_months_list = Arrays.asList(high_months);
-        
-        /*
-         The length of the days of the getItemCount's is off by 1 because the
-         day combo box also has a default "- -" entry in it. This is to 
-         prevent user mistakes when the system is updating the day list while
-         users are changing the desired year / month.
-        */
-        if ((year_input_number % 4 != 0) && month_input == "02" && (day_comboBox.getItemCount() != 29)) {
-            day_comboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {"00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28"}));
-        }
-        else if ((year_input_number % 4 == 0) && month_input == "02" && (day_comboBox.getItemCount() != 30)) {
-            day_comboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {"00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29"}));
-        }
-        else if (high_months_list.contains(month_input) && (day_comboBox.getItemCount() != 32)) {
-            day_comboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {"00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31"}));       
-        }
-        else if (!high_months_list.contains(month_input) && month_input != "02" && day_comboBox.getItemCount() != 31) {
-            day_comboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {"00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30"}));
-        }
-    }
-    
-    private boolean validate_Inputs () {
-        
-        Integer start_year = Integer.parseInt((String)startTime_year_comboBox.getSelectedItem());
-        Integer finish_year = Integer.parseInt((String)finishTime_year_comboBox.getSelectedItem());
-        
-        Integer start_month = Integer.parseInt((String)startTime_month_comboBox.getSelectedItem());
-        Integer finish_month = Integer.parseInt((String)finishTime_month_comboBox.getSelectedItem());
-        
-        Integer start_day= Integer.parseInt((String)startTime_day_comboBox.getSelectedItem());
-        Integer finish_day = Integer.parseInt((String)finishTime_day_comboBox.getSelectedItem());
-                
-        if (assignee_text_field.getText().trim().equals("")) {
-            JOptionPane.showMessageDialog(null, "Assignee email field cannot be empty.", "Input Error", 2);
-            return false;
-        }
-        else if (title_text_field.getText().trim().equals("")) {
-            JOptionPane.showMessageDialog(null, "Title field cannot be empty.", "Input Error", 2);
-            return false;
-        }
-        else if (description_text_field.getText().trim().equals("")) {
-            JOptionPane.showMessageDialog(null, "Description field cannot be empty.", "Input Error", 2);
-            return false;
-        }
-        else if (startTime_day_comboBox.getSelectedItem() == "00") {
-            JOptionPane.showMessageDialog(null, "Day field of Start time cannot be 00", "Input Error", 2);
-            return false;
-        }
-        else if (finishTime_day_comboBox.getSelectedItem() == "00") {
-            JOptionPane.showMessageDialog(null, "Day field of Finish time cannot be 00", "Input Error", 2);
-            return false;
-        }
-        else if (start_year > finish_year || finish_year < start_year ||
-                 start_year == finish_year && (start_month > finish_month || finish_month < start_month) ||
-                 start_year == finish_year && start_month == finish_month && (start_day > finish_day || finish_day < start_day)) {
-            JOptionPane.showMessageDialog(null, "Start time has to be earlier than finish time.", "Input Error", 2);
-            return false;
-        }
-        else {
-            return true;
-        }
-    }
-    
-    private boolean validate_Email() {
-        String user_email = assignee_text_field.getText();
-
-        String select = "SELECT * FROM `user` WHERE `User_Email` = ? ";
-        ResultSet rs;
-        
-        try (Connection con = DBConnect.databaseConnect();) {
-            
-            PreparedStatement pst = con.prepareStatement(select);
-            pst.setString(1, user_email);
-            
-            rs = pst.executeQuery();
-            
-            if (rs.next()) {
-                
-                return true;
-            }
-            else {
-                JOptionPane.showMessageDialog(null, "No user registered with this email", "Input Error", 2);
-                return false;
-            }
-
-
-        } catch (SQLException ex) {
-
-            Logger lgr = Logger.getLogger(DBConnect.class.getName());
-            lgr.log(Level.SEVERE, ex.getMessage(), ex);
-
-        }
-        return false;
-    }
-    
-    private void create_task () {
-        String task_title = title_text_field.getText();
-        String task_start = (String)startTime_year_comboBox.getSelectedItem() + "-" +
-                            (String)startTime_month_comboBox.getSelectedItem() + "-" +
-                            (String)startTime_day_comboBox.getSelectedItem();
-        String task_deadline = (String)finishTime_year_comboBox.getSelectedItem() + "-" +
-                               (String)finishTime_month_comboBox.getSelectedItem() + "-" +
-                               (String)finishTime_day_comboBox.getSelectedItem();
-        String task_description = description_text_field.getText();
-        Integer is_complete = 0;
-        String user_email = assignee_text_field.getText();
-        
-
-        String insert = "INSERT INTO task (Task_Title, task_start, task_deadline, Task_Description, Is_Complete, assignee_email)" +  
-                        "VALUES (?, ?, ?, ?, ?, ?)";
-        
-        try (Connection con = DBConnect.databaseConnect();) {
-            
-            PreparedStatement pst = con.prepareStatement(insert);
-            pst.setString(1, task_title);
-            pst.setString(2, task_start);
-            pst.setString(3, task_deadline);
-            pst.setString(4, task_description);
-            pst.setInt(5, is_complete);
-            pst.setString(6, user_email);            
-            
-            pst.executeUpdate();
-            pst.close();
-            
-            JOptionPane.showMessageDialog(null, "Task creation successful", "Task created", 1);
-            this.dispose();
-            
-        } catch (SQLException ex) {
-
-            Logger lgr = Logger.getLogger(DBConnect.class.getName());
-            lgr.log(Level.SEVERE, ex.getMessage(), ex);
-
-        }
-    }
-    
-    private void startTime_year_comboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startTime_year_comboBoxActionPerformed
-        validate_days(startTime_year_comboBox, startTime_month_comboBox, startTime_day_comboBox);
-    }//GEN-LAST:event_startTime_year_comboBoxActionPerformed
-
-    private void startTime_day_comboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startTime_day_comboBoxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_startTime_day_comboBoxActionPerformed
-
     private void startTime_month_comboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startTime_month_comboBoxActionPerformed
-        validate_days(startTime_year_comboBox, startTime_month_comboBox, startTime_day_comboBox);
-    }//GEN-LAST:event_startTime_month_comboBoxActionPerformed
-
-    private void finishTime_year_comboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_finishTime_year_comboBoxActionPerformed
-        validate_days(finishTime_year_comboBox, finishTime_month_comboBox, finishTime_day_comboBox);
-    }//GEN-LAST:event_finishTime_year_comboBoxActionPerformed
-
-    private void finishTime_month_comboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_finishTime_month_comboBoxActionPerformed
-        validate_days(finishTime_year_comboBox, finishTime_month_comboBox, finishTime_day_comboBox);
-    }//GEN-LAST:event_finishTime_month_comboBoxActionPerformed
-
-    private void finishTime_day_comboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_finishTime_day_comboBoxActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_finishTime_day_comboBoxActionPerformed
+    }//GEN-LAST:event_startTime_month_comboBoxActionPerformed
 
     private void assignee_text_fieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_assignee_text_fieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_assignee_text_fieldActionPerformed
 
     private void createTask_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createTask_buttonActionPerformed
-        
-        if (validate_Inputs() && validate_Email()) {
-            create_task();
-        }
-        
+        description_text_field.setEditable(false);
     }//GEN-LAST:event_createTask_buttonActionPerformed
+
+    private void startTime_day_comboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startTime_day_comboBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_startTime_day_comboBoxActionPerformed
+
+    private void finishTime_year_comboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_finishTime_year_comboBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_finishTime_year_comboBoxActionPerformed
+
+    private void finishTime_month_comboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_finishTime_month_comboBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_finishTime_month_comboBoxActionPerformed
+
+    private void startTime_year_comboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startTime_year_comboBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_startTime_year_comboBoxActionPerformed
+
+    private void finishTime_day_comboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_finishTime_day_comboBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_finishTime_day_comboBoxActionPerformed
 
     /**
      * @param args the command line arguments
@@ -445,21 +357,20 @@ public class Task_Create extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Task_Create.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Task_View.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Task_Create.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Task_View.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Task_Create.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Task_View.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Task_Create.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Task_View.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Task_Create().setVisible(true);
+                new Task_View().setVisible(true);
             }
         });
     }
@@ -478,7 +389,16 @@ public class Task_Create extends javax.swing.JFrame {
     private javax.swing.JLabel finishTime_year_label;
     private javax.swing.JLabel finish_time_label;
     private javax.swing.JLabel heading_label;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JCheckBox jCheckBox1;
+    private javax.swing.JDialog jDialog1;
+    private javax.swing.JDialog jDialog2;
+    private javax.swing.JFrame jFrame1;
+    private javax.swing.JFrame jFrame2;
+    private javax.swing.JFrame jFrame3;
+    private javax.swing.JPopupMenu jPopupMenu1;
+    private javax.swing.JPopupMenu jPopupMenu2;
+    private javax.swing.JPopupMenu jPopupMenu3;
+    private javax.swing.JPopupMenu jPopupMenu4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JComboBox<String> startTime_day_comboBox;
     private javax.swing.JLabel startTime_day_label;
