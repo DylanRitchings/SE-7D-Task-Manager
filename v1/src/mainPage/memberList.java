@@ -16,7 +16,7 @@ class solve extends JFrame
     public static void main(String[] args) 
     { 
         //create a new frame  
-        //f = new JFrame("frame"); 
+        f = new JFrame("frame"); 
           
         //create a object 
         solve s=new solve(); 
@@ -39,13 +39,13 @@ class solve extends JFrame
           
         //add list to panel 
         p.add(b); 
-//   
-//        f.add(p); 
-//          
-//        //set the size of frame 
-//        f.setSize(400,400); 
-//           
-//        f.show(); 
+   
+        f.add(p); 
+          
+        //set the size of frame 
+        f.setSize(400,400); 
+           
+        f.show(); 
     } 
       
       
