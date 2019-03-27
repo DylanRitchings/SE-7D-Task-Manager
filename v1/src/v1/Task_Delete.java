@@ -110,15 +110,17 @@ public class Task_Delete extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void validate_Inputs() {
+    private boolean validate_Inputs() {
         if (jTextField_assignee_email.getText().trim().equals("")) {
             JOptionPane.showMessageDialog(null, "Assignee email field cannot be empty.", "Input Error", 2);
+            return false;
         }
         else if (jTextField_title.getText().trim().equals("")) {
             JOptionPane.showMessageDialog(null, "Task title field cannot be empty.", "Input Error", 2);
+            return false;
         }
-        else if (validate_Email()) {
-            validate_task_exists();
+        else {
+            return true;
         }
     }
     
@@ -155,7 +157,7 @@ public class Task_Delete extends javax.swing.JFrame {
         return false;
     }
     
-    private void validate_task_exists () {
+    private boolean validate_task_exists () {
         String assignee_email = jTextField_assignee_email.getText();
         String task_title = jTextField_title.getText();
 
@@ -174,9 +176,10 @@ public class Task_Delete extends javax.swing.JFrame {
             if (!rs.next()) {
 
                 JOptionPane.showMessageDialog(null, "No such task exists assigned to this user", "Input Error", 2);
+                return false;
             }
             else {
-                delete_task();
+                return true;
             }
 
         } catch (SQLException ex) {
@@ -185,6 +188,7 @@ public class Task_Delete extends javax.swing.JFrame {
             lgr.log(Level.SEVERE, ex.getMessage(), ex);
 
         }
+        return false;
     }
     
     private void delete_task () {
@@ -201,6 +205,7 @@ public class Task_Delete extends javax.swing.JFrame {
             
             pst.executeUpdate();
             JOptionPane.showMessageDialog(null, "Task deleted succsessfully", "Delete successful", 1);
+            this.dispose();
             
         } catch (SQLException ex) {
 
@@ -215,9 +220,9 @@ public class Task_Delete extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField_assignee_emailActionPerformed
 
     private void jButton_delete_taskActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_delete_taskActionPerformed
-        validate_Inputs();
-        //validate_Email();
-        //validate_task_exists();
+        if (validate_Inputs() && validate_Email() && validate_task_exists()) {
+            delete_task();
+        }
     }//GEN-LAST:event_jButton_delete_taskActionPerformed
 
     /**
