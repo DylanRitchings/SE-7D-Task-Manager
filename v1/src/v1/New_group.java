@@ -8,7 +8,7 @@ import java.util.*;
 
 /**
  *
- * @author up818044
+ * @author up818044,up849492
  */
 public class New_group 
 {
@@ -35,7 +35,7 @@ public class New_group
 
         // The question marks in the values brackets are SQL's equivalent to 
         // variables.
-        String insert = "INSERT INTO user(User_Forename, User_Surname, User_Email, User_Password, User_Username, User_NumTasksDone) "
+        String insert = "INSERT INTO New_Group() "
                 + "VALUES(?, ?, ?, ?, ?, ?)";
     
     
