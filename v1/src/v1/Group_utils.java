@@ -118,6 +118,11 @@ public class Group_utils {
             //Split user details up and input into lists
         }
     
+    /**
+     * Creates an array containing names of people in a group.
+     * @param groupID
+     * @return memNames
+     */
      public static String[] getMemNames(int groupID)
     {
         
@@ -131,7 +136,7 @@ public class Group_utils {
             String fName = memDetails.get(1).get(x);
             String sName = memDetails.get(2).get(x);
             
-            MemberList.addElement(fName + " " + sName);
+            //MemberList.addElement(fName + " " + sName);
             memNames[x]=(fName + " " + sName);
             
         }
@@ -167,7 +172,11 @@ public class Group_utils {
                 return "Error in creating group";
             }
     }
-    
+    /**
+     * Gets the taskIDs for a specified group.
+     * @param groupID
+     * @return taskIDList
+     */
     private static ArrayList getTaskIDs(int groupID)
     {
         ArrayList<String> taskIDList = new ArrayList<>();
@@ -187,7 +196,7 @@ public class Group_utils {
     }
     
     /**
-     *
+     * Gets the skillIDs for a specified group.
      * @param groupID
      * @return ArrayList
      */
@@ -213,6 +222,12 @@ public class Group_utils {
         }
         
     }
+    /**
+     * Gets the skill names using the skillIDs
+     * @param groupID
+     * @return skills
+     */
+
     
     public static ArrayList getSkills(int groupID){
         ArrayList skillIDList = Group_utils.getSkillIDs(groupID);
