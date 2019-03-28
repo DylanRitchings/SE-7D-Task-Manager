@@ -35,8 +35,8 @@ public class New_group
 
         // The question marks in the values brackets are SQL's equivalent to 
         // variables.
-        String insert = "INSERT INTO New_Group() "
-                + "VALUES(?, ?, ?, ?, ?, ?)";
+        String insert = "INSERT INTO groups(Group_Name,Group_Description) "
+                + "VALUES(?, ?)";
     
     
     
@@ -51,7 +51,7 @@ public class New_group
     
     
     
-    public void setGroupName() 
+    public void setGroupName()
     {
         System.out.println(newGroupName);
     }
