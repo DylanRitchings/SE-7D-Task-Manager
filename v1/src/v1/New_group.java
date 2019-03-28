@@ -1,5 +1,12 @@
 package v1;
+import database_console.DBConnect;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -39,15 +46,25 @@ public class New_group
                 + "VALUES(?, ?)";
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
+            try (Connection con = DriverManager.getConnection(host, uName, uPass);) {
+
+            // A prepared statement is created and values are assigned to the 
+            // question marks in the values brackets.
+            PreparedStatement pst = con.prepareStatement(insert);
+            pst.setString(1, name);
+            pst.setString(2, description);
+
+            pst.executeUpdate();
+            pst.close();
+
+            System.out.println("The group has been created.");
+
+        } catch (SQLException ex) {
+
+            Logger lgr = Logger.getLogger(DBConnect.class.getName());
+            lgr.log(Level.SEVERE, ex.getMessage(), ex);
+
+        }
     
     
     
