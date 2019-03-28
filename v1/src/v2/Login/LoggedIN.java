@@ -57,6 +57,8 @@ public class LoggedIN extends javax.swing.JFrame {
         jLabel_displayEmail = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable_GroupTable = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel_displayuserID = new javax.swing.JLabel();
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -67,7 +69,7 @@ public class LoggedIN extends javax.swing.JFrame {
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jPanel_sidePanel.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel_sidePanel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel_sidePanel.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
 
         jLabel_close_side_panel.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         jLabel_close_side_panel.setText("X");
@@ -81,7 +83,7 @@ public class LoggedIN extends javax.swing.JFrame {
         jLabel2.setText("Groups");
 
         jButton_CreateGroup.setText("Create Group");
-        jButton_CreateGroup.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jButton_CreateGroup.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
         jButton_CreateGroup.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton_CreateGroupActionPerformed(evt);
@@ -89,10 +91,10 @@ public class LoggedIN extends javax.swing.JFrame {
         });
 
         jButton_JoinGroup.setText("Join Group");
-        jButton_JoinGroup.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jButton_JoinGroup.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
 
         jButton_logout1.setText("Log out");
-        jButton_logout1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jButton_logout1.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
         jButton_logout1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton_logout1ActionPerformed(evt);
@@ -100,7 +102,7 @@ public class LoggedIN extends javax.swing.JFrame {
         });
 
         jButton_Profile.setText("Profile");
-        jButton_Profile.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jButton_Profile.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
         jButton_Profile.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton_ProfileActionPerformed(evt);
@@ -152,7 +154,7 @@ public class LoggedIN extends javax.swing.JFrame {
         jLabel3.setText("Groups");
 
         jButton_CreateGroup1.setText("Create Group");
-        jButton_CreateGroup1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jButton_CreateGroup1.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
         jButton_CreateGroup1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton_CreateGroup1ActionPerformed(evt);
@@ -160,13 +162,13 @@ public class LoggedIN extends javax.swing.JFrame {
         });
 
         jButton_JoinGroup1.setText("Join Group");
-        jButton_JoinGroup1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jButton_JoinGroup1.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
 
         jButton_LeaveGroup.setText("Leave Group");
-        jButton_LeaveGroup.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jButton_LeaveGroup.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
 
         jButton_logout2.setText("Log out");
-        jButton_logout2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jButton_logout2.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
         jButton_logout2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton_logout2ActionPerformed(evt);
@@ -177,7 +179,7 @@ public class LoggedIN extends javax.swing.JFrame {
         jLabel4.setText("User's email:");
 
         jButton_show_side_Panel.setText("Show Side Panel");
-        jButton_show_side_Panel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jButton_show_side_Panel.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
         jButton_show_side_Panel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton_show_side_PanelMouseClicked(evt);
@@ -203,6 +205,10 @@ public class LoggedIN extends javax.swing.JFrame {
             }
         });
         jScrollPane3.setViewportView(jTable_GroupTable);
+
+        jLabel1.setText("User's ID:");
+
+        jLabel_displayuserID.setText("####");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -230,9 +236,13 @@ public class LoggedIN extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(jButton_logout2, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel4)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel1)
+                                    .addComponent(jLabel4))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel_displayEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel_displayEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel_displayuserID))))
                         .addContainerGap())))
         );
         jPanel2Layout.setVerticalGroup(
@@ -242,7 +252,11 @@ public class LoggedIN extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(jLabel_displayEmail))
-                .addGap(80, 80, 80)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel_displayuserID))
+                .addGap(51, 51, 51)
                 .addComponent(jLabel3)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -367,11 +381,13 @@ public class LoggedIN extends javax.swing.JFrame {
     private javax.swing.JButton jButton_logout2;
     private javax.swing.JButton jButton_show_side_Panel;
     private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel_close_side_panel;
     public javax.swing.JLabel jLabel_displayEmail;
+    public javax.swing.JLabel jLabel_displayuserID;
     public javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel_sidePanel;
     private javax.swing.JScrollPane jScrollPane3;
