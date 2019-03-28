@@ -339,11 +339,11 @@ public class Login_Interface extends javax.swing.JFrame {
          * @param password
          * 
          */
-        // get the username and password
+        // get the email and password
         String email = jTextField_Email.getText();
         String password = String.valueOf(jPasswordField.getPassword());
         
-        //create a select query to check if the username and the password exist in the database
+        //create a select query to check if the email and the password exist in the database
         String query = "SELECT * FROM `user` WHERE `User_Email` = ? AND `User_Password` = ?";
         
         try {
@@ -354,7 +354,7 @@ public class Login_Interface extends javax.swing.JFrame {
             rs = st.executeQuery();
             
             if(rs.next())
-            {
+            {                                                             
                 //Show a new form
                 LoggedIN form = new LoggedIN();
                 form.setVisible(true);
@@ -362,6 +362,7 @@ public class Login_Interface extends javax.swing.JFrame {
                 form.setLocationRelativeTo(null);
                 //Passes the email to the LoggedIN interface
                 form.jLabel_displayEmail.setText(email);
+                form.jLabel_displayuserID.setText(rs.getString("User_ID"));
                 //Close the current form (login form)
                 this.dispose();
             }
