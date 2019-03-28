@@ -176,7 +176,6 @@ public class Task_View_Lookup extends javax.swing.JFrame {
                 return false;
             }
             else {
-                System.out.println(rs.getString("task_start"));
                 return true;
             }
 
@@ -212,8 +211,12 @@ public class Task_View_Lookup extends javax.swing.JFrame {
                 String task_description = rs.getString("task_description");
                 Integer is_complete = rs.getInt("is_complete");
                 String email = rs.getString("assignee_email");
-
-                String select_start_year = "SELECT YEAR (?)";
+                
+                Task_View page = new Task_View(title, task_start, task_deadline,
+                                               task_description, is_complete,
+                                               email);
+                page.setVisible(true);
+                this.dispose();
             }
 
 
@@ -230,7 +233,9 @@ public class Task_View_Lookup extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField_assignee_emailActionPerformed
 
     private void jButton_lookup_taskActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_lookup_taskActionPerformed
-        create_task_view_form();
+        if (validate_Inputs() && validate_Email() && validate_task_exists()) {
+            create_task_view_form();
+        }
     }//GEN-LAST:event_jButton_lookup_taskActionPerformed
 
     /**

@@ -20,8 +20,21 @@ public class Task_View extends javax.swing.JFrame {
         initComponents();
     }
     
-    public Task_View(String assignee_email, String title, String description) {
+    public Task_View(String task_title, String task_start, String task_deadline, 
+                     String task_description, Integer is_Complete, 
+                     String assignee_email) {
         initComponents();
+        
+        assignee_text_field.setText(assignee_email);
+        title_text_field.setText(task_title);
+        description_text_field.setText(task_description);
+        jTextField_start_date.setText(task_start);
+        jTextField_finish_date.setText(task_deadline);
+        
+        if (is_Complete == 0) {
+            jLabel_current_status.setText("Incomplete");
+            jLabel_current_status.setForeground(Color.RED);
+        }
     }
 
     /**
@@ -43,18 +56,9 @@ public class Task_View extends javax.swing.JFrame {
         jPopupMenu4 = new javax.swing.JPopupMenu();
         jDialog1 = new javax.swing.JDialog();
         jDialog2 = new javax.swing.JDialog();
-        startTime_month_label = new javax.swing.JLabel();
         assignee_Label = new javax.swing.JLabel();
-        startTime_month_comboBox = new javax.swing.JComboBox<>();
         assignee_text_field = new javax.swing.JTextField();
-        startTime_day_label = new javax.swing.JLabel();
-        createTask_button = new javax.swing.JButton();
-        startTime_day_comboBox = new javax.swing.JComboBox<>();
         finish_time_label = new javax.swing.JLabel();
-        finishTime_year_comboBox = new javax.swing.JComboBox<>();
-        finishTime_year_label = new javax.swing.JLabel();
-        finishTime_month_label = new javax.swing.JLabel();
-        finishTime_month_comboBox = new javax.swing.JComboBox<>();
         heading_label = new javax.swing.JLabel();
         description_label = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -62,10 +66,10 @@ public class Task_View extends javax.swing.JFrame {
         title_label = new javax.swing.JLabel();
         title_text_field = new javax.swing.JTextField();
         startTime_label = new javax.swing.JLabel();
-        startTime_year_comboBox = new javax.swing.JComboBox<>();
-        finishTime_day_label = new javax.swing.JLabel();
-        startTime_year_label = new javax.swing.JLabel();
-        finishTime_day_comboBox = new javax.swing.JComboBox<>();
+        jLabel_status = new javax.swing.JLabel();
+        jTextField_start_date = new javax.swing.JTextField();
+        jTextField_finish_date = new javax.swing.JTextField();
+        jLabel_current_status = new javax.swing.JLabel();
 
         javax.swing.GroupLayout jFrame1Layout = new javax.swing.GroupLayout(jFrame1.getContentPane());
         jFrame1.getContentPane().setLayout(jFrame1Layout);
@@ -126,65 +130,24 @@ public class Task_View extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        startTime_month_label.setText("Month :");
-
         assignee_Label.setText("Assignee email");
 
-        startTime_month_comboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12" }));
-        startTime_month_comboBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                startTime_month_comboBoxActionPerformed(evt);
-            }
-        });
-
+        assignee_text_field.setEditable(false);
         assignee_text_field.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 assignee_text_fieldActionPerformed(evt);
             }
         });
 
-        startTime_day_label.setText("Day:");
-
-        createTask_button.setText("Create task");
-        createTask_button.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                createTask_buttonActionPerformed(evt);
-            }
-        });
-
-        startTime_day_comboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
-        startTime_day_comboBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                startTime_day_comboBoxActionPerformed(evt);
-            }
-        });
-
-        finish_time_label.setText("Finish time");
-
-        finishTime_year_comboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2019", "2020", "2021", "2022", "2023", "2024", "2025", "2026", "2027", "2028", "2029", "2030" }));
-        finishTime_year_comboBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                finishTime_year_comboBoxActionPerformed(evt);
-            }
-        });
-
-        finishTime_year_label.setText("Year :");
-
-        finishTime_month_label.setText("Month :");
-
-        finishTime_month_comboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12" }));
-        finishTime_month_comboBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                finishTime_month_comboBoxActionPerformed(evt);
-            }
-        });
+        finish_time_label.setText("Finish date");
 
         heading_label.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
         heading_label.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        heading_label.setText("Task");
+        heading_label.setText("Viewing Task");
 
         description_label.setText("Description");
 
+        description_text_field.setEditable(false);
         description_text_field.setColumns(20);
         description_text_field.setLineWrap(true);
         description_text_field.setRows(5);
@@ -192,25 +155,24 @@ public class Task_View extends javax.swing.JFrame {
 
         title_label.setText("Title");
 
-        startTime_label.setText("Start time");
+        title_text_field.setEditable(false);
 
-        startTime_year_comboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2019", "2020", "2021", "2022", "2023", "2024", "2025", "2026", "2027", "2028", "2029", "2030" }));
-        startTime_year_comboBox.addActionListener(new java.awt.event.ActionListener() {
+        startTime_label.setText("Start date");
+
+        jLabel_status.setText("Status");
+
+        jTextField_start_date.setEditable(false);
+        jTextField_start_date.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                startTime_year_comboBoxActionPerformed(evt);
+                jTextField_start_dateActionPerformed(evt);
             }
         });
 
-        finishTime_day_label.setText("Day:");
+        jTextField_finish_date.setEditable(false);
 
-        startTime_year_label.setText("Year :");
-
-        finishTime_day_comboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
-        finishTime_day_comboBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                finishTime_day_comboBoxActionPerformed(evt);
-            }
-        });
+        jLabel_current_status.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel_current_status.setForeground(new java.awt.Color(0, 204, 51));
+        jLabel_current_status.setText("Complete");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -225,44 +187,20 @@ public class Task_View extends javax.swing.JFrame {
                             .addComponent(description_label)
                             .addComponent(title_label)
                             .addComponent(startTime_label)
-                            .addComponent(assignee_Label))
+                            .addComponent(assignee_Label)
+                            .addComponent(jLabel_status)
+                            .addComponent(finish_time_label))
                         .addGap(29, 29, 29)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(title_text_field, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(startTime_year_label)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(startTime_year_comboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(startTime_month_label)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(startTime_month_comboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(startTime_day_label)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(startTime_day_comboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(jScrollPane1))
-                            .addComponent(assignee_text_field, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(finish_time_label)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(finishTime_year_label)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(finishTime_year_comboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(finishTime_month_label))
-                            .addComponent(createTask_button, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(finishTime_month_comboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(finishTime_day_label)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(finishTime_day_comboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(89, Short.MAX_VALUE))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(assignee_text_field, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel_current_status)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(jTextField_finish_date, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 75, Short.MAX_VALUE)
+                                .addComponent(jTextField_start_date, javax.swing.GroupLayout.Alignment.LEADING)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap(45, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -283,62 +221,29 @@ public class Task_View extends javax.swing.JFrame {
                     .addComponent(description_label))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(startTime_year_label)
-                    .addComponent(startTime_year_comboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(startTime_label)
-                    .addComponent(startTime_month_label)
-                    .addComponent(startTime_month_comboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(startTime_day_label)
-                    .addComponent(startTime_day_comboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextField_start_date, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(finishTime_year_label)
-                        .addComponent(finishTime_year_comboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(finishTime_month_label)
-                        .addComponent(finishTime_month_comboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(finishTime_day_label)
-                        .addComponent(finishTime_day_comboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(finish_time_label))
-                .addGap(32, 32, 32)
-                .addComponent(createTask_button)
-                .addContainerGap(10, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(finish_time_label)
+                    .addComponent(jTextField_finish_date, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel_status)
+                    .addComponent(jLabel_current_status))
+                .addContainerGap(44, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void startTime_month_comboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startTime_month_comboBoxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_startTime_month_comboBoxActionPerformed
-
     private void assignee_text_fieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_assignee_text_fieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_assignee_text_fieldActionPerformed
 
-    private void createTask_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createTask_buttonActionPerformed
-        description_text_field.setEditable(false);
-    }//GEN-LAST:event_createTask_buttonActionPerformed
-
-    private void startTime_day_comboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startTime_day_comboBoxActionPerformed
+    private void jTextField_start_dateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_start_dateActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_startTime_day_comboBoxActionPerformed
-
-    private void finishTime_year_comboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_finishTime_year_comboBoxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_finishTime_year_comboBoxActionPerformed
-
-    private void finishTime_month_comboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_finishTime_month_comboBoxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_finishTime_month_comboBoxActionPerformed
-
-    private void startTime_year_comboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startTime_year_comboBoxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_startTime_year_comboBoxActionPerformed
-
-    private void finishTime_day_comboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_finishTime_day_comboBoxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_finishTime_day_comboBoxActionPerformed
+    }//GEN-LAST:event_jTextField_start_dateActionPerformed
 
     /**
      * @param args the command line arguments
@@ -378,15 +283,8 @@ public class Task_View extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel assignee_Label;
     private javax.swing.JTextField assignee_text_field;
-    private javax.swing.JButton createTask_button;
     private javax.swing.JLabel description_label;
     private javax.swing.JTextArea description_text_field;
-    private javax.swing.JComboBox<String> finishTime_day_comboBox;
-    private javax.swing.JLabel finishTime_day_label;
-    private javax.swing.JComboBox<String> finishTime_month_comboBox;
-    private javax.swing.JLabel finishTime_month_label;
-    private javax.swing.JComboBox<String> finishTime_year_comboBox;
-    private javax.swing.JLabel finishTime_year_label;
     private javax.swing.JLabel finish_time_label;
     private javax.swing.JLabel heading_label;
     private javax.swing.JCheckBox jCheckBox1;
@@ -395,18 +293,16 @@ public class Task_View extends javax.swing.JFrame {
     private javax.swing.JFrame jFrame1;
     private javax.swing.JFrame jFrame2;
     private javax.swing.JFrame jFrame3;
+    private javax.swing.JLabel jLabel_current_status;
+    private javax.swing.JLabel jLabel_status;
     private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JPopupMenu jPopupMenu2;
     private javax.swing.JPopupMenu jPopupMenu3;
     private javax.swing.JPopupMenu jPopupMenu4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JComboBox<String> startTime_day_comboBox;
-    private javax.swing.JLabel startTime_day_label;
+    private javax.swing.JTextField jTextField_finish_date;
+    private javax.swing.JTextField jTextField_start_date;
     private javax.swing.JLabel startTime_label;
-    private javax.swing.JComboBox<String> startTime_month_comboBox;
-    private javax.swing.JLabel startTime_month_label;
-    private javax.swing.JComboBox<String> startTime_year_comboBox;
-    private javax.swing.JLabel startTime_year_label;
     private javax.swing.JLabel title_label;
     private javax.swing.JTextField title_text_field;
     // End of variables declaration//GEN-END:variables

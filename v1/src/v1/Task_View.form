@@ -133,58 +133,30 @@
               <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Component id="heading_label" alignment="1" max="32767" attributes="0"/>
-                  <Group type="102" alignment="0" attributes="0">
+                  <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="description_label" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="title_label" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="startTime_label" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="assignee_Label" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel_status" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="finish_time_label" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="title_text_field" alignment="0" min="-2" pref="291" max="-2" attributes="0"/>
-                          <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="startTime_year_label" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="startTime_year_comboBox" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="startTime_month_label" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="startTime_month_comboBox" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="startTime_day_label" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="startTime_day_comboBox" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <Component id="jScrollPane1" alignment="0" max="32767" attributes="0"/>
-                          </Group>
+                          <Component id="jScrollPane1" alignment="0" min="-2" pref="291" max="-2" attributes="0"/>
                           <Component id="assignee_text_field" alignment="0" min="-2" pref="291" max="-2" attributes="0"/>
+                          <Component id="jLabel_current_status" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                              <Component id="jTextField_finish_date" alignment="0" pref="75" max="32767" attributes="0"/>
+                              <Component id="jTextField_start_date" alignment="0" max="32767" attributes="0"/>
+                          </Group>
                       </Group>
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
-                  <Group type="102" alignment="1" attributes="0">
-                      <Component id="finish_time_label" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
-                      <Component id="finishTime_year_label" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="finishTime_year_comboBox" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="finishTime_month_label" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Component id="createTask_button" alignment="0" max="32767" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="finishTime_month_comboBox" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="finishTime_day_label" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="finishTime_day_comboBox" min="-2" max="-2" attributes="0"/>
-                  </Group>
               </Group>
-              <EmptySpace pref="89" max="32767" attributes="0"/>
+              <EmptySpace pref="45" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -210,200 +182,42 @@
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="startTime_year_label" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="startTime_year_comboBox" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="startTime_label" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="startTime_month_label" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="startTime_month_comboBox" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="startTime_day_label" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="startTime_day_comboBox" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jTextField_start_date" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                      <Component id="finishTime_year_label" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="finishTime_year_comboBox" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="finishTime_month_label" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="finishTime_month_comboBox" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="finishTime_day_label" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="finishTime_day_comboBox" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Component id="finish_time_label" alignment="0" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="finish_time_label" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jTextField_finish_date" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
-              <Component id="createTask_button" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="10" max="32767" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jLabel_status" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabel_current_status" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace pref="44" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JLabel" name="startTime_month_label">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Month :"/>
-      </Properties>
-    </Component>
     <Component class="javax.swing.JLabel" name="assignee_Label">
       <Properties>
         <Property name="text" type="java.lang.String" value="Assignee email"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JComboBox" name="startTime_month_comboBox">
-      <Properties>
-        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="12">
-            <StringItem index="0" value="01"/>
-            <StringItem index="1" value="02"/>
-            <StringItem index="2" value="03"/>
-            <StringItem index="3" value="04"/>
-            <StringItem index="4" value="05"/>
-            <StringItem index="5" value="06"/>
-            <StringItem index="6" value="07"/>
-            <StringItem index="7" value="08"/>
-            <StringItem index="8" value="09"/>
-            <StringItem index="9" value="10"/>
-            <StringItem index="10" value="11"/>
-            <StringItem index="11" value="12"/>
-          </StringArray>
-        </Property>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="startTime_month_comboBoxActionPerformed"/>
-      </Events>
-      <AuxValues>
-        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-      </AuxValues>
-    </Component>
     <Component class="javax.swing.JTextField" name="assignee_text_field">
+      <Properties>
+        <Property name="editable" type="boolean" value="false"/>
+      </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="assignee_text_fieldActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JLabel" name="startTime_day_label">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Day:"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JButton" name="createTask_button">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Create task"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="createTask_buttonActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JComboBox" name="startTime_day_comboBox">
-      <Properties>
-        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="32">
-            <StringItem index="0" value="00"/>
-            <StringItem index="1" value="01"/>
-            <StringItem index="2" value="02"/>
-            <StringItem index="3" value="03"/>
-            <StringItem index="4" value="04"/>
-            <StringItem index="5" value="05"/>
-            <StringItem index="6" value="06"/>
-            <StringItem index="7" value="07"/>
-            <StringItem index="8" value="08"/>
-            <StringItem index="9" value="09"/>
-            <StringItem index="10" value="10"/>
-            <StringItem index="11" value="11"/>
-            <StringItem index="12" value="12"/>
-            <StringItem index="13" value="13"/>
-            <StringItem index="14" value="14"/>
-            <StringItem index="15" value="15"/>
-            <StringItem index="16" value="16"/>
-            <StringItem index="17" value="17"/>
-            <StringItem index="18" value="18"/>
-            <StringItem index="19" value="19"/>
-            <StringItem index="20" value="20"/>
-            <StringItem index="21" value="21"/>
-            <StringItem index="22" value="22"/>
-            <StringItem index="23" value="23"/>
-            <StringItem index="24" value="24"/>
-            <StringItem index="25" value="25"/>
-            <StringItem index="26" value="26"/>
-            <StringItem index="27" value="27"/>
-            <StringItem index="28" value="28"/>
-            <StringItem index="29" value="29"/>
-            <StringItem index="30" value="30"/>
-            <StringItem index="31" value="31"/>
-          </StringArray>
-        </Property>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="startTime_day_comboBoxActionPerformed"/>
-      </Events>
-      <AuxValues>
-        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-      </AuxValues>
-    </Component>
     <Component class="javax.swing.JLabel" name="finish_time_label">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Finish time"/>
+        <Property name="text" type="java.lang.String" value="Finish date"/>
       </Properties>
-    </Component>
-    <Component class="javax.swing.JComboBox" name="finishTime_year_comboBox">
-      <Properties>
-        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="12">
-            <StringItem index="0" value="2019"/>
-            <StringItem index="1" value="2020"/>
-            <StringItem index="2" value="2021"/>
-            <StringItem index="3" value="2022"/>
-            <StringItem index="4" value="2023"/>
-            <StringItem index="5" value="2024"/>
-            <StringItem index="6" value="2025"/>
-            <StringItem index="7" value="2026"/>
-            <StringItem index="8" value="2027"/>
-            <StringItem index="9" value="2028"/>
-            <StringItem index="10" value="2029"/>
-            <StringItem index="11" value="2030"/>
-          </StringArray>
-        </Property>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="finishTime_year_comboBoxActionPerformed"/>
-      </Events>
-      <AuxValues>
-        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-      </AuxValues>
-    </Component>
-    <Component class="javax.swing.JLabel" name="finishTime_year_label">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Year :"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="finishTime_month_label">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Month :"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JComboBox" name="finishTime_month_comboBox">
-      <Properties>
-        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="12">
-            <StringItem index="0" value="01"/>
-            <StringItem index="1" value="02"/>
-            <StringItem index="2" value="03"/>
-            <StringItem index="3" value="04"/>
-            <StringItem index="4" value="05"/>
-            <StringItem index="5" value="06"/>
-            <StringItem index="6" value="07"/>
-            <StringItem index="7" value="08"/>
-            <StringItem index="8" value="09"/>
-            <StringItem index="9" value="10"/>
-            <StringItem index="10" value="11"/>
-            <StringItem index="11" value="12"/>
-          </StringArray>
-        </Property>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="finishTime_month_comboBoxActionPerformed"/>
-      </Events>
-      <AuxValues>
-        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-      </AuxValues>
     </Component>
     <Component class="javax.swing.JLabel" name="heading_label">
       <Properties>
@@ -411,7 +225,7 @@
           <Font name="Dialog" size="36" style="1"/>
         </Property>
         <Property name="horizontalAlignment" type="int" value="0"/>
-        <Property name="text" type="java.lang.String" value="Task"/>
+        <Property name="text" type="java.lang.String" value="Viewing Task"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="description_label">
@@ -428,6 +242,7 @@
       <SubComponents>
         <Component class="javax.swing.JTextArea" name="description_text_field">
           <Properties>
+            <Property name="editable" type="boolean" value="false"/>
             <Property name="columns" type="int" value="20"/>
             <Property name="lineWrap" type="boolean" value="true"/>
             <Property name="rows" type="int" value="5"/>
@@ -441,93 +256,43 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="title_text_field">
+      <Properties>
+        <Property name="editable" type="boolean" value="false"/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="startTime_label">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Start time"/>
+        <Property name="text" type="java.lang.String" value="Start date"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JComboBox" name="startTime_year_comboBox">
+    <Component class="javax.swing.JLabel" name="jLabel_status">
       <Properties>
-        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="12">
-            <StringItem index="0" value="2019"/>
-            <StringItem index="1" value="2020"/>
-            <StringItem index="2" value="2021"/>
-            <StringItem index="3" value="2022"/>
-            <StringItem index="4" value="2023"/>
-            <StringItem index="5" value="2024"/>
-            <StringItem index="6" value="2025"/>
-            <StringItem index="7" value="2026"/>
-            <StringItem index="8" value="2027"/>
-            <StringItem index="9" value="2028"/>
-            <StringItem index="10" value="2029"/>
-            <StringItem index="11" value="2030"/>
-          </StringArray>
-        </Property>
+        <Property name="text" type="java.lang.String" value="Status"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="jTextField_start_date">
+      <Properties>
+        <Property name="editable" type="boolean" value="false"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="startTime_year_comboBoxActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField_start_dateActionPerformed"/>
       </Events>
-      <AuxValues>
-        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-      </AuxValues>
     </Component>
-    <Component class="javax.swing.JLabel" name="finishTime_day_label">
+    <Component class="javax.swing.JTextField" name="jTextField_finish_date">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Day:"/>
+        <Property name="editable" type="boolean" value="false"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="startTime_year_label">
+    <Component class="javax.swing.JLabel" name="jLabel_current_status">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Year :"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JComboBox" name="finishTime_day_comboBox">
-      <Properties>
-        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="32">
-            <StringItem index="0" value="00"/>
-            <StringItem index="1" value="01"/>
-            <StringItem index="2" value="02"/>
-            <StringItem index="3" value="03"/>
-            <StringItem index="4" value="04"/>
-            <StringItem index="5" value="05"/>
-            <StringItem index="6" value="06"/>
-            <StringItem index="7" value="07"/>
-            <StringItem index="8" value="08"/>
-            <StringItem index="9" value="09"/>
-            <StringItem index="10" value="10"/>
-            <StringItem index="11" value="11"/>
-            <StringItem index="12" value="12"/>
-            <StringItem index="13" value="13"/>
-            <StringItem index="14" value="14"/>
-            <StringItem index="15" value="15"/>
-            <StringItem index="16" value="16"/>
-            <StringItem index="17" value="17"/>
-            <StringItem index="18" value="18"/>
-            <StringItem index="19" value="19"/>
-            <StringItem index="20" value="20"/>
-            <StringItem index="21" value="21"/>
-            <StringItem index="22" value="22"/>
-            <StringItem index="23" value="23"/>
-            <StringItem index="24" value="24"/>
-            <StringItem index="25" value="25"/>
-            <StringItem index="26" value="26"/>
-            <StringItem index="27" value="27"/>
-            <StringItem index="28" value="28"/>
-            <StringItem index="29" value="29"/>
-            <StringItem index="30" value="30"/>
-            <StringItem index="31" value="31"/>
-          </StringArray>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="0" green="0" red="0" type="rgb"/>
         </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="33" green="cc" red="0" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Complete"/>
       </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="finishTime_day_comboBoxActionPerformed"/>
-      </Events>
-      <AuxValues>
-        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-      </AuxValues>
     </Component>
   </SubComponents>
 </Form>
