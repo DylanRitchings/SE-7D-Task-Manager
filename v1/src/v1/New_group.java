@@ -26,6 +26,31 @@ public class New_group
         newSkillsRequest = requestedskills;
     }
     
+    
+    public static void insert(String name, String description, ArrayList<String> requestedskills) {
+
+        String host = "jdbc:mysql://den1.mysql3.gear.host:3306/teammanagerdb";
+        String uName = "teammanagerdb";
+        String uPass = "Bc85NMS--V6h";
+
+        // The question marks in the values brackets are SQL's equivalent to 
+        // variables.
+        String insert = "INSERT INTO user(User_Forename, User_Surname, User_Email, User_Password, User_Username, User_NumTasksDone) "
+                + "VALUES(?, ?, ?, ?, ?, ?)";
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     public void setGroupName() 
     {
         System.out.println(newGroupName);
