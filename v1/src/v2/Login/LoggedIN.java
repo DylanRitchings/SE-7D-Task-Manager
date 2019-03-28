@@ -57,8 +57,10 @@ public class LoggedIN extends javax.swing.JFrame {
         jLabel_displayEmail = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable_GroupTable = new javax.swing.JTable();
+
         jLabel1 = new javax.swing.JLabel();
         jLabel_displayuserID = new javax.swing.JLabel();
+
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -210,6 +212,7 @@ public class LoggedIN extends javax.swing.JFrame {
 
         jLabel_displayuserID.setText("####");
 
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -221,8 +224,9 @@ public class LoggedIN extends javax.swing.JFrame {
                         .addGap(37, 37, 37)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jButton_CreateGroup1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton_JoinGroup1, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton_LeaveGroup, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jButton_JoinGroup1, javax.swing.GroupLayout.DEFAULT_SIZE, 118, Short.MAX_VALUE)
+                            .addComponent(jButton_LeaveGroup, javax.swing.GroupLayout.DEFAULT_SIZE, 118, Short.MAX_VALUE)
+                            .addComponent(jButton_ShowGroups, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
@@ -264,6 +268,8 @@ public class LoggedIN extends javax.swing.JFrame {
                         .addComponent(jButton_CreateGroup1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton_JoinGroup1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton_ShowGroups)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton_LeaveGroup)
                         .addGap(182, 182, 182))
@@ -335,6 +341,13 @@ public class LoggedIN extends javax.swing.JFrame {
         jPanel_sidePanel.setVisible(true);
     }//GEN-LAST:event_jButton_show_side_PanelMouseClicked
 
+    private void jButton_ShowGroupsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_ShowGroupsActionPerformed
+        
+        //create a select query to show the user's groups
+        String x = "SELECT * FROM groups";
+        
+    }//GEN-LAST:event_jButton_ShowGroupsActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -377,6 +390,7 @@ public class LoggedIN extends javax.swing.JFrame {
     private javax.swing.JButton jButton_JoinGroup1;
     private javax.swing.JButton jButton_LeaveGroup;
     private javax.swing.JButton jButton_Profile;
+    private javax.swing.JButton jButton_ShowGroups;
     private javax.swing.JButton jButton_logout1;
     private javax.swing.JButton jButton_logout2;
     private javax.swing.JButton jButton_show_side_Panel;
