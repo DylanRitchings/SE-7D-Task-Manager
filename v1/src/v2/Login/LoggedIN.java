@@ -5,12 +5,17 @@
  */
 package v2.Login;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -25,8 +30,77 @@ public class LoggedIN extends javax.swing.JFrame {
 
         initComponents();
         
+        // call findUsers function
+        findGroups();
+        
         //Sets the form in the centre
         this.setLocationRelativeTo(null);
+    }
+    
+        // function to connect to mysql database
+    public Connection getConnection()
+    {
+        Connection con = null;
+        
+        try{
+            con = DriverManager.getConnection("jdbc:mysql://den1.mysql3.gear.host:3306/teammanagerdb","teammanagerdb","Bc85NMS--V6h");
+        }catch(Exception ex){
+            System.out.println(ex.getMessage());
+        }
+        
+        return con;
+    }
+    
+ // function to return users arraylist with particular data 
+    public ArrayList<Group_utils> ListUsers(String ValToSearch)
+    {
+        ArrayList<Group_utils> groupList = new ArrayList<Group_utils>();
+        
+        Statement st;
+        ResultSet rs;
+        
+        try{
+            Connection con = getConnection();
+            st = con.createStatement();
+            String searchQuery = "SELECT * FROM `user_in_group` WHERE CONCAT(`User_ID`, `Group_ID`, `Is_Leader`) LIKE '%"+ValToSearch+"%'";
+            rs = st.executeQuery(searchQuery);
+            
+            Group_utils groups;
+            
+            while(rs.next())
+            {
+                groups = new Group_utils(
+                                 rs.getInt("User_ID"),
+                                 rs.getInt("Group_ID"),
+                                 rs.getBoolean("Is_Leader")
+                                );
+                groupList.add(groups);
+            }
+            
+        }catch(Exception ex){
+            System.out.println(ex.getMessage());
+        }
+        
+        return groupList;
+    }
+    
+    // function to display data in jtable
+    public void findGroups()
+    {
+        ArrayList<Group_utils> users = ListUsers(jLabel_displayuserID.getText());
+        DefaultTableModel model = new DefaultTableModel();
+        model.setColumnIdentifiers(new Object[]{"User_ID","Group_ID","Is_Leader"});
+        Object[] row = new Object[4];
+        
+        for(int i = 0; i < users.size(); i++)
+        {
+            row[0] = users.get(i).getId();
+            row[1] = users.get(i).getgroupId();
+            row[2] = users.get(i).getIsleader();
+            model.addRow(row);
+        }
+       jTable_GroupTable.setModel(model);
+       
     }
 
     /**
@@ -193,12 +267,19 @@ public class LoggedIN extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Group ID", "Group Name", "Group Description"
+                "User ID", "Group ID", "Is Leader?"
             }
         ) {
-            boolean[] canEdit = new boolean [] {
-                false, true, false
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.Integer.class, java.lang.Boolean.class
             };
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
