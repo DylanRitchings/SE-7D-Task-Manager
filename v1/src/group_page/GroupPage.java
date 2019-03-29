@@ -8,28 +8,28 @@ import java.util.ArrayList;
 import v1.Group_utils;
 import javax.swing.DefaultListModel;
 import static v1.Group_utils.getMemDetails;
+import java.awt.Component;
 import v1.Leader;
 /**
  *
  * @author Dylan Ritchings
  */
+import javax.swing.JComponent;
+import javax.swing.JPanel;
 public final class GroupPage extends javax.swing.JFrame {
-    //CHANGE TO CURRENT GROUP
-    int groupID = 123;
-    ArrayList<ArrayList<String>> memDetails = Group_utils.getMemDetails(groupID);
-    ArrayList<String> id = memDetails.get(0);
-    ArrayList<String> forename = memDetails.get(1);
-    ArrayList<String> surname = memDetails.get(2);
-    ArrayList<String> email = memDetails.get(3);
-    ArrayList<String> tasksDone = memDetails.get(4);
-    DefaultListModel memberLm = new DefaultListModel();
-    ArrayList<ArrayList<String>> taskDetails = Group_utils.getMemDetails(groupID);
-    ArrayList<String> taskID = taskDetails.get(0);
-    ArrayList<String> taskTitle = taskDetails.get(1);
-    ArrayList<String> taskStart = taskDetails.get(2);
-    ArrayList<String> taskEnd = taskDetails.get(3);
-    ArrayList<String> taskDesc = taskDetails.get(4);
-    ArrayList<String> taskComp = taskDetails.get(5);
+    int groupID;
+    ArrayList<String> id;
+    ArrayList<String> forename;
+    ArrayList<String> surname;
+    ArrayList<String> email;
+    ArrayList<String> tasksDone;
+
+    ArrayList<String> taskID;
+    ArrayList<String> taskTitle;
+    ArrayList<String> taskStart;
+    ArrayList<String> taskEnd;
+    ArrayList<String> taskDesc;
+    ArrayList<String> taskComp;
     
     
     
@@ -38,8 +38,26 @@ public final class GroupPage extends javax.swing.JFrame {
      * Creates new form GroupPage
      */
     public GroupPage() {
+        this.groupID = 123;
+        
+        ArrayList<ArrayList<String>> memDetails = Group_utils.getMemDetails(groupID);
+        this.id = memDetails.get(0);
+        this.forename = memDetails.get(1);
+        this.surname = memDetails.get(2);
+        this.email = memDetails.get(3);
+        this.tasksDone = memDetails.get(4);
+        
+        ArrayList<ArrayList<String>> taskDetails = Group_utils.getTaskDetails(groupID);
+        System.out.println(taskDetails);
+        this.taskID = taskDetails.get(0);
+        this.taskTitle = taskDetails.get(1);
+        this.taskStart = taskDetails.get(2);
+        this.taskEnd = taskDetails.get(3);
+        this.taskDesc = taskDetails.get(4);
+        this.taskComp = taskDetails.get(5);
         initComponents();
         
+        DefaultListModel memberLm = new DefaultListModel();
         String [] members = getMemNames(groupID);
         for (String member : members) {
             System.out.println(member);
@@ -49,7 +67,12 @@ public final class GroupPage extends javax.swing.JFrame {
         memberList.setModel(memberLm);
         removeMember.setEnabled(false); 
         
+        Integer count = 0;
+        JPanel  taskPanel = new TaskView(taskID.get(count), taskTitle.get(count), taskStart.get(count), taskEnd.get(count), taskDesc.get(count), taskComp.get(count));
+        taskPane.add(taskPanel);
+        add(taskPane,taskPanel);
     }
+    
 
         /**
      * Creates an array containing names of people in a group.
@@ -90,6 +113,7 @@ public final class GroupPage extends javax.swing.JFrame {
         removeMember = new javax.swing.JToggleButton();
         jComboBox1 = new javax.swing.JComboBox();
         jButton1 = new javax.swing.JButton();
+        taskPane = new javax.swing.JScrollPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -131,7 +155,9 @@ public final class GroupPage extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(505, Short.MAX_VALUE)
+                .addGap(21, 21, 21)
+                .addComponent(taskPane, javax.swing.GroupLayout.PREFERRED_SIZE, 449, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -153,11 +179,15 @@ public final class GroupPage extends javax.swing.JFrame {
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(taskPane)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 305, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(removeMember)
                 .addGap(18, 18, 18))
         );
+
+        taskPane.getAccessibleContext().setAccessibleName("");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -235,5 +265,6 @@ public final class GroupPage extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JList<String> memberList;
     private javax.swing.JToggleButton removeMember;
+    private javax.swing.JScrollPane taskPane;
     // End of variables declaration//GEN-END:variables
 }
