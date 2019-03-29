@@ -4,29 +4,70 @@
  * and open the template in the editor.
  */
 package mainPage;
+import java.util.ArrayList;
 import v1.Group_utils;
 import javax.swing.DefaultListModel;
+import static v1.Group_utils.getMemDetails;
+import v1.Leader;
 /**
  *
  * @author Dylan Ritchings
  */
-public class GroupPage extends javax.swing.JFrame {
-
+public final class GroupPage extends javax.swing.JFrame {
+    //CHANGE TO CURRENT GROUP
+    int groupID = 123;
+    ArrayList<ArrayList<String>> memDetails = Group_utils.getMemDetails(groupID);
+    ArrayList<String> id = memDetails.get(0);
+    ArrayList<String> forename = memDetails.get(1);
+    ArrayList<String> surname = memDetails.get(2);
+    ArrayList<String> email = memDetails.get(3);
+    ArrayList<String> tasksDone = memDetails.get(4);
+    DefaultListModel memberLm = new DefaultListModel();
+    
+    
+    
     /**
-     * Creates new form MainPage2
+     * Creates new form GroupPage
      */
     public GroupPage() {
         initComponents();
-        DefaultListModel lm = new DefaultListModel();
-        String [] members = Group_utils.getMemNames(123);
+        
+        String [] members = getMemNames(groupID);
         for (String member : members) {
             System.out.println(member);
-            lm.addElement(member);
+            memberLm.addElement(member);
         }
         
-        memberList.setModel(lm);
+        memberList.setModel(memberLm);
+        removeMember.setEnabled(false); 
+        
     }
 
+        /**
+     * Creates an array containing names of people in a group.
+     * @param groupID
+     * @return memNames
+     */
+     public String[] getMemNames(int groupID)
+    {
+        
+        //ArrayList<String> memNames = new ArrayList<>();
+       
+        String memNames[] = new String[forename.size()];
+        for (int x = 0; x < forename.size(); x++)
+        {
+            String fName = forename.get(x);
+            String sName = surname.get(x);
+            
+            //MemberList.addElement(fName + " " + sName);
+            memNames[x]=(fName + " " + sName);
+            
+        }
+        return memNames;
+        
+    }
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -37,17 +78,43 @@ public class GroupPage extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        memberList = new javax.swing.JList<>();
-        jToggleButton1 = new javax.swing.JToggleButton();
+        memberList = new javax.swing.JList<String>();
+        removeMember = new javax.swing.JToggleButton();
+        jComboBox1 = new javax.swing.JComboBox();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        memberList.setModel(new javax.swing.AbstractListModel() {
+            String[] strings = { "test1" };
+            public int getSize() { return strings.length; }
+            public Object getElementAt(int i) { return strings[i]; }
+        });
+        memberList.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                memberListFocusGained(evt);
+            }
+        });
+        memberList.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                memberListMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(memberList);
 
-        jToggleButton1.setText("Remove member");
-        jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
+        removeMember.setText("Remove member");
+        removeMember.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jToggleButton1ActionPerformed(evt);
+                removeMemberActionPerformed(evt);
+            }
+        });
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "All Skills", "SQL", "Java", "Python", "HTML" }));
+
+        jButton1.setText("Add Member");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
             }
         });
 
@@ -56,28 +123,67 @@ public class GroupPage extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(238, Short.MAX_VALUE)
+                .addContainerGap(505, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jToggleButton1))
-                .addGap(33, 33, 33))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(removeMember)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(21, 21, 21))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(52, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(61, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jToggleButton1)
-                .addGap(45, 45, 45))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(removeMember)
+                .addGap(18, 18, 18))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
+    /**
+     * Removes a member from a group
+     * @param evt 
+     */
+    private void removeMemberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeMemberActionPerformed
+        int memIndex = memberList.getSelectedIndex();
+        Integer memID = Integer.valueOf(id.get(memIndex));
+        Leader.deleteMember(memID, groupID);
+        id.remove(memIndex);
+        forename.remove(memIndex);
+        surname.remove(memIndex); 
+        email.remove(memIndex);
+        tasksDone.remove(memIndex);
+        memberLm.removeElement(memIndex);
+        
+    }//GEN-LAST:event_removeMemberActionPerformed
+
+   
+    
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jToggleButton1ActionPerformed
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void memberListFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_memberListFocusGained
+        removeMember.setEnabled(true); 
+    }//GEN-LAST:event_memberListFocusGained
+
+    private void memberListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_memberListMouseClicked
+
+    }//GEN-LAST:event_memberListMouseClicked
 
     /**
      * @param args the command line arguments
@@ -116,8 +222,10 @@ public class GroupPage extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
+    private javax.swing.JComboBox jComboBox1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JList<String> memberList;
+    private javax.swing.JToggleButton removeMember;
     // End of variables declaration//GEN-END:variables
 }
