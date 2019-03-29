@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package v1;
+package v2.Login;
 
 import java.util.*;
 import database_console.DBConnect;
@@ -28,6 +28,7 @@ public class Group_utils {
         this.User_ID = User_ID;
         this.Group_ID = Group_ID;
         this.Is_Leader = Is_Leader;
+
     }
     
     public int getId()

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package v2.Login;
+package v1;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -16,6 +16,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import v1.Login_Interface;
+import v1.Profile;
 
 /**
  *
@@ -112,7 +114,6 @@ public class LoggedIN extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jComboBox1 = new javax.swing.JComboBox<>();
         jPanel2 = new javax.swing.JPanel();
         jPanel_sidePanel = new javax.swing.JPanel();
         jLabel_close_side_panel = new javax.swing.JLabel();
@@ -133,8 +134,6 @@ public class LoggedIN extends javax.swing.JFrame {
         jTable_GroupTable = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jLabel_displayuserID = new javax.swing.JLabel();
-
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(153, 153, 153));
@@ -240,6 +239,11 @@ public class LoggedIN extends javax.swing.JFrame {
 
         jButton_LeaveGroup.setText("Leave Group");
         jButton_LeaveGroup.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
+        jButton_LeaveGroup.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_LeaveGroupActionPerformed(evt);
+            }
+        });
 
         jButton_logout2.setText("Log out");
         jButton_logout2.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
@@ -416,6 +420,10 @@ public class LoggedIN extends javax.swing.JFrame {
         jPanel_sidePanel.setVisible(true);
     }//GEN-LAST:event_jButton_show_side_PanelMouseClicked
 
+    private void jButton_LeaveGroupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_LeaveGroupActionPerformed
+        //
+    }//GEN-LAST:event_jButton_LeaveGroupActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -461,7 +469,6 @@ public class LoggedIN extends javax.swing.JFrame {
     private javax.swing.JButton jButton_logout1;
     private javax.swing.JButton jButton_logout2;
     private javax.swing.JButton jButton_show_side_Panel;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
