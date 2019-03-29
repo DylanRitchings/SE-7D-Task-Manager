@@ -28,7 +28,7 @@ public class Leader
     * @post 
     * @bound 
     */
-    public void deleteMember(int memberID, int groupID){
+    public static void deleteMember(int memberID, int groupID){
         
         String statement = "DELETE FROM user_in_group WHERE User_ID = " + memberID + " AND group_ID = " + groupID;
         DBConnect.databaseInput(statement);
