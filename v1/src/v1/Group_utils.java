@@ -248,19 +248,22 @@ public class Group_utils {
                     tComp.add(tDetailsrs.getString("Is_Complete"));
                 }
                 tDetailsrs.close();
-                tDetails.add(tID);
-                tDetails.add(tTitle);
-                tDetails.add(tStart);
-                tDetails.add(tEnd);
-                tDetails.add(tDesc);
-                tDetails.add(tComp);
-                return tDetails;
+                
             }catch (SQLException ex) {
                     Logger.getLogger(Group_utils.class.getName()).log(Level.SEVERE, null, ex);
                     return null;
                     }   
         }
+        tDetails.add(tID);
+        tDetails.add(tTitle);
+        tDetails.add(tStart);
+        tDetails.add(tEnd);
+        tDetails.add(tDesc);
+        tDetails.add(tComp);
+        return tDetails;
     }
+}
+
 //    public static ResultSet getTaskDetails(int groupID){
 //        ArrayList taskIDList = getTaskIDs(groupID);
 //        for (int user = 0; user <= taskIDList.size()-1; user++)
@@ -272,7 +275,7 @@ public class Group_utils {
 //    }
 //            
                         
-}
+
 
 
 
