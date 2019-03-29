@@ -12,16 +12,22 @@ import java.util.ArrayList;
  * @author uDylo
  */
 public class TaskView extends javax.swing.JPanel {
-    ArrayList<String> id = new ArrayList<>();
-    ArrayList<String> title = new ArrayList<>();
-    ArrayList<String> start = new ArrayList<>();
-    ArrayList<String> end = new ArrayList<>();
-    ArrayList<String> desc = new ArrayList<>();
-    ArrayList<String> comp = new ArrayList<>();
+    Integer id;
+    String title;
+    String start;
+    String end;
+    String desc;
+    Boolean comp;
     /**
      * Creates new form TaskView
      */
-    public TaskView() {
+    public TaskView(Integer tId, String tTitle, String tStart, String tEnd, String tDesc, Boolean tComp) {
+        id = tId;
+        title = tTitle;
+        start = tStart;
+        end = tEnd;
+        desc = tDesc;
+        comp = tComp;
         initComponents();
     }
 
@@ -35,22 +41,30 @@ public class TaskView extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jProgressBar1 = new javax.swing.JProgressBar();
+        jLabel1 = new javax.swing.JLabel();
+
+        jLabel1.setText("jLabel1");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jProgressBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 562, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(543, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jProgressBar1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 134, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addContainerGap(109, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JProgressBar jProgressBar1;
+    private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }
