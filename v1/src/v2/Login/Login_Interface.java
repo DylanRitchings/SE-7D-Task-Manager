@@ -363,6 +363,7 @@ public class Login_Interface extends javax.swing.JFrame {
                 //Passes the email to the LoggedIN interface
                 form.jLabel_displayEmail.setText(email);
                 form.jLabel_displayuserID.setText(rs.getString("User_ID"));
+                form.findGroups();
                 //Close the current form (login form)
                 this.dispose();
             }
