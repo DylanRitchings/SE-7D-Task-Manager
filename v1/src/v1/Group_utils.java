@@ -118,31 +118,7 @@ public class Group_utils {
             //Split user details up and input into lists
         }
     
-    /**
-     * Creates an array containing names of people in a group.
-     * @param groupID
-     * @return memNames
-     */
-     public static String[] getMemNames(int groupID)
-    {
-        
-        //ArrayList<String> memNames = new ArrayList<>();
-        ArrayList<ArrayList<String>> memDetails;
-       
-        memDetails = getMemDetails(groupID);
-        String memNames[] = new String[memDetails.get(0).size()];
-        for (int x = 0; x < memDetails.get(0).size(); x++)
-        {
-            String fName = memDetails.get(1).get(x);
-            String sName = memDetails.get(2).get(x);
-            
-            //MemberList.addElement(fName + " " + sName);
-            memNames[x]=(fName + " " + sName);
-            
-        }
-        return memNames;
-        
-    }
+
      
 //    public static void fillMemList (int groupID){
 //        public void putTextNow (JLabel label) {
@@ -244,6 +220,46 @@ public class Group_utils {
             }
         }
         return skills;
+    }
+    /**
+     *  Creates and array list of array lists each containing information about tasks in a specified group.
+     * @param groupID
+     * @return tDetailsList
+     */
+    public static ArrayList getTaskDetails(int groupID){
+        ArrayList taskIDs = getTaskIDs(groupID);
+        ArrayList<ArrayList<String>> tDetails = new ArrayList<>();
+        ArrayList<String> tID = new ArrayList<>();
+        ArrayList<String> tTitle = new ArrayList<>();
+        ArrayList<String> tStart = new ArrayList<>();
+        ArrayList<String> tEnd = new ArrayList<>();
+        ArrayList<String> tDesc = new ArrayList<>();
+        ArrayList<String> tComp = new ArrayList<>();
+        for (Object taskID :taskIDs){
+            String query = "SELECT * FROM task where Task_ID ="+ taskID+";";
+            ResultSet tDetailsrs = DBConnect.databaseSelect(query);
+            try{
+                while (tDetailsrs.next()) {
+                    tID.add(tDetailsrs.getString("Task_ID"));
+                    tTitle.add(tDetailsrs.getString("Task_Title"));
+                    tStart.add(tDetailsrs.getString("Task_Start"));
+                    tEnd.add(tDetailsrs.getString("Task_Deadline"));
+                    tDesc.add(tDetailsrs.getString("Task_Description"));
+                    tComp.add(tDetailsrs.getString("Is_Complete"));
+                }
+                tDetailsrs.close();
+                tDetails.add(tID);
+                tDetails.add(tTitle);
+                tDetails.add(tStart);
+                tDetails.add(tEnd);
+                tDetails.add(tDesc);
+                tDetails.add(tComp);
+                return tDetails;
+            }catch (SQLException ex) {
+                    Logger.getLogger(Group_utils.class.getName()).log(Level.SEVERE, null, ex);
+                    return null;
+                    }   
+        }
     }
 //    public static ResultSet getTaskDetails(int groupID){
 //        ArrayList taskIDList = getTaskIDs(groupID);
