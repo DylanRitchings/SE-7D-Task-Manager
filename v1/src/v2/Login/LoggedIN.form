@@ -78,9 +78,8 @@
                           <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Component id="jButton_CreateGroup1" max="32767" attributes="0"/>
-                              <Component id="jButton_JoinGroup1" alignment="0" pref="118" max="32767" attributes="0"/>
-                              <Component id="jButton_LeaveGroup" alignment="0" pref="118" max="32767" attributes="0"/>
-                              <Component id="jButton_ShowGroups" max="32767" attributes="0"/>
+                              <Component id="jButton_JoinGroup1" alignment="0" min="-2" pref="118" max="-2" attributes="0"/>
+                              <Component id="jButton_LeaveGroup" alignment="0" min="-2" pref="118" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
@@ -136,8 +135,6 @@
                           <Component id="jButton_CreateGroup1" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jButton_JoinGroup1" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jButton_ShowGroups" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
                           <Component id="jButton_LeaveGroup" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="182" max="-2" attributes="0"/>
@@ -420,6 +417,18 @@
             </Component>
           </SubComponents>
         </Container>
+        <Component class="javax.swing.JLabel" name="jLabel1">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="User&apos;s ID:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel_displayuserID">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="####"/>
+          </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+          </AuxValues>
         </Component>
       </SubComponents>
     </Container>
