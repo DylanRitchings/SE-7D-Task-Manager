@@ -65,9 +65,9 @@ public class New_group
             lgr.log(Level.SEVERE, ex.getMessage(), ex);
 
         }
+        }
     
-    
-    
+    /*
     public void setGroupName()
     {
         System.out.println(newGroupName);
@@ -76,10 +76,12 @@ public class New_group
     public void setGroupDescription()
     {
         System.out.println(newGroupDescription);
-    }
+     }
     
     public void setRequestedSkills()
     {
         System.out.println(newSkillsRequest);
     }
+    */
+    
 }
