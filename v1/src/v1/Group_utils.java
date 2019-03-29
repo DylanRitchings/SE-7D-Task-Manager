@@ -195,7 +195,7 @@ public class Group_utils {
         } catch (SQLException ex) {
             Logger.getLogger(Group_utils.class.getName()).log(Level.SEVERE, null, ex);
             return null;
-        }
+        }//test
         
     }
     /**
