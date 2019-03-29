@@ -87,7 +87,7 @@ public class LoggedIN extends javax.swing.JFrame {
     }
     
     // function to display data in jtable
-    public void findGroups()
+    public final void findGroups()
     {
         ArrayList<Group_utils> users = ListUsers(jLabel_displayuserID.getText());
         DefaultTableModel model = new DefaultTableModel();
@@ -102,6 +102,7 @@ public class LoggedIN extends javax.swing.JFrame {
             model.addRow(row);
         }
        jTable_GroupTable.setModel(model);
+       jTable_GroupTable2.setModel(model);
        
     }
 
@@ -122,6 +123,8 @@ public class LoggedIN extends javax.swing.JFrame {
         jButton_JoinGroup = new javax.swing.JButton();
         jButton_logout1 = new javax.swing.JButton();
         jButton_Profile = new javax.swing.JButton();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jTable_GroupTable2 = new javax.swing.JTable();
         jLabel3 = new javax.swing.JLabel();
         jButton_CreateGroup1 = new javax.swing.JButton();
         jButton_JoinGroup1 = new javax.swing.JButton();
@@ -134,15 +137,17 @@ public class LoggedIN extends javax.swing.JFrame {
         jTable_GroupTable = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jLabel_displayuserID = new javax.swing.JLabel();
+        jLabel_CurrentSelect = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(153, 153, 153));
 
         jPanel2.setBackground(new java.awt.Color(153, 153, 153));
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         jPanel_sidePanel.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel_sidePanel.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
+        jPanel_sidePanel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jLabel_close_side_panel.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         jLabel_close_side_panel.setText("X");
@@ -156,7 +161,7 @@ public class LoggedIN extends javax.swing.JFrame {
         jLabel2.setText("Groups");
 
         jButton_CreateGroup.setText("Create Group");
-        jButton_CreateGroup.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
+        jButton_CreateGroup.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jButton_CreateGroup.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton_CreateGroupActionPerformed(evt);
@@ -164,10 +169,15 @@ public class LoggedIN extends javax.swing.JFrame {
         });
 
         jButton_JoinGroup.setText("Join Group");
-        jButton_JoinGroup.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
+        jButton_JoinGroup.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jButton_JoinGroup.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_JoinGroupActionPerformed(evt);
+            }
+        });
 
         jButton_logout1.setText("Log out");
-        jButton_logout1.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
+        jButton_logout1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jButton_logout1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton_logout1ActionPerformed(evt);
@@ -175,12 +185,42 @@ public class LoggedIN extends javax.swing.JFrame {
         });
 
         jButton_Profile.setText("Profile");
-        jButton_Profile.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
+        jButton_Profile.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jButton_Profile.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton_ProfileActionPerformed(evt);
             }
         });
+
+        jTable_GroupTable2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "User ID", "Group ID", "Is Leader?"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.Integer.class, java.lang.Boolean.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jTable_GroupTable2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable_GroupTable2MouseClicked(evt);
+            }
+        });
+        jScrollPane4.setViewportView(jTable_GroupTable2);
 
         javax.swing.GroupLayout jPanel_sidePanelLayout = new javax.swing.GroupLayout(jPanel_sidePanel);
         jPanel_sidePanel.setLayout(jPanel_sidePanelLayout);
@@ -191,16 +231,21 @@ public class LoggedIN extends javax.swing.JFrame {
                 .addGroup(jPanel_sidePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel_sidePanelLayout.createSequentialGroup()
                         .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 342, Short.MAX_VALUE)
                         .addComponent(jLabel_close_side_panel))
                     .addGroup(jPanel_sidePanelLayout.createSequentialGroup()
                         .addGroup(jPanel_sidePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jButton_Profile, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton_CreateGroup, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton_CreateGroup, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)
+                            .addComponent(jButton_logout1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jButton_JoinGroup, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton_logout1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(0, 159, Short.MAX_VALUE)))
+                            .addComponent(jButton_Profile, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(jPanel_sidePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel_sidePanelLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 430, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(34, Short.MAX_VALUE)))
         );
         jPanel_sidePanelLayout.setVerticalGroup(
             jPanel_sidePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -221,13 +266,18 @@ public class LoggedIN extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton_logout1)
                 .addContainerGap())
+            .addGroup(jPanel_sidePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel_sidePanelLayout.createSequentialGroup()
+                    .addGap(96, 96, 96)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(313, Short.MAX_VALUE)))
         );
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel3.setText("Groups");
 
         jButton_CreateGroup1.setText("Create Group");
-        jButton_CreateGroup1.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
+        jButton_CreateGroup1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jButton_CreateGroup1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton_CreateGroup1ActionPerformed(evt);
@@ -235,10 +285,10 @@ public class LoggedIN extends javax.swing.JFrame {
         });
 
         jButton_JoinGroup1.setText("Join Group");
-        jButton_JoinGroup1.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
+        jButton_JoinGroup1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jButton_LeaveGroup.setText("Leave Group");
-        jButton_LeaveGroup.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
+        jButton_LeaveGroup.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jButton_LeaveGroup.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton_LeaveGroupActionPerformed(evt);
@@ -246,7 +296,7 @@ public class LoggedIN extends javax.swing.JFrame {
         });
 
         jButton_logout2.setText("Log out");
-        jButton_logout2.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
+        jButton_logout2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jButton_logout2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton_logout2ActionPerformed(evt);
@@ -257,7 +307,7 @@ public class LoggedIN extends javax.swing.JFrame {
         jLabel4.setText("User's email:");
 
         jButton_show_side_Panel.setText("Show Side Panel");
-        jButton_show_side_Panel.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
+        jButton_show_side_Panel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jButton_show_side_Panel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton_show_side_PanelMouseClicked(evt);
@@ -289,11 +339,18 @@ public class LoggedIN extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        jTable_GroupTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable_GroupTableMouseClicked(evt);
+            }
+        });
         jScrollPane3.setViewportView(jTable_GroupTable);
 
         jLabel1.setText("User's ID:");
 
         jLabel_displayuserID.setText("####");
+
+        jLabel_CurrentSelect.setText("HHHHHHHHHHHHHH");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -303,49 +360,61 @@ public class LoggedIN extends javax.swing.JFrame {
                 .addComponent(jPanel_sidePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(37, 37, 37)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButton_CreateGroup1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton_JoinGroup1, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton_LeaveGroup, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 239, Short.MAX_VALUE)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                .addComponent(jButton_show_side_Panel, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jButton_logout2, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel1)
-                                    .addComponent(jLabel4))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                        .addComponent(jButton_show_side_Panel, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jButton_logout2, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(jLabel4)
+                                            .addComponent(jLabel1))
+                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                                .addGap(30, 30, 30)
+                                                .addComponent(jLabel_displayEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(jLabel_displayuserID))))))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(52, 52, 52)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jButton_JoinGroup1, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jButton_CreateGroup1, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jButton_LeaveGroup, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel_displayEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel_displayuserID))))
-                        .addContainerGap())))
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 618, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(0, 0, Short.MAX_VALUE))
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                        .addContainerGap())
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(345, 345, 345)
+                        .addComponent(jLabel_CurrentSelect)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel4)
-                    .addComponent(jLabel_displayEmail))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel_displayEmail, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(22, 22, 22)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jLabel_displayuserID))
-                .addGap(51, 51, 51)
-                .addComponent(jLabel3)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
+                        .addGap(98, 98, 98)
                         .addComponent(jButton_CreateGroup1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton_JoinGroup1)
@@ -353,7 +422,11 @@ public class LoggedIN extends javax.swing.JFrame {
                         .addComponent(jButton_LeaveGroup)
                         .addGap(182, 182, 182))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel_CurrentSelect, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(15, 15, 15)
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -367,11 +440,11 @@ public class LoggedIN extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -421,8 +494,96 @@ public class LoggedIN extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton_show_side_PanelMouseClicked
 
     private void jButton_LeaveGroupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_LeaveGroupActionPerformed
+        
+        PreparedStatement st;
+        ResultSet rs;
+        
+        int row = jTable_GroupTable.getSelectedRow();
+        String Table_click = (jTable_GroupTable.getModel().getValueAt(row, 1).toString());
+        
+        //Delete the selected group id 
+        String query = "DELETE * FROM group WHERE Group_ID = '"+Table_click+"'";
+        
+        try {
+            
+            st = loginConnect.getConnection().prepareStatement(query); 
+            rs = st.executeQuery();
+            
+            if(rs.next())
+            {                       
+                int currentid = rs.getInt("Group_ID");
+                jLabel_CurrentSelect.setText(String.valueOf(currentid)); 
+                //Remove Message
+                JOptionPane.showMessageDialog(null, "The selected group has been removed from your group list", "Group Removed",2);
+            }
+            else
+            {
+                //error message
+                JOptionPane.showMessageDialog(null, "Invalid", "Error",2);
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(loginConnect.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
         //
     }//GEN-LAST:event_jButton_LeaveGroupActionPerformed
+
+    private void jTable_GroupTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable_GroupTableMouseClicked
+        PreparedStatement st;
+        ResultSet rs;
+        Connection con = getConnection();
+        
+        try{                       
+            int row = jTable_GroupTable.getSelectedRow();
+            String Table_click = (jTable_GroupTable.getModel().getValueAt(row, 1).toString());
+            
+            String searchQuery = "SELECT * FROM user_in_group WHERE Group_ID ='"+Table_click+"'";
+            st = con.prepareStatement(searchQuery);            
+            rs = st.executeQuery();
+            
+            if(rs.next())
+            {     
+                int currentid = rs.getInt("Group_ID");
+                jLabel_CurrentSelect.setText(String.valueOf(currentid)); 
+            }
+            
+        }
+        catch(Exception e){
+        
+        JOptionPane.showMessageDialog(null, e);        
+        }      
+    }//GEN-LAST:event_jTable_GroupTableMouseClicked
+
+    private void jTable_GroupTable2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable_GroupTable2MouseClicked
+        PreparedStatement st;
+        ResultSet rs;
+        Connection con = getConnection();
+        
+        try{                       
+            int row = jTable_GroupTable2.getSelectedRow();
+            String Table_click = (jTable_GroupTable2.getModel().getValueAt(row, 1).toString());
+            
+            String searchQuery = "SELECT * FROM user_in_group WHERE Group_ID ='"+Table_click+"'";
+            st = con.prepareStatement(searchQuery);            
+            rs = st.executeQuery();
+            
+            if(rs.next())
+            {     
+                int currentid = rs.getInt("Group_ID");
+                jLabel_CurrentSelect.setText(String.valueOf(currentid)); 
+            }
+            
+        }
+        catch(Exception e){
+        
+        JOptionPane.showMessageDialog(null, e);        
+        }   
+    }//GEN-LAST:event_jTable_GroupTable2MouseClicked
+
+    private void jButton_JoinGroupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_JoinGroupActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton_JoinGroupActionPerformed
 
     /**
      * @param args the command line arguments
@@ -473,12 +634,15 @@ public class LoggedIN extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel_CurrentSelect;
     private javax.swing.JLabel jLabel_close_side_panel;
     public javax.swing.JLabel jLabel_displayEmail;
     public javax.swing.JLabel jLabel_displayuserID;
     public javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel_sidePanel;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTable jTable_GroupTable;
+    private javax.swing.JTable jTable_GroupTable2;
     // End of variables declaration//GEN-END:variables
 }
