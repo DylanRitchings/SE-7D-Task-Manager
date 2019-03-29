@@ -18,12 +18,12 @@ import javax.swing.JOptionPane;
  *
  * @author Konstantin Georgiev
  */
-public class Task_View_Lookup extends javax.swing.JFrame {
+public class Task_Lookup extends javax.swing.JFrame {
 
     /**
      * Creates new form Task_View_Lookup
      */
-    public Task_View_Lookup() {
+    public Task_Lookup() {
         initComponents();
     }
 
@@ -42,6 +42,7 @@ public class Task_View_Lookup extends javax.swing.JFrame {
         jLabel_title = new javax.swing.JLabel();
         jTextField_title = new javax.swing.JTextField();
         jButton_lookup_task = new javax.swing.JButton();
+        jButton_edit_task = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -66,6 +67,13 @@ public class Task_View_Lookup extends javax.swing.JFrame {
             }
         });
 
+        jButton_edit_task.setText("Edit task");
+        jButton_edit_task.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_edit_taskActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -80,10 +88,13 @@ public class Task_View_Lookup extends javax.swing.JFrame {
                             .addComponent(jLabel_title))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton_lookup_task)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jTextField_assignee_email)
-                                .addComponent(jTextField_title)))))
+                            .addComponent(jTextField_assignee_email)
+                            .addComponent(jTextField_title)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jButton_edit_task, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jButton_lookup_task))
+                                .addGap(0, 0, Short.MAX_VALUE)))))
                 .addContainerGap(43, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -99,9 +110,11 @@ public class Task_View_Lookup extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel_title)
                     .addComponent(jTextField_title, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(40, 40, 40)
+                .addGap(18, 18, 18)
                 .addComponent(jButton_lookup_task)
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton_edit_task)
+                .addContainerGap(13, Short.MAX_VALUE))
         );
 
         pack();
@@ -228,6 +241,45 @@ public class Task_View_Lookup extends javax.swing.JFrame {
         }
     }
     
+    private void create_task_edit_form () {
+        String assignee_email = jTextField_assignee_email.getText();
+        String task_title = jTextField_title.getText();
+
+        String select = "SELECT * FROM `task` WHERE `assignee_email` = ? AND `Task_Title` = ?";
+        ResultSet rs;
+        
+        try (Connection con = DBConnect.databaseConnect();) {
+            
+            PreparedStatement pst = con.prepareStatement(select);
+            pst.setString(1, assignee_email);
+            pst.setString(2, task_title);
+            
+            rs = pst.executeQuery();
+            
+            if (rs.next()) {
+                
+                String title = rs.getString("task_title");
+                String task_deadline = rs.getString("task_deadline");
+                String task_description = rs.getString("task_description");
+                Integer is_complete = rs.getInt("is_complete");
+                String email = rs.getString("assignee_email");
+                
+                Task_Edit page = new Task_Edit(title, task_deadline,
+                                               task_description, is_complete,
+                                               email);
+                page.setVisible(true);
+                this.dispose();
+            }
+
+
+        } catch (SQLException ex) {
+
+            Logger lgr = Logger.getLogger(DBConnect.class.getName());
+            lgr.log(Level.SEVERE, ex.getMessage(), ex);
+
+        }
+    }
+    
     private void jTextField_assignee_emailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_assignee_emailActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField_assignee_emailActionPerformed
@@ -237,6 +289,12 @@ public class Task_View_Lookup extends javax.swing.JFrame {
             create_task_view_form();
         }
     }//GEN-LAST:event_jButton_lookup_taskActionPerformed
+
+    private void jButton_edit_taskActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_edit_taskActionPerformed
+        if (validate_Inputs() && validate_Email() && validate_task_exists()) {
+            create_task_edit_form ();
+        }
+    }//GEN-LAST:event_jButton_edit_taskActionPerformed
 
     /**
      * @param args the command line arguments
@@ -255,25 +313,27 @@ public class Task_View_Lookup extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Task_View_Lookup.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Task_Lookup.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Task_View_Lookup.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Task_Lookup.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Task_View_Lookup.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Task_Lookup.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Task_View_Lookup.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Task_Lookup.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Task_View_Lookup().setVisible(true);
+                new Task_Lookup().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton_edit_task;
     private javax.swing.JButton jButton_lookup_task;
     private javax.swing.JLabel jLabel_email;
     private javax.swing.JLabel jLabel_heading;

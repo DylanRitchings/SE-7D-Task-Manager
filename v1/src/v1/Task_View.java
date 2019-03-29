@@ -33,7 +33,6 @@ public class Task_View extends javax.swing.JFrame {
         
         if (is_Complete == 0) {
             jLabel_current_status.setText("Incomplete");
-            jLabel_current_status.setForeground(Color.RED);
         }
     }
 
@@ -171,7 +170,6 @@ public class Task_View extends javax.swing.JFrame {
         jTextField_finish_date.setEditable(false);
 
         jLabel_current_status.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel_current_status.setForeground(new java.awt.Color(0, 204, 51));
         jLabel_current_status.setText("Complete");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
