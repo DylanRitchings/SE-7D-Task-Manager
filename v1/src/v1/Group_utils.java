@@ -18,6 +18,11 @@ import java.util.logging.Logger;
 public class Group_utils {
     
 ///////////////////////////////////////////////////UP818044//////////////////////////////////////////////
+    /**
+     * @param User_ID
+     * @param Group_ID
+     * @param Is_Leader
+     */
     
     private int User_ID;
     private int Group_ID;
