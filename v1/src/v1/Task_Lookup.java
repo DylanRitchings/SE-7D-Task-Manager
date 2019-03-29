@@ -258,13 +258,14 @@ public class Task_Lookup extends javax.swing.JFrame {
             
             if (rs.next()) {
                 
+                String task_id = rs.getString("Task_ID");
                 String title = rs.getString("task_title");
                 String task_deadline = rs.getString("task_deadline");
                 String task_description = rs.getString("task_description");
                 Integer is_complete = rs.getInt("is_complete");
                 String email = rs.getString("assignee_email");
                 
-                Task_Edit page = new Task_Edit(title, task_deadline,
+                Task_Edit page = new Task_Edit(task_id, title, task_deadline,
                                                task_description, is_complete,
                                                email);
                 page.setVisible(true);

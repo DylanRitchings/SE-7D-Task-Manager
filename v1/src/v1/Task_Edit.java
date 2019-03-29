@@ -30,11 +30,13 @@ public class Task_Edit extends javax.swing.JFrame {
         initComponents();
     }
     
-    public Task_Edit(String task_title, String current_deadline, 
+    public Task_Edit(String task_id, String task_title, String current_deadline, 
                      String task_description, Integer is_Complete, 
                      String assignee_email) {
         initComponents();
         
+        task_id_label.setText(task_id);
+        task_id_label.setVisible(false);
         assignee_text_field.setText(assignee_email);
         title_text_field.setText(task_title);
         description_text_field.setText(task_description);
@@ -86,6 +88,7 @@ public class Task_Edit extends javax.swing.JFrame {
         update_task_button = new javax.swing.JButton();
         status_checkBox = new javax.swing.JCheckBox();
         jLabel_status = new javax.swing.JLabel();
+        task_id_label = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -185,12 +188,15 @@ public class Task_Edit extends javax.swing.JFrame {
 
         jLabel_status.setText("Status");
 
+        task_id_label.setText("task id");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(41, 41, 41)
+                .addComponent(task_id_label)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(heading_label, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
@@ -240,7 +246,7 @@ public class Task_Edit extends javax.swing.JFrame {
                         .addComponent(newFinishTime_day_label)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(newFinishTime_day_comboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(48, Short.MAX_VALUE))
+                .addContainerGap(45, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -284,6 +290,9 @@ public class Task_Edit extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
                 .addComponent(update_task_button)
                 .addGap(14, 14, 14))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(task_id_label))
         );
 
         pack();
@@ -430,35 +439,8 @@ public class Task_Edit extends javax.swing.JFrame {
 
     }
     
-    private Integer get_task_id () {
-        String assignee_email = assignee_text_field.getText();
-        String task_title = title_text_field.getText();
-        Integer task_id;
-
-        String select = "SELECT Task_ID FROM `task` WHERE `assignee_email` = ? AND `Task_Title` = ?";
-        ResultSet rs;
-        
-        try (Connection con = DBConnect.databaseConnect();) {
-            
-            PreparedStatement pst = con.prepareStatement(select);
-            pst.setString(1, assignee_email);
-            pst.setString(2, task_title);
-            
-            rs = pst.executeQuery();
-            task_id = rs.getInt("Task_ID");
-            return task_id;
-            
-            
-        } catch (SQLException ex) {
-
-            Logger lgr = Logger.getLogger(DBConnect.class.getName());
-            lgr.log(Level.SEVERE, ex.getMessage(), ex);
-
-        }
-        return -1;
-    }
-    
-    private void update_task(Integer task_id) {
+    private void update_task() {
+        Integer task_id = Integer.parseInt(task_id_label.getText());
         String assignee_email = assignee_text_field.getText();
         String title = title_text_field.getText();
         String description = description_text_field.getText();
@@ -473,7 +455,7 @@ public class Task_Edit extends javax.swing.JFrame {
             status = 0;
         }
         
-        String update = "Update task SET (Task_Title = ?, task_deadline = ?, Task_Description = ?, Is_Complete = ?, assignee_email = ?) WHERE Task_ID = ?";
+        String update = "Update task SET Task_Title = ?, task_deadline = ?, Task_Description = ?, Is_Complete = ?, assignee_email = ? WHERE Task_ID = ?";
         
         try (Connection con = DBConnect.databaseConnect();) {
             
@@ -482,7 +464,8 @@ public class Task_Edit extends javax.swing.JFrame {
             pst.setString(2, new_finish);
             pst.setString(3, description);
             pst.setInt(4, status);
-            pst.setInt(5, task_id);            
+            pst.setString(5, assignee_email);
+            pst.setInt(6, task_id);            
             
             pst.executeUpdate();
             pst.close();
@@ -527,7 +510,10 @@ public class Task_Edit extends javax.swing.JFrame {
     }//GEN-LAST:event_newFinishTime_year_comboBoxActionPerformed
 
     private void update_task_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_update_task_buttonActionPerformed
-        update_task(task_id);
+        if (validate_Inputs() && validate_Email()) {
+            update_task();
+        }
+        
     }//GEN-LAST:event_update_task_buttonActionPerformed
 
     private void status_checkBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_status_checkBoxActionPerformed
@@ -602,6 +588,7 @@ public class Task_Edit extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> newFinishTime_year_comboBox;
     private javax.swing.JLabel newFinishTime_year_label;
     private javax.swing.JCheckBox status_checkBox;
+    private javax.swing.JLabel task_id_label;
     private javax.swing.JLabel title_label;
     private javax.swing.JTextField title_text_field;
     private javax.swing.JButton update_task_button;
