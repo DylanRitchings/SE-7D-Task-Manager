@@ -421,7 +421,7 @@ public class LoggedIN extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton_show_side_PanelMouseClicked
 
     private void jButton_LeaveGroupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_LeaveGroupActionPerformed
-        String name = jTable_GroupTable.getrow;
+        //
     }//GEN-LAST:event_jButton_LeaveGroupActionPerformed
 
     /**
