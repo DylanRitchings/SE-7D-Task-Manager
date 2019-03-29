@@ -15,7 +15,8 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
- *
+ * Creates a form which is used to specify a task that the user wants to delete.
+ * 
  * @author Konstantin Georgiev
  */
 public class Task_Delete extends javax.swing.JFrame {
@@ -109,7 +110,12 @@ public class Task_Delete extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
+    /**
+     * Validate whether the input fields were left empty upon submission.
+     * 
+     * @return whether validations were successful
+     */
     private boolean validate_Inputs() {
         if (jTextField_assignee_email.getText().trim().equals("")) {
             JOptionPane.showMessageDialog(null, "Assignee email field cannot be empty.", "Input Error", 2);
@@ -124,6 +130,12 @@ public class Task_Delete extends javax.swing.JFrame {
         }
     }
     
+    /**
+     * Validates whether the entered email of the user to which the task is to
+     * be assigned to is actually a registered member in the database.
+     * 
+     * @return whether the validation was successful or not.
+     */
     private boolean validate_Email() {
         String user_email = jTextField_assignee_email.getText();
 
@@ -157,6 +169,12 @@ public class Task_Delete extends javax.swing.JFrame {
         return false;
     }
     
+    /**
+     * Validates whether the specified task to be deleted actually exists in the
+     * database.
+     * 
+     * @return whether validation was successful.
+     */
     private boolean validate_task_exists () {
         String assignee_email = jTextField_assignee_email.getText();
         String task_title = jTextField_title.getText();
@@ -191,6 +209,10 @@ public class Task_Delete extends javax.swing.JFrame {
         return false;
     }
     
+    /**
+     * Takes the inputs from the form fields and uses them in an SQL query to
+     * delete the task from the database.
+     */
     private void delete_task () {
         String assignee_email = jTextField_assignee_email.getText();
         String task_title = jTextField_title.getText();
@@ -219,6 +241,13 @@ public class Task_Delete extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField_assignee_emailActionPerformed
 
+    /**
+     * When the button is pressed it calls all of the validation functions and 
+     * if they all pass it calls the delete_task function to delete the task 
+     * from the database.
+     * 
+     * @param evt when the button is pressed.
+     */
     private void jButton_delete_taskActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_delete_taskActionPerformed
         if (validate_Inputs() && validate_Email() && validate_task_exists()) {
             delete_task();

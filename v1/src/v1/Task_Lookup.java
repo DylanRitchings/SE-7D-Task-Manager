@@ -15,7 +15,8 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
- *
+ * Creates a new form with input fields to lookup an existing task.
+ * 
  * @author Konstantin Georgiev
  */
 public class Task_Lookup extends javax.swing.JFrame {
@@ -119,7 +120,12 @@ public class Task_Lookup extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
+    /**
+     * Validate whether the input fields were left empty upon submission.
+     * 
+     * @return whether validations were successful
+     */
     private boolean validate_Inputs() {
         if (jTextField_assignee_email.getText().trim().equals("")) {
             JOptionPane.showMessageDialog(null, "Assignee email field cannot be empty.", "Input Error", 2);
@@ -134,6 +140,12 @@ public class Task_Lookup extends javax.swing.JFrame {
         }
     }
     
+    /**
+     * Validates whether the entered email of the user to which the task is to
+     * be assigned to is actually a registered member in the database.
+     * 
+     * @return whether the validation was successful or not.
+     */
     private boolean validate_Email() {
         String user_email = jTextField_assignee_email.getText();
 
@@ -167,6 +179,12 @@ public class Task_Lookup extends javax.swing.JFrame {
         return false;
     }
     
+    /**
+     * Validates whether the specified task to be deleted actually exists in the
+     * database.
+     * 
+     * @return whether validation was successful.
+     */
     private boolean validate_task_exists () {
         String assignee_email = jTextField_assignee_email.getText();
         String task_title = jTextField_title.getText();
@@ -201,6 +219,10 @@ public class Task_Lookup extends javax.swing.JFrame {
         return false;
     }
     
+    /**
+     * Uses the required inputs to pull all of the details of the specified task
+     * from the database and using those details creates a new Task_View form.
+     */
     private void create_task_view_form () {
         String assignee_email = jTextField_assignee_email.getText();
         String task_title = jTextField_title.getText();
@@ -241,6 +263,10 @@ public class Task_Lookup extends javax.swing.JFrame {
         }
     }
     
+    /**
+     * Uses the required inputs to pull all of the details of the specified task
+     * from the database and using those details creates a new Task_Edit form.
+     */
     private void create_task_edit_form () {
         String assignee_email = jTextField_assignee_email.getText();
         String task_title = jTextField_title.getText();
@@ -284,13 +310,25 @@ public class Task_Lookup extends javax.swing.JFrame {
     private void jTextField_assignee_emailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_assignee_emailActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField_assignee_emailActionPerformed
-
+    
+    /**
+     * Calls the validation functions and if they all pass calls the
+     * create_task_view_from function to create a new form to view a task.
+     * 
+     * @param evt the button is pressed.
+     */
     private void jButton_lookup_taskActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_lookup_taskActionPerformed
         if (validate_Inputs() && validate_Email() && validate_task_exists()) {
             create_task_view_form();
         }
     }//GEN-LAST:event_jButton_lookup_taskActionPerformed
 
+    /**
+     * Calls the validation functions and if they all pass calls the 
+     * create_task_edit_from function to create a new from for editing a task.
+     * 
+     * @param evt the button has been pressed. 
+     */
     private void jButton_edit_taskActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_edit_taskActionPerformed
         if (validate_Inputs() && validate_Email() && validate_task_exists()) {
             create_task_edit_form ();

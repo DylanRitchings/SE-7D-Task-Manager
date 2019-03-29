@@ -13,7 +13,9 @@ import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 /**
- *
+ * This interface generates a form for the creation of a task with all the
+ * required input fields.
+ * 
  * @author Konstantin Georgiev
  */
 public class Task_Create extends javax.swing.JFrame {
@@ -244,7 +246,17 @@ public class Task_Create extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
+    
+    /**
+     * Validates that the day combo box of the date for which all
+     * of the combo boxes are being passed has the correct number of days 
+     * according to the year and month selected.
+     * 
+     * @param year_comboBox the year combo box of the date which is being validated
+     * @param month_comboBox the month combo box of the date which is being validated
+     * @param day_comboBox the day combo box of the date which is being validated
+     */
     private void validate_days (JComboBox<String> year_comboBox, JComboBox<String> month_comboBox, JComboBox<String> day_comboBox) {
         String year_input = (String)year_comboBox.getSelectedItem();
         Integer year_input_number = Integer.parseInt(year_input);
@@ -260,7 +272,7 @@ public class Task_Create extends javax.swing.JFrame {
         
         /*
          The length of the days of the getItemCount's is off by 1 because the
-         day combo box also has a default "- -" entry in it. This is to 
+         day combo box also has a default "00" entry in it. This is to 
          prevent user mistakes when the system is updating the day list while
          users are changing the desired year / month.
         */
@@ -278,6 +290,13 @@ public class Task_Create extends javax.swing.JFrame {
         }
     }
     
+    /**
+     * Validates whether any of the inputs are empty, if any of the dates 
+     * are left at the default value which is not valid and if the chosen finish
+     * date is after the chosen start date. 
+     * 
+     * @return whether all validations were passed or not
+     */
     private boolean validate_Inputs () {
         
         Integer start_year = Integer.parseInt((String)startTime_year_comboBox.getSelectedItem());
@@ -320,6 +339,12 @@ public class Task_Create extends javax.swing.JFrame {
         }
     }
     
+    /**
+     * Validates whether the entered email of the user to which the task is to
+     * be assigned to is actually a registered member in the database.
+     * 
+     * @return whether the validation was successful or not.
+     */
     private boolean validate_Email() {
         String user_email = assignee_text_field.getText();
 
@@ -352,6 +377,10 @@ public class Task_Create extends javax.swing.JFrame {
         return false;
     }
     
+    /**
+     * Gets the inputs from the task creation form and uses them in an SQL query 
+     * to create the task within the database.
+     */
     private void create_task () {
         String task_title = title_text_field.getText();
         String task_start = (String)startTime_year_comboBox.getSelectedItem() + "-" +
@@ -392,6 +421,12 @@ public class Task_Create extends javax.swing.JFrame {
         }
     }
     
+    /**
+     * Calls the validate_days function to ensure that the corresponding day
+     * combo box has the correct number of days in it.
+     * 
+     * @param evt selected year in start time year combo box is changed.
+     */
     private void startTime_year_comboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startTime_year_comboBoxActionPerformed
         validate_days(startTime_year_comboBox, startTime_month_comboBox, startTime_day_comboBox);
     }//GEN-LAST:event_startTime_year_comboBoxActionPerformed
@@ -400,14 +435,32 @@ public class Task_Create extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_startTime_day_comboBoxActionPerformed
 
+    /**
+     * Calls the validate_days function to ensure that the corresponding day
+     * combo box has the correct number of days in it.
+     * 
+     * @param evt selected month in start time month combo box is changed.
+     */
     private void startTime_month_comboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startTime_month_comboBoxActionPerformed
         validate_days(startTime_year_comboBox, startTime_month_comboBox, startTime_day_comboBox);
     }//GEN-LAST:event_startTime_month_comboBoxActionPerformed
-
+    
+    /**
+     * Calls the validate_days function to ensure that the corresponding day
+     * combo box has the correct number of days in it.
+     * 
+     * @param evt selected year in finish time year combo box is changed.
+     */
     private void finishTime_year_comboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_finishTime_year_comboBoxActionPerformed
         validate_days(finishTime_year_comboBox, finishTime_month_comboBox, finishTime_day_comboBox);
     }//GEN-LAST:event_finishTime_year_comboBoxActionPerformed
-
+    
+    /**
+     * Calls the validate_days function to ensure that the corresponding day
+     * combo box has the correct number of days in it.
+     * 
+     * @param evt selected month in finish time month combo box is changed.
+     */
     private void finishTime_month_comboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_finishTime_month_comboBoxActionPerformed
         validate_days(finishTime_year_comboBox, finishTime_month_comboBox, finishTime_day_comboBox);
     }//GEN-LAST:event_finishTime_month_comboBoxActionPerformed
@@ -419,7 +472,13 @@ public class Task_Create extends javax.swing.JFrame {
     private void assignee_text_fieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_assignee_text_fieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_assignee_text_fieldActionPerformed
-
+    
+    /**
+     * Calls the validation functions and if they pass calls the create_task
+     * function to create a new task within the database.
+     * 
+     * @param evt 
+     */
     private void createTask_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createTask_buttonActionPerformed
         
         if (validate_Inputs() && validate_Email()) {

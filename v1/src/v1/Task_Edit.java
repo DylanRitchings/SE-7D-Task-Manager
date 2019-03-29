@@ -18,7 +18,9 @@ import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 
 /**
- *
+ * This interface generates a form for editing an existing task within the 
+ * database.
+ * 
  * @author Konstantin Georgiev
  */
 public class Task_Edit extends javax.swing.JFrame {
@@ -30,6 +32,17 @@ public class Task_Edit extends javax.swing.JFrame {
         initComponents();
     }
     
+    /**
+     * Creates a form for editing a task with the information of the existing 
+     * task.
+     * 
+     * @param task_id id of the task within the database.
+     * @param task_title title of the task within the database.
+     * @param current_deadline deadline of the task within the database.
+     * @param task_description description of the task within the database.
+     * @param is_Complete whether the task is marked as complete within the database.
+     * @param assignee_email email of the user to which the task is assigned to from the database.
+     */
     public Task_Edit(String task_id, String task_title, String current_deadline, 
                      String task_description, Integer is_Complete, 
                      String assignee_email) {
@@ -297,7 +310,16 @@ public class Task_Edit extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
+    /**
+     * Validates that the day combo box of the date for which all
+     * of the combo boxes are being passed has the correct number of days 
+     * according to the year and month selected.
+     * 
+     * @param year_comboBox the year combo box of the date which is being validated
+     * @param month_comboBox the month combo box of the date which is being validated
+     * @param day_comboBox the day combo box of the date which is being validated
+     */
     private void validate_days (JComboBox<String> year_comboBox, JComboBox<String> month_comboBox, JComboBox<String> day_comboBox) {
         String year_input = (String)year_comboBox.getSelectedItem();
         Integer year_input_number = Integer.parseInt(year_input);
@@ -331,6 +353,13 @@ public class Task_Edit extends javax.swing.JFrame {
         }
     }
     
+    /**
+     * Validates whether any of the inputs are empty, if any of the dates 
+     * are left at the default value which is not valid and if the chosen finish
+     * date is after the chosen start date. 
+     * 
+     * @return whether all validations were passed or not
+     */
     private boolean validate_Inputs () {
         
         Integer currentFinish_year = Integer.parseInt((String)currentFinishTime_year_comboBox.getSelectedItem());
@@ -373,6 +402,12 @@ public class Task_Edit extends javax.swing.JFrame {
         }
     }
     
+    /**
+     * Validates whether the entered email of the user to which the task is to
+     * be assigned to is actually a registered member in the database.
+     * 
+     * @return whether the validation was successful or not.
+     */
     private boolean validate_Email() {
         String user_email = assignee_text_field.getText();
 
@@ -405,9 +440,17 @@ public class Task_Edit extends javax.swing.JFrame {
         return false;
     }
     
-    // Recieves the full date as a singular string from the database and then
-    // takes it apart so that the relevant parts can be assigned to the relevant
-    // combo boxes.
+     
+    /**
+     * Recieves the full date as a singular string from the database and then
+     * takes it apart so that the relevant parts can be assigned to the relevant
+     * combo boxes.
+     * 
+     * @param date the full date as a string taken from the database
+     * @param year_comboBox the relevant year combo box of the specified date
+     * @param month_comboBox the relevant month combo box of the specified date
+     * @param day_comboBox  the relevant day combo box of the specified date
+     */
     private void convert_date(String date, JComboBox<String> year_comboBox, 
                               JComboBox<String> month_comboBox, 
                               JComboBox<String> day_comboBox) {
@@ -426,6 +469,9 @@ public class Task_Edit extends javax.swing.JFrame {
                                          append(date.charAt(9)).
                                          toString();
         
+        // If the combo boxes being passed to the function are those of the 
+        // current date set their model to only one item so they cannot be
+        // changed.
         if (year_comboBox == currentFinishTime_year_comboBox) {
             year_comboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {year}));
             month_comboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {month}));
@@ -439,6 +485,10 @@ public class Task_Edit extends javax.swing.JFrame {
 
     }
     
+    /**
+     * Takes the information from all of the inputs and uses it in an SQL query
+     * to update the details of the existing task.
+     */
     private void update_task() {
         Integer task_id = Integer.parseInt(task_id_label.getText());
         String assignee_email = assignee_text_field.getText();
@@ -481,16 +531,22 @@ public class Task_Edit extends javax.swing.JFrame {
         }
     }
     
+    /**
+     * Calls the validate_days function to ensure that the corresponding day
+     * combo box has the correct number of days in it.
+     * 
+     * @param evt selected month in new finish time combo box is changed.
+     */
     private void newFinishTime_month_comboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newFinishTime_month_comboBoxActionPerformed
         validate_days(newFinishTime_year_comboBox, newFinishTime_month_comboBox, newFinishTime_day_comboBox);
     }//GEN-LAST:event_newFinishTime_month_comboBoxActionPerformed
-
+    
     private void currentFinishTime_year_comboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_currentFinishTime_year_comboBoxActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_currentFinishTime_year_comboBoxActionPerformed
-
+    
     private void newFinishTime_day_comboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newFinishTime_day_comboBoxActionPerformed
-        validate_days(newFinishTime_year_comboBox, newFinishTime_month_comboBox, newFinishTime_day_comboBox);
+        // TODO add your handling code here:
     }//GEN-LAST:event_newFinishTime_day_comboBoxActionPerformed
 
     private void currentFinishTime_month_comboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_currentFinishTime_month_comboBoxActionPerformed
@@ -504,30 +560,43 @@ public class Task_Edit extends javax.swing.JFrame {
     private void currentFinishTime_day_comboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_currentFinishTime_day_comboBoxActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_currentFinishTime_day_comboBoxActionPerformed
-
+    
+    /**
+     * Calls the validate_days function to ensure that the corresponding day
+     * combo box has the correct number of days in it.
+     * 
+     * @param evt selected year in new finish time combo box is changed.
+     */
     private void newFinishTime_year_comboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newFinishTime_year_comboBoxActionPerformed
         validate_days(newFinishTime_year_comboBox, newFinishTime_month_comboBox, newFinishTime_day_comboBox);
     }//GEN-LAST:event_newFinishTime_year_comboBoxActionPerformed
-
+    
+    /**
+     * Calls the validation functions and if they pass calls the update_task
+     * function to update the specified task's details within the database.
+     * @param evt 
+     */
     private void update_task_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_update_task_buttonActionPerformed
         if (validate_Inputs() && validate_Email()) {
             update_task();
         }
-        
     }//GEN-LAST:event_update_task_buttonActionPerformed
-
+    
+    /**
+     * Displays an appropriate label depending on whether the status checkbox
+     * is ticked.
+     * 
+     * @param evt the state of the status checkbox is changed.
+     */
     private void status_checkBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_status_checkBoxActionPerformed
         if (status_checkBox.isSelected()) {
             status_checkBox.setText("Complete");
-            
         }
         else {
             status_checkBox.setText("Incomplete");
         }
     }//GEN-LAST:event_status_checkBoxActionPerformed
 
-    
-    
     /**
      * @param args the command line arguments
      */

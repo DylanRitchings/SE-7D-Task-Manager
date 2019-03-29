@@ -5,10 +5,10 @@
  */
 package v1;
 
-import java.awt.Color;
 
 /**
- *
+ * Creates a new form with the details of an existing task for viewing only.
+ * 
  * @author Konstantin Georgiev
  */
 public class Task_View extends javax.swing.JFrame {
@@ -20,6 +20,17 @@ public class Task_View extends javax.swing.JFrame {
         initComponents();
     }
     
+    /**
+     * Creates a new form for viewing a task with the information of the 
+     * task.
+     * 
+     * @param task_title title of the task within the database.
+     * @param task_start start time of the task within the database.
+     * @param task_deadline deadline of the task within the database.
+     * @param task_description description of the task within the database.
+     * @param is_Complete whether the task is marked as complete within the database.
+     * @param assignee_email email of the user to which the task is assigned to from the database.
+     */
     public Task_View(String task_title, String task_start, String task_deadline, 
                      String task_description, Integer is_Complete, 
                      String assignee_email) {
