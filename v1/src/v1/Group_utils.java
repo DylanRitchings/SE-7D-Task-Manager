@@ -16,6 +16,43 @@ import java.util.logging.Logger;
  * @author Dylan Ritchings
  */
 public class Group_utils {
+    
+///////////////////////////////////////////////////UP818044//////////////////////////////////////////////
+    
+    private int User_ID;
+    private int Group_ID;
+    private Boolean Is_Leader;
+    
+    public Group_utils(int User_ID, int Group_ID ,Boolean Is_Leader)
+    {
+        this.User_ID = User_ID;
+        this.Group_ID = Group_ID;
+        this.Is_Leader = Is_Leader;
+    }
+    
+    public int getId()
+    {
+        return User_ID;
+    }
+    
+    public int getgroupId()
+    {
+        return Group_ID;
+    }
+    
+    public Boolean getIsleader()
+    {
+        return Is_Leader;
+    }
+
+
+//////////////////////////////////////////////////////////UP81804////////////////////////////////////////////////
+    
+    
+    
+    
+    
+    
 //    protected String  groupName;
 //    protected ArrayList<String> memberList;
 //    protected String groupDescription;
