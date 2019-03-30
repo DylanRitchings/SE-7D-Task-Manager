@@ -113,7 +113,6 @@ public class Group_utils {
         memDetails.add(surname);
         memDetails.add(email);
         memDetails.add(tasksDone);
-        System.out.println(memDetails);
         return memDetails;
             //Split user details up and input into lists
         }
