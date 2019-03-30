@@ -16,7 +16,7 @@ import java.sql.Statement;
 
 /**
 *@since 1/3/2019
-*@version 
+*@version 1.3
 *@author Dylan Ritchings,
 *@see
 *@inv
