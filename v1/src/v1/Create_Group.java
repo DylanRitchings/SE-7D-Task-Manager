@@ -205,6 +205,7 @@ public class Create_Group extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField1GroupName;
     // End of variables declaration//GEN-END:variables
 
+    
      private void create_group () {
         String group_name = jTextField1GroupName.getText();
         String group_desc = jTextArea1GroupDesc.getText();
