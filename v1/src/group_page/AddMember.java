@@ -111,17 +111,16 @@ public class AddMember extends javax.swing.JFrame {
             System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAaa");
             if(userCheckrs.next()){
                 userID = userCheckrs.getString("User_ID");
-                System.out.println(userID);
-                System.out.println("BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB");
-                if (userID == null){
-                    errorMessage.setText("User does not exist with this email, please try again.");
-                }else{
-                    String query2 = "INSERT INTO user_in_group VALUES("+userID+","+groupID+","+0+");";
-                    DBConnect.databaseInput(query2);
+                String query2 = "INSERT INTO user_in_group VALUES("+userID+","+groupID+","+0+");";
+                DBConnect.databaseInput(query2);
+                GroupPageLeader groupPage = new GroupPageLeader(groupID);
+                groupPage.setVisible(true);
+                this.setVisible(false);
                 }
-            }
+            
             
         } catch (SQLException ex){
+            errorMessage.setText("User does not exist with this email, please try again.");
             Logger.getLogger(AddMember.class.getName()).log(Level.SEVERE, null, ex);
         }
 
