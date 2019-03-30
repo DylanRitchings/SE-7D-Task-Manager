@@ -27,6 +27,7 @@ import v1.Leader;
  * @author Dylan Ritchings
  */
 import javax.swing.JComponent;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.ScrollPaneConstants;
 import v1.Group_utils;
@@ -177,7 +178,7 @@ public final class GroupPageLeader extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         memberList = new javax.swing.JList<>();
         removeMember = new javax.swing.JToggleButton();
-        jButton1 = new javax.swing.JButton();
+        addMember = new javax.swing.JButton();
         taskPane = new javax.swing.JScrollPane();
         viewProfile = new javax.swing.JButton();
         nameLabel = new javax.swing.JLabel();
@@ -205,10 +206,10 @@ public final class GroupPageLeader extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("Add Member");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        addMember.setText("Add Member");
+        addMember.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                addMemberActionPerformed(evt);
             }
         });
 
@@ -244,7 +245,7 @@ public final class GroupPageLeader extends javax.swing.JFrame {
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(viewProfile)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(addMember, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(126, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -257,7 +258,7 @@ public final class GroupPageLeader extends javax.swing.JFrame {
                     .addComponent(taskPane, javax.swing.GroupLayout.PREFERRED_SIZE, 373, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton1)
+                            .addComponent(addMember)
                             .addComponent(viewProfile))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -288,10 +289,14 @@ public final class GroupPageLeader extends javax.swing.JFrame {
     }//GEN-LAST:event_removeMemberActionPerformed
 
    
+    /**
+     * Opens AddMember.java
+     * @param evt 
+     */
     
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void addMemberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addMemberActionPerformed
+        //new JFrame addMember = new AddMember(groupID);
+    }//GEN-LAST:event_addMemberActionPerformed
 
     private void memberListFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_memberListFocusGained
         removeMember.setEnabled(true); 
@@ -351,7 +356,7 @@ public final class GroupPageLeader extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton addMember;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JList<String> memberList;
