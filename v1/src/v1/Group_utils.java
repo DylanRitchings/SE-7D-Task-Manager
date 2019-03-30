@@ -88,7 +88,7 @@ public class Group_utils {
        
         
        //Iterate through each user ID in userIDList
-        for (int user = 0; user <= userIDList.size()-1; user++)
+        for (int user = 0; user <= userIDList.size(); user++)
         {        
             String query ;
             query = "SELECT User_ID, User_Forename, User_Surname, User_Email, User_NumTasksDone FROM user WHERE User_ID =" + userIDList.get(user) + ";";
@@ -113,6 +113,7 @@ public class Group_utils {
         memDetails.add(surname);
         memDetails.add(email);
         memDetails.add(tasksDone);
+        System.out.println(memDetails);
         return memDetails;
             //Split user details up and input into lists
         }
@@ -262,6 +263,7 @@ public class Group_utils {
         tDetails.add(tComp);
         return tDetails;
     }
+
     
 }
 
