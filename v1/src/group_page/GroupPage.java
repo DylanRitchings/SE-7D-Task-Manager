@@ -90,7 +90,6 @@ public final class GroupPage extends javax.swing.JFrame {
     public void groupName() throws SQLException{
         String query = "SELECT Group_Name FROM groups WHERE Group_ID="+ groupID +";";
         ResultSet groupNamers = DBConnect.databaseSelect(query);
-        System.out.println(groupNamers);
         while (groupNamers.next()) {
             String groupName = groupNamers.getString("Group_Name");
             nameLabel.setText("Group: " + groupName);
@@ -106,7 +105,7 @@ public final class GroupPage extends javax.swing.JFrame {
         cont.setLayout(new BoxLayout(cont, BoxLayout.Y_AXIS));
         //BoxLayout taskLayout = new BoxLayout (taskPane,BoxLayout.Y_AXIS);
         taskPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-        for (int count = 0; count < taskID.size()-1; count++){
+        for (int count = 0; count < taskID.size(); count++){
             JPanel taskPanel  = new TaskView(taskID.get(count), taskTitle.get(count), taskStart.get(count), taskEnd.get(count), taskDesc.get(count), taskComp.get(count));
             cont.add(taskPanel, BorderLayout.LINE_START);
 
