@@ -88,14 +88,19 @@ public final class GroupPage extends javax.swing.JFrame {
     }
 
     public void groupName() throws SQLException{
-       // String query = "SELECT Group_Name FROM groups WHERE Group_ID="+ groupID +";";
-        //ResultSet groupNamers = DBConnect.databaseSelect(query);
-        //System.out.println(groupNamers);
-        //String groupName = groupNamers.getString(0);
-       // System.out.println(groupName);
-        //nameLabel.setText("Group: " + groupName);
+        String query = "SELECT Group_Name FROM groups WHERE Group_ID="+ groupID +";";
+        ResultSet groupNamers = DBConnect.databaseSelect(query);
+        System.out.println(groupNamers);
+        while (groupNamers.next()) {
+            String groupName = groupNamers.getString("Group_Name");
+            nameLabel.setText("Group: " + groupName);
+ 
+        }
     }
-    
+    /**
+     * Fill each task into the taskPanel
+     * @throws ParseException 
+     */
     public void fillTaskDetails() throws ParseException{
         Container cont = new Container();
         cont.setLayout(new BoxLayout(cont, BoxLayout.Y_AXIS));
