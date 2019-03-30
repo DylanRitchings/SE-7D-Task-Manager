@@ -128,7 +128,6 @@ public class Group_utils {
      * Creates a group and assigns the user who created the group as a leader
      * @param name
      * @param description
-     * @param userID (Maybe)
      * @return String
      * 
      */
