@@ -6,11 +6,13 @@
 package group_page;
 
 
+import java.awt.Color;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import javax.swing.UIManager;
 
 /**
  *
@@ -48,7 +50,10 @@ public class TaskView extends javax.swing.JPanel {
         
         timeLeftPb();
     }
-
+/**
+ * Sets the values for the timeLeft ProgressBar
+ * @throws ParseException 
+ */
     private void timeLeftPb() throws ParseException{
         
         String pattern = "yyyy-MM-dd";
@@ -60,15 +65,27 @@ public class TaskView extends javax.swing.JPanel {
         Date currentDate = new SimpleDateFormat("yyyy-MM-dd").parse(current);
         Date startDate = new SimpleDateFormat("yyyy-MM-dd").parse(start);
         Date endDate = new SimpleDateFormat("yyyy-MM-dd").parse(end);
-        int currentTime = (int) currentDate.getTime();
-        int startTime = (int) startDate.getTime();
-        int endTime = (int) endDate.getTime();
+        int currentTime = (int) (currentDate.getTime() / (24 * 60 * 60 * 1000));
+        int startTime = (int) (startDate.getTime() / (24 * 60 * 60 * 1000));
+        
+        int endTime = (int) (endDate.getTime() / (24 * 60 * 60 * 1000));
         
         int progressMax = endTime - startTime;
         int progressPoint = currentTime - startTime;
-
+        int daysLeft = progressMax - progressPoint;
+        timeLeft.setString("Time left: "+ daysLeft + " days");
+        if (progressMax < progressPoint && comp == false) {
+            //UIManager.put("timeLeft.selectionForeground",Color.RED);
+            //UIManager.put("timeLeft.selectionBackground",Color.RED);
+            //timeLeft.setForeground(Color.red);
+            timeLeft.setString("Overdue");  
+        }
+        else if (comp == true){
+            timeLeft.setString("Complete");
+        }
         timeLeft.setMaximum(progressMax);
-        timeLeft.setMinimum(progressPoint);
+        timeLeft.setValue(progressPoint);
+        timeLeft.setVisible(true);
         
         
              
