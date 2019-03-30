@@ -12,7 +12,6 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
-import mainPage.*;
 /**
  *
  * @author Dylan Ritchings
@@ -156,7 +155,7 @@ public class Group_utils {
     private static ArrayList getTaskIDs(int groupID)
     {
         ArrayList<String> taskIDList = new ArrayList<>();
-        String taskIDQuery = "SELECT Task_ID FROM User_Member_Group WHERE Group_ID =" + groupID+");";
+        String taskIDQuery = "SELECT Task_ID FROM user_member_group WHERE Group_ID =" + groupID+";";
         ResultSet taskIDrs = DBConnect.databaseSelect(taskIDQuery);
         try {
             //Iterate through tasksID result set and input tasks IDs into array list
@@ -195,7 +194,7 @@ public class Group_utils {
         } catch (SQLException ex) {
             Logger.getLogger(Group_utils.class.getName()).log(Level.SEVERE, null, ex);
             return null;
-        }//test
+        }
         
     }
     /**
@@ -262,6 +261,7 @@ public class Group_utils {
         tDetails.add(tComp);
         return tDetails;
     }
+    
 }
 
 //    public static ResultSet getTaskDetails(int groupID){
