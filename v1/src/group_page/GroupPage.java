@@ -29,6 +29,8 @@ import v1.Leader;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
 import javax.swing.ScrollPaneConstants;
+import v1.Group_utils;
+import v1.Leader;
 public final class GroupPage extends javax.swing.JFrame {
     int groupID;
             
@@ -247,8 +249,7 @@ public final class GroupPage extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(removeMember)
-                        .addGap(5, 5, 5)))
+                        .addComponent(removeMember)))
                 .addContainerGap(140, Short.MAX_VALUE))
         );
 
