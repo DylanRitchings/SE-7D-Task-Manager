@@ -10,7 +10,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
+import v1.Group_utils;
+import v2.Login.Register_Interface;
 /**
  *
  * @author Dylan Ritchings
@@ -85,9 +86,9 @@ public class AddMember extends javax.swing.JFrame {
                     .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(errorMessage)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
                 .addComponent(addUser)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
@@ -103,27 +104,30 @@ public class AddMember extends javax.swing.JFrame {
     private void addUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addUserActionPerformed
         
         String email = userEmail.getText();
-        String query1 = "SELECT User_ID FROM user WHERE User_Email ='"+email+"';";
-        String userID;
+        //boolean emailExists;
+        //emailExists = Group_utils.checkEmail(email);
         
-        ResultSet userCheckrs = DBConnect.databaseSelect(query1);
-        try {
-            System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAaa");
-            if(userCheckrs.next()){
-                userID = userCheckrs.getString("User_ID");
-                String query2 = "INSERT INTO user_in_group VALUES("+userID+","+groupID+","+0+");";
-                DBConnect.databaseInput(query2);
+        if (Group_utils.checkEmail(email)) {
+            String userID;
+            String query1 = "SELECT User_ID FROM user WHERE User_Email ='"+email+"';";
+            ResultSet userCheckrs = DBConnect.databaseSelect(query1);
+            try{
+                if(userCheckrs.next()){
+                
+                    userID = userCheckrs.getString("User_ID");
+                    String query2 = "INSERT INTO user_in_group VALUES("+userID+","+groupID+","+0+");";
+                    DBConnect.databaseInput(query2);
+                }
                 GroupPageLeader groupPage = new GroupPageLeader(groupID);
                 groupPage.setVisible(true);
                 this.setVisible(false);
-                }
-            
-            
-        } catch (SQLException ex){
-            errorMessage.setText("User does not exist with this email, please try again.");
+            } catch (SQLException ex){
             Logger.getLogger(AddMember.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
-
+        else{
+            errorMessage.setText("User does not exist with this email, please try again.");
+        }  
         
     }//GEN-LAST:event_addUserActionPerformed
     
