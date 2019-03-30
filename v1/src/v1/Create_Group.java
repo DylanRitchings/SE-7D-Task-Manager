@@ -147,15 +147,16 @@ public class Create_Group extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField1GroupNameActionPerformed
 
     private void jButton2CancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2CancelActionPerformed
-        System.exit(0);
+        this.dispose();
     }//GEN-LAST:event_jButton2CancelActionPerformed
 
     private void jButton1DoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1DoneActionPerformed
-                if (validate_Inputs()) {
+        if (validate_Inputs()) {
             create_group();
         }
     }//GEN-LAST:event_jButton1DoneActionPerformed
-
+ 
+    
     /**
      * 
      * @param args the command line arguments
@@ -231,14 +232,7 @@ public class Create_Group extends javax.swing.JFrame {
             lgr.log(Level.SEVERE, ex.getMessage(), ex);
 
         }
-    }
-    
-    
-    
-    
-    
-    
-    
+    }  
     
 private boolean validate_Inputs () {
     
