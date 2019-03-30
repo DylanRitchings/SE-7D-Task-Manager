@@ -67,6 +67,54 @@ public class Task_Edit extends javax.swing.JFrame {
         
     }
     
+    public Task_Edit(Integer task_id) {
+        String select = "SELECT * FROM `task` WHERE `task_id` = ?";
+        ResultSet rs;
+        
+        try (Connection con = DBConnect.databaseConnect();) {
+            
+            PreparedStatement pst = con.prepareStatement(select);
+            pst.setInt(1, task_id);
+            
+            rs = pst.executeQuery();
+            
+            if (rs.next()) {
+                
+                String title = rs.getString("task_title");
+                String current_deadline = rs.getString("task_deadline");
+                String task_description = rs.getString("task_description");
+                Integer is_complete = rs.getInt("is_complete");
+                String email = rs.getString("assignee_email");
+                
+                initComponents();
+                
+                task_id_label.setText(Integer.toString(task_id));
+                task_id_label.setVisible(false);
+                assignee_text_field.setText(email);
+                title_text_field.setText(title);
+                description_text_field.setText(task_description);
+                convert_date(current_deadline, currentFinishTime_year_comboBox, 
+                                               currentFinishTime_month_comboBox, 
+                                               currentFinishTime_day_comboBox);
+                convert_date(current_deadline, newFinishTime_year_comboBox, 
+                                               newFinishTime_month_comboBox, 
+                                               newFinishTime_day_comboBox);
+
+                if (is_complete == 0) {
+                    status_checkBox.setText("Incomplete");
+                    status_checkBox.setSelected(false);
+                }
+            }
+
+
+        } catch (SQLException ex) {
+
+            Logger lgr = Logger.getLogger(DBConnect.class.getName());
+            lgr.log(Level.SEVERE, ex.getMessage(), ex);
+
+        }
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -370,6 +418,14 @@ public class Task_Edit extends javax.swing.JFrame {
         
         Integer currentFinish_day= Integer.parseInt((String)currentFinishTime_day_comboBox.getSelectedItem());
         Integer newFinish_day = Integer.parseInt((String)newFinishTime_day_comboBox.getSelectedItem());
+        
+        System.out.println(currentFinish_year);
+        System.out.println(newFinish_year);
+        System.out.println(currentFinish_month);
+        System.out.println(newFinish_month);
+        System.out.println(currentFinish_day);
+        System.out.println(newFinish_day);
+        System.out.println(currentFinish_year.equals(newFinish_year));
                 
         if (assignee_text_field.getText().trim().equals("")) {
             JOptionPane.showMessageDialog(null, "Assignee email field cannot be empty.", "Input Error", 2);
@@ -391,9 +447,15 @@ public class Task_Edit extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Day field of Finish time cannot be 00", "Input Error", 2);
             return false;
         }
-        else if (currentFinish_year > newFinish_year || newFinish_year < currentFinish_year ||
-                 currentFinish_year == newFinish_year && (currentFinish_month > newFinish_month || newFinish_month < currentFinish_month) ||
-                 currentFinish_year == newFinish_year && currentFinish_month == newFinish_month && (currentFinish_day > newFinish_day || newFinish_day < currentFinish_day)) {
+        else if (currentFinish_year > newFinish_year) {
+            JOptionPane.showMessageDialog(null, "New deadline cannot be earlier than current deadline", "Input Error", 2);
+            return false;
+        }
+        else if (currentFinish_year.equals(newFinish_year) && currentFinish_month > newFinish_month) {
+            JOptionPane.showMessageDialog(null, "New deadline cannot be earlier than current deadline", "Input Error", 2);
+            return false;
+        }
+        else if (currentFinish_year.equals(newFinish_year) && currentFinish_month.equals(newFinish_month) && currentFinish_day > newFinish_day) {
             JOptionPane.showMessageDialog(null, "New deadline cannot be earlier than current deadline", "Input Error", 2);
             return false;
         }

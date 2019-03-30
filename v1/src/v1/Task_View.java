@@ -5,6 +5,14 @@
  */
 package v1;
 
+import database_console.DBConnect;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 
 /**
  * Creates a new form with the details of an existing task for viewing only.
@@ -46,7 +54,57 @@ public class Task_View extends javax.swing.JFrame {
             jLabel_current_status.setText("Incomplete");
         }
     }
+    
+    /**
+     * Constructor for a task view form using only task id as a parameter.
+     * 
+     * @param task_id the id of the task within the database.
+     */
+    public Task_View(Integer task_id) {
+        
+        String select = "SELECT * FROM `task` WHERE `task_id` = ?";
+        ResultSet rs;
+        
+        try (Connection con = DBConnect.databaseConnect();) {
+            
+            PreparedStatement pst = con.prepareStatement(select);
+            pst.setInt(1, task_id);
+            
+            rs = pst.executeQuery();
+            
+            if (rs.next()) {
+                
+                String title = rs.getString("task_title");
+                String task_start = rs.getString("task_start");
+                String task_deadline = rs.getString("task_deadline");
+                String task_description = rs.getString("task_description");
+                Integer is_complete = rs.getInt("is_complete");
+                String email = rs.getString("assignee_email");
+                
+                initComponents();
+                
+                assignee_text_field.setText(email);
+                title_text_field.setText(title);
+                description_text_field.setText(task_description);
+                jTextField_start_date.setText(task_start);
+                jTextField_finish_date.setText(task_deadline);
+        
+                if (is_complete == 0) {
+                    jLabel_current_status.setText("Incomplete");
+                }
+            }
 
+
+        } catch (SQLException ex) {
+
+            Logger lgr = Logger.getLogger(DBConnect.class.getName());
+            lgr.log(Level.SEVERE, ex.getMessage(), ex);
+
+        }
+        
+        
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

@@ -328,9 +328,15 @@ public class Task_Create extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Day field of Finish time cannot be 00", "Input Error", 2);
             return false;
         }
-        else if (start_year > finish_year || finish_year < start_year ||
-                 start_year == finish_year && (start_month > finish_month || finish_month < start_month) ||
-                 start_year == finish_year && start_month == finish_month && (start_day > finish_day || finish_day < start_day)) {
+        else if (start_year > finish_year) {
+            JOptionPane.showMessageDialog(null, "Start time has to be earlier than finish time.", "Input Error", 2);
+            return false;
+        }
+        else if (start_year.equals(finish_year) && start_month > finish_month) {
+            JOptionPane.showMessageDialog(null, "Start time has to be earlier than finish time.", "Input Error", 2);
+            return false;
+        }
+        else if (start_year.equals(finish_year) && start_month.equals(finish_month) && start_day > finish_day) {
             JOptionPane.showMessageDialog(null, "Start time has to be earlier than finish time.", "Input Error", 2);
             return false;
         }
