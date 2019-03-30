@@ -103,20 +103,22 @@ public class AddMember extends javax.swing.JFrame {
     private void addUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addUserActionPerformed
         
         String email = userEmail.getText();
-        System.out.println(email);
         String query1 = "SELECT User_ID FROM user WHERE User_Email ='"+email+"';";
         String userID;
+        
         ResultSet userCheckrs = DBConnect.databaseSelect(query1);
         try {
-            userID = userCheckrs.getString("User_ID");
-            System.out.println(userID);
-            System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
-            if (userID == null){
-                errorMessage.setText("User does not exist with this email, please try again.");
-            }
-            else{
-                String query2 = "INSERT INTO user_in_group VALUES("+userID+","+groupID+","+0+");";
-                DBConnect.databaseInput(query2);
+            System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAaa");
+            if(userCheckrs.next()){
+                userID = userCheckrs.getString("User_ID");
+                System.out.println(userID);
+                System.out.println("BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB");
+                if (userID == null){
+                    errorMessage.setText("User does not exist with this email, please try again.");
+                }else{
+                    String query2 = "INSERT INTO user_in_group VALUES("+userID+","+groupID+","+0+");";
+                    DBConnect.databaseInput(query2);
+                }
             }
             
         } catch (SQLException ex){
