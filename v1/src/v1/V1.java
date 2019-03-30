@@ -15,7 +15,11 @@ public class V1 {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        User.insert("Anakin", "Skywalker", "anakinSkywalker@Darkside.com", "youUnderestimateMyPower", "ASkywalker", 66);
+        
+//        Task_View page = new Task_View(129);
+//        page.setVisible(true);
+        //Leader.assignTaskToMember(123, 123, 123);
+        //System.out.println(Group_utils.getMemberDetails(123));
     }
     
 }
