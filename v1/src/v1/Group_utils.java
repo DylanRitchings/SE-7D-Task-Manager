@@ -88,7 +88,7 @@ public class Group_utils {
        
         
        //Iterate through each user ID in userIDList
-        for (int user = 0; user <= userIDList.size(); user++)
+        for (int user = 0; user <= userIDList.size()-1; user++)
         {        
             String query ;
             query = "SELECT User_ID, User_Forename, User_Surname, User_Email, User_NumTasksDone FROM user WHERE User_ID =" + userIDList.get(user) + ";";
