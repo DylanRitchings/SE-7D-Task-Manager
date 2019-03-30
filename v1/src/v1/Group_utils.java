@@ -11,6 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.DefaultListModel;
 /**
  *
  * @author Dylan Ritchings
@@ -46,7 +47,7 @@ public class Group_utils {
      *
      */
 
-    private static ArrayList getMemberIDs(int groupID)
+    public static ArrayList getMemIDs(int groupID)
     {
         String query = "SELECT User_ID FROM user_in_group WHERE Group_ID =" + groupID+";";
         
@@ -75,9 +76,9 @@ public class Group_utils {
      * @throw SQLException
      * 
      */
-    public static ArrayList getMemberDetails(int groupID)
+    public static ArrayList getMemDetails(int groupID)
     {
-        ArrayList<String> userIDList = getMemberIDs(groupID);
+        ArrayList<String> userIDList = getMemIDs(groupID);
         ArrayList<ArrayList<String>> memDetails = new ArrayList<>();
         ArrayList<String> id = new ArrayList<>();
         ArrayList<String> forename = new ArrayList<>();
@@ -115,15 +116,24 @@ public class Group_utils {
         return memDetails;
             //Split user details up and input into lists
         }
+    
+
+     
+//    public static void fillMemList (int groupID){
+//        public void putTextNow (JLabel label) {
+//        Members_In_Group_Interface.memList.;
+//    }
+    
     /**
      * Creates a group and assigns the user who created the group as a leader
      * @param name
      * @param description
-     * @param userID (Maybe)
      * @return String
      * 
      */
     
+ 
+   
     
     public static String createGroup(String name, String description){
             String insertGroup = "INSERT INTO Groups (Group_Name, Group_Description) VALUES('"+name+ "','" + description +"');";
@@ -136,11 +146,16 @@ public class Group_utils {
                 return "Error in creating group";
             }
     }
-    
+    /**
+     * Gets the taskIDs for a specified group.
+     * @param groupID
+     * @return taskIDList
+     */
     private static ArrayList getTaskIDs(int groupID)
     {
         ArrayList<String> taskIDList = new ArrayList<>();
-        String taskIDQuery = "SELECT Task_ID FROM User_Member_Group WHERE Group_ID =" + groupID+");";
+        
+        String taskIDQuery = "SELECT Task_ID FROM user_member_group WHERE Group_ID =" + groupID+";";
         ResultSet taskIDrs = DBConnect.databaseSelect(taskIDQuery);
         try {
             //Iterate through tasksID result set and input tasks IDs into array list
@@ -148,6 +163,7 @@ public class Group_utils {
                 taskIDList .add(taskIDrs.getString("Task_ID"));
             }
             taskIDrs.close();
+            
             return taskIDList;
         } catch (SQLException ex) {
             Logger.getLogger(Group_utils.class.getName()).log(Level.SEVERE, null, ex);
@@ -156,11 +172,11 @@ public class Group_utils {
     }
     
     /**
-     *
+     * Gets the skillIDs for a specified group.
      * @param groupID
      * @return ArrayList
      */
-    public static ArrayList getSkillIDs(int groupID)
+    private static ArrayList getSkillIDs(int groupID)
     {
         String query = "SELECT Skill_ID FROM group_skills WHERE Group_ID =" + groupID+";";
         
@@ -180,6 +196,76 @@ public class Group_utils {
             Logger.getLogger(Group_utils.class.getName()).log(Level.SEVERE, null, ex);
             return null;
         }
+        
+    }
+    /**
+     * Gets the skill names using the skillIDs
+     * @param groupID
+     * @return skills
+     */
+
+    
+    public static ArrayList getSkills(int groupID){
+        ArrayList skillIDList = Group_utils.getSkillIDs(groupID);
+        ArrayList<String> skills = new ArrayList<>();
+        for (Object skillIDList1 : skillIDList) {
+            String query = "SELECT skill FROM skills where ID =" + skillIDList1 + ";";
+            ResultSet skillrs = DBConnect.databaseSelect(query);
+            try {
+                skills.add(skillrs.getString("skill"));
+                
+            } catch (SQLException ex) {
+                Logger.getLogger(Group_utils.class.getName()).log(Level.SEVERE, null, ex);
+                return null;
+            }
+        }
+        return skills;
+    }
+    /**
+     *  Creates and array list of array lists each containing information about tasks in a specified group.
+     * @param groupID
+     * @return tDetailsList
+     */
+    public static ArrayList getTaskDetails(int groupID){
+        ArrayList taskIDs = getTaskIDs(groupID);
+        ArrayList<ArrayList<String>> tDetails = new ArrayList<>();
+        ArrayList<String> tID = new ArrayList<>();
+        ArrayList<String> tTitle = new ArrayList<>();
+        ArrayList<String> tStart = new ArrayList<>();
+        ArrayList<String> tEnd = new ArrayList<>();
+        ArrayList<String> tDesc = new ArrayList<>();
+        ArrayList<String> tComp = new ArrayList<>();
+        for (Object taskID :taskIDs){
+            String query = "SELECT * FROM task where Task_ID ="+ taskID+";";
+            ResultSet tDetailsrs = DBConnect.databaseSelect(query);
+            try{
+                while (tDetailsrs.next()) {
+                    tID.add(tDetailsrs.getString("Task_ID"));
+                    tTitle.add(tDetailsrs.getString("Task_Title"));
+                    tStart.add(tDetailsrs.getString("Task_Start"));
+                    tEnd.add(tDetailsrs.getString("Task_Deadline"));
+                    tDesc.add(tDetailsrs.getString("Task_Description"));
+                    tComp.add(tDetailsrs.getString("Is_Complete"));
+                }
+                tDetailsrs.close();
+                
+            }catch (SQLException ex) {
+                    Logger.getLogger(Group_utils.class.getName()).log(Level.SEVERE, null, ex);
+                    return null;
+                    }   
+        }
+        tDetails.add(tID);
+        tDetails.add(tTitle);
+        tDetails.add(tStart);
+        tDetails.add(tEnd);
+        tDetails.add(tDesc);
+        tDetails.add(tComp);
+        return tDetails;
+    }
+
+    
+}
+
 //    public static ResultSet getTaskDetails(int groupID){
 //        ArrayList taskIDList = getTaskIDs(groupID);
 //        for (int user = 0; user <= taskIDList.size()-1; user++)
@@ -191,6 +277,8 @@ public class Group_utils {
 //    }
 //            
                         
-}
+
+
+
 
 
