@@ -147,7 +147,7 @@ public class Create_Group extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField1GroupNameActionPerformed
 
     private void jButton2CancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2CancelActionPerformed
-        // TODO add your handling code here:
+        System.exit(0);
     }//GEN-LAST:event_jButton2CancelActionPerformed
 
     private void jButton1DoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1DoneActionPerformed
