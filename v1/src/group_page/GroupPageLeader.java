@@ -295,7 +295,9 @@ public final class GroupPageLeader extends javax.swing.JFrame {
      */
     
     private void addMemberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addMemberActionPerformed
-        //new JFrame addMember = new AddMember(groupID);
+         AddMember addMember = new AddMember(groupID);
+         addMember.setVisible(true);
+         
     }//GEN-LAST:event_addMemberActionPerformed
 
     private void memberListFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_memberListFocusGained
