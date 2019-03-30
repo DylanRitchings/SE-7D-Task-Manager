@@ -4,11 +4,23 @@
  * and open the template in the editor.
  */
 package group_page;
+import database_console.DBConnect;
+import java.awt.BorderLayout;
 import java.util.ArrayList;
 import v1.Group_utils;
 import javax.swing.DefaultListModel;
 import static v1.Group_utils.getMemDetails;
 import java.awt.Component;
+import java.awt.Container;
+import java.awt.GridLayout;
+import java.awt.LayoutManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.text.ParseException;
+import java.util.Arrays;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.BoxLayout;
 import v1.Leader;
 /**
  *
@@ -16,13 +28,19 @@ import v1.Leader;
  */
 import javax.swing.JComponent;
 import javax.swing.JPanel;
+import javax.swing.ScrollPaneConstants;
 public final class GroupPage extends javax.swing.JFrame {
     int groupID;
+            
+
     ArrayList<String> id;
     ArrayList<String> forename;
     ArrayList<String> surname;
     ArrayList<String> email;
     ArrayList<String> tasksDone;
+    ArrayList<ArrayList<String>> memDetails;
+
+    DefaultListModel memberLm;
 
     ArrayList<String> taskID;
     ArrayList<String> taskTitle;
@@ -36,11 +54,13 @@ public final class GroupPage extends javax.swing.JFrame {
     
     /**
      * Creates new form GroupPage
+     * @throws java.sql.SQLException
      */
-    public GroupPage() {
+    public GroupPage() throws SQLException {
         this.groupID = 123;
-        
-        ArrayList<ArrayList<String>> memDetails = Group_utils.getMemDetails(groupID);
+        this.memDetails = Group_utils.getMemDetails(groupID);
+        this.memberLm = new DefaultListModel();
+
         this.id = memDetails.get(0);
         this.forename = memDetails.get(1);
         this.surname = memDetails.get(2);
@@ -48,33 +68,64 @@ public final class GroupPage extends javax.swing.JFrame {
         this.tasksDone = memDetails.get(4);
         
         ArrayList<ArrayList<String>> taskDetails = Group_utils.getTaskDetails(groupID);
-        System.out.println(taskDetails);
         this.taskID = taskDetails.get(0);
         this.taskTitle = taskDetails.get(1);
         this.taskStart = taskDetails.get(2);
         this.taskEnd = taskDetails.get(3);
         this.taskDesc = taskDetails.get(4);
         this.taskComp = taskDetails.get(5);
-        initComponents();
         
-        DefaultListModel memberLm = new DefaultListModel();
+        initComponents();
+        fillMemDetails();
+        try {
+            fillTaskDetails();
+        } catch (ParseException ex) {
+            Logger.getLogger(GroupPage.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        groupName();
+    }
+
+    public void groupName() throws SQLException{
+       // String query = "SELECT Group_Name FROM groups WHERE Group_ID="+ groupID +";";
+        //ResultSet groupNamers = DBConnect.databaseSelect(query);
+        //System.out.println(groupNamers);
+        //String groupName = groupNamers.getString(0);
+       // System.out.println(groupName);
+        //nameLabel.setText("Group: " + groupName);
+    }
+    
+    public void fillTaskDetails() throws ParseException{
+        Container cont = new Container();
+        cont.setLayout(new BoxLayout(cont, BoxLayout.Y_AXIS));
+        //BoxLayout taskLayout = new BoxLayout (taskPane,BoxLayout.Y_AXIS);
+        taskPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+        for (int count = 0; count < taskID.size()-1; count++){
+            JPanel taskPanel  = new TaskView(taskID.get(count), taskTitle.get(count), taskStart.get(count), taskEnd.get(count), taskDesc.get(count), taskComp.get(count));
+            cont.add(taskPanel, BorderLayout.LINE_START);
+
+           }
+        taskPane.getViewport().setView(cont);
+        //taskPane.add(cont);
+        //taskPane.setVisible(true);
+        taskPane.revalidate();
+        taskPane.repaint();
+    }
+    /**
+     * Fills member names of the current group into the members list.
+     */
+    public void fillMemDetails(){
         String [] members = getMemNames(groupID);
         for (String member : members) {
-            System.out.println(member);
+
             memberLm.addElement(member);
+            
         }
         
         memberList.setModel(memberLm);
         removeMember.setEnabled(false); 
-        
-        Integer count = 0;
-        JPanel  taskPanel = new TaskView(taskID.get(count), taskTitle.get(count), taskStart.get(count), taskEnd.get(count), taskDesc.get(count), taskComp.get(count));
-        taskPane.add(taskPanel);
-        add(taskPane,taskPanel);
+        viewProfile.setEnabled(false);
     }
-    
-
-        /**
+    /**
      * Creates an array containing names of people in a group.
      * @param groupID
      * @return memNames
@@ -89,7 +140,6 @@ public final class GroupPage extends javax.swing.JFrame {
         {
             String fName = forename.get(x);
             String sName = surname.get(x);
-            
             //MemberList.addElement(fName + " " + sName);
             memNames[x]=(fName + " " + sName);
             
@@ -108,20 +158,19 @@ public final class GroupPage extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jMenuItem1 = new javax.swing.JMenuItem();
         jScrollPane1 = new javax.swing.JScrollPane();
         memberList = new javax.swing.JList<String>();
         removeMember = new javax.swing.JToggleButton();
-        jComboBox1 = new javax.swing.JComboBox();
         jButton1 = new javax.swing.JButton();
         taskPane = new javax.swing.JScrollPane();
+        viewProfile = new javax.swing.JButton();
+        nameLabel = new javax.swing.JLabel();
+
+        jMenuItem1.setText("jMenuItem1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        memberList.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "test1" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
         memberList.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 memberListFocusGained(evt);
@@ -141,8 +190,6 @@ public final class GroupPage extends javax.swing.JFrame {
             }
         });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "All Skills", "SQL", "Java", "Python", "HTML" }));
-
         jButton1.setText("Add Member");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -150,44 +197,60 @@ public final class GroupPage extends javax.swing.JFrame {
             }
         });
 
+        taskPane.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        taskPane.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+
+        viewProfile.setText("View Profile");
+        viewProfile.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewProfileActionPerformed(evt);
+            }
+        });
+
+        nameLabel.setText("jLabel1");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addComponent(taskPane, javax.swing.GroupLayout.PREFERRED_SIZE, 449, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(nameLabel)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(taskPane, javax.swing.GroupLayout.PREFERRED_SIZE, 712, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(removeMember)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(21, 21, 21))))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(removeMember))
+                                .addGap(15, 15, 15))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(viewProfile)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(126, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(61, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(taskPane)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 305, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(removeMember)
-                .addGap(18, 18, 18))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addComponent(nameLabel)
+                .addGap(39, 39, 39)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(taskPane, javax.swing.GroupLayout.PREFERRED_SIZE, 373, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButton1)
+                            .addComponent(viewProfile))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(removeMember)
+                        .addGap(5, 5, 5)))
+                .addContainerGap(140, Short.MAX_VALUE))
         );
-
-        taskPane.getAccessibleContext().setAccessibleName("");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -206,6 +269,7 @@ public final class GroupPage extends javax.swing.JFrame {
         email.remove(memIndex);
         tasksDone.remove(memIndex);
         memberLm.removeElement(memIndex);
+        ((DefaultListModel) memberList.getModel()).remove(memIndex);
         
     }//GEN-LAST:event_removeMemberActionPerformed
 
@@ -217,11 +281,18 @@ public final class GroupPage extends javax.swing.JFrame {
 
     private void memberListFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_memberListFocusGained
         removeMember.setEnabled(true); 
+        viewProfile.setEnabled(true);
     }//GEN-LAST:event_memberListFocusGained
 
     private void memberListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_memberListMouseClicked
 
     }//GEN-LAST:event_memberListMouseClicked
+
+    private void viewProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewProfileActionPerformed
+        int memIndex = memberList.getSelectedIndex();
+        Integer memID = Integer.valueOf(id.get(memIndex));
+        //CONNECT TO USER PROFILE
+    }//GEN-LAST:event_viewProfileActionPerformed
 
     /**
      * @param args the command line arguments
@@ -254,17 +325,23 @@ public final class GroupPage extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new GroupPage().setVisible(true);
+                try {
+                    new GroupPage().setVisible(true);
+                } catch (SQLException ex) {
+                    Logger.getLogger(GroupPage.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JComboBox jComboBox1;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JList<String> memberList;
+    private javax.swing.JLabel nameLabel;
     private javax.swing.JToggleButton removeMember;
     private javax.swing.JScrollPane taskPane;
+    private javax.swing.JButton viewProfile;
     // End of variables declaration//GEN-END:variables
 }
