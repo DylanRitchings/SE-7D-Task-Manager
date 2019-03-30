@@ -31,6 +31,11 @@ import javax.swing.JPanel;
 import javax.swing.ScrollPaneConstants;
 import v1.Group_utils;
 import v1.Leader;
+
+/**
+ *
+ * @author uDylo
+ */
 public final class GroupPageLeader extends javax.swing.JFrame {
     int groupID;
             
@@ -87,6 +92,10 @@ public final class GroupPageLeader extends javax.swing.JFrame {
         groupName();
     }
 
+    /**
+     *
+     * @throws SQLException
+     */
     public void groupName() throws SQLException{
         String query = "SELECT Group_Name FROM groups WHERE Group_ID="+ groupID +";";
         ResultSet groupNamers = DBConnect.databaseSelect(query);
@@ -106,7 +115,7 @@ public final class GroupPageLeader extends javax.swing.JFrame {
         //BoxLayout taskLayout = new BoxLayout (taskPane,BoxLayout.Y_AXIS);
         taskPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
         for (int count = 0; count < taskID.size(); count++){
-            JPanel taskPanel  = new TaskView(taskID.get(count), taskTitle.get(count), taskStart.get(count), taskEnd.get(count), taskDesc.get(count), taskComp.get(count));
+            JPanel taskPanel  = new TaskViewLeader(taskID.get(count), taskTitle.get(count), taskStart.get(count), taskEnd.get(count), taskDesc.get(count), taskComp.get(count));
             cont.add(taskPanel, BorderLayout.LINE_START);
 
            }
