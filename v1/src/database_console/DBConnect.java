@@ -16,7 +16,7 @@ import java.sql.Statement;
 
 /**
 *@since 1/3/2019
-*@version 
+*@version 1.3
 *@author Dylan Ritchings,
 *@see
 *@inv
@@ -24,45 +24,45 @@ import java.sql.Statement;
 
 
 public class DBConnect {
-    
-    
+
+
     /**
      * Creates a connection to the database
      * @return Connection
      * @throw SQLException
-     * @pre 
+     * @pre
      * @modifies host, uName, uPass
-     * @post 
+     * @post
      *
      */
 
     private static Statement databaseConnect()
     {
 
-        
+
         try {
             String host = "jdbc:mysql://den1.mysql3.gear.host:3306/teammanagerdb";
             String uName = "teammanagerdb";
             String uPass = "Bc85NMS--V6h";
-            
+
             Connection con = DriverManager.getConnection(host, uName, uPass);
             Statement stat = con.createStatement();
             return stat;
         }
             catch (SQLException e) {
             System.err.println("Got an exception! ");
-            System.err.println(e.getMessage()); 
+            System.err.println(e.getMessage());
             return null;
-        }       
-           
+        }
+
     }
 
     /**
      * Executes statement to database.
      * @throw SQLException
-     * @pre 
+     * @pre
      * @modifies host, uName, uPass
-     * @post 
+     * @post
      * @param query
      */
     public static void databaseInput(String query)
@@ -74,12 +74,12 @@ public class DBConnect {
         }
         catch (SQLException e) {
             System.err.println("Got an exception! ");
-            System.err.println(e.getMessage()); 
-            
+            System.err.println(e.getMessage());
+
         }
-        
+
     }
-    
+
     /**
      * Returns the ResultSet of a given query
      * @param query
@@ -95,22 +95,22 @@ public class DBConnect {
         } catch (SQLException ex) {
             Logger.getLogger(DBConnect.class.getName()).log(Level.SEVERE, null, ex);
             return null;
-        }   
+        }
     }
-    
+
 }
-    
+
 //    public static void main(String[] args) {
 //
 //        String host = "jdbc:mysql://den1.mysql3.gear.host:3306/teammanagerdb";
 //        String uName = "teammanagerdb";
 //        String uPass = "Bc85NMS--V6h";
-//        
-//        
+//
+//
 
 //        //insert into query
-//        
-//                
+//
+//
 //        String insert = "INSERT INTO member(Member_ForeName, Member_SurName, Member_email) VALUES('ddfgdsf','f', 'twady@nmail.com')";
 //
 //        try (Connection con = DriverManager.getConnection(host, uName, uPass);
@@ -120,17 +120,17 @@ public class DBConnect {
 //            // execute the query, and get a java resultset
 //            int rs;
 //            rs = stat.executeUpdate(insert);
-//            
+//
 ////            String firstName = ("roger");
 ////            String lastName = ("rabbit");
 ////            String email = ("carrots@nmail.com");
-//            
-//                
+//
+//
 ////            pst.setString(1,"roger");
 ////            pst.setString(2,"rabbit");
 ////            pst.setString(3,"carrots@nmail.com");
 ////            pst.executeUpdate();
-//            
+//
 //            System.out.println("A new member has been inserted");
 //
 //        } catch (SQLException ex) {
@@ -139,24 +139,24 @@ public class DBConnect {
 //            lgr.log(Level.SEVERE, ex.getMessage(), ex);
 ////needs stat.close();
 //        }
-//        
-  
+//
 
 
-       
+
+
 
 //call to user.insert
-        
-        
 
 
-     
-                
- 
-//        
-//        
-//        //delete from query        
-//        
+
+
+
+
+
+//
+//
+//        //delete from query
+//
 //        String delete = "DELETE FROM user WHERE User_ID = 14";
 //
 //        try (Connection con = DriverManager.getConnection(host, uName, uPass);
@@ -175,17 +175,17 @@ public class DBConnect {
 //            lgr.log(Level.SEVERE, ex.getMessage(), ex);
 //
 //        }
-//        
-//        
-//        
-//        //select from query
-//        
 //
-//        
+//
+//
+//        //select from query
+//
+//
+//
 //        try {
 //            Connection con = DriverManager.getConnection(host, uName, uPass);
 //
-//            
+//
 //            String query = "SELECT * FROM User";
 //
 //            // create the java statement
@@ -204,7 +204,7 @@ public class DBConnect {
 //                String userName = rs.getString("User_Username");
 //                String numTasksDone;
 //                numTasksDone = rs.getString("" + "User_NumTasksDone");
-//                
+//
 //                System.out.format("%s, %s, %s, %s, %s, %s, %s  \n", id, firstName, lastName, email, password, userName, numTasksDone);
 //
 //            }
@@ -212,7 +212,7 @@ public class DBConnect {
 //            }catch (SQLException e) {
 //            System.err.println("Got an exception! ");
 //            System.err.println(e.getMessage());
-//            
-//            }       
+//
+//            }
 //        }
 //    }
