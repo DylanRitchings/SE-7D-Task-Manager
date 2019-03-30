@@ -155,6 +155,7 @@ public class Group_utils {
     private static ArrayList getTaskIDs(int groupID)
     {
         ArrayList<String> taskIDList = new ArrayList<>();
+        
         String taskIDQuery = "SELECT Task_ID FROM user_member_group WHERE Group_ID =" + groupID+";";
         ResultSet taskIDrs = DBConnect.databaseSelect(taskIDQuery);
         try {
@@ -163,6 +164,7 @@ public class Group_utils {
                 taskIDList .add(taskIDrs.getString("Task_ID"));
             }
             taskIDrs.close();
+            
             return taskIDList;
         } catch (SQLException ex) {
             Logger.getLogger(Group_utils.class.getName()).log(Level.SEVERE, null, ex);
