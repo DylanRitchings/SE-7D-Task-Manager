@@ -63,8 +63,8 @@ public final class GroupPageMember extends javax.swing.JFrame {
      * Creates new form GroupPage
      * @throws java.sql.SQLException
      */
-    public GroupPageMember() throws SQLException {
-        this.groupID = 123;
+    public GroupPageMember(int groupID) throws SQLException {
+        this.groupID = groupID;
         this.memDetails = Group_utils.getMemDetails(groupID);
         this.memberLm = new DefaultListModel();
 
@@ -309,7 +309,7 @@ public final class GroupPageMember extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    new GroupPageMember().setVisible(true);
+                    new GroupPageMember(128).setVisible(true);
                 } catch (SQLException ex) {
                     Logger.getLogger(GroupPageMember.class.getName()).log(Level.SEVERE, null, ex);
                 }
