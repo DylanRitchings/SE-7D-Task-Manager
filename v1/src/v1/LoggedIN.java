@@ -155,7 +155,7 @@ public class LoggedIN extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        entityManager = java.beans.Beans.isDesignTime() ? null : javax.persistence.Persistence.createEntityManagerFactory("teammanagerdb?zeroDateTimeBehavior=convertToNullPU").createEntityManager();
+        
         jPanel2 = new javax.swing.JPanel();
         jPanel_sidePanel = new javax.swing.JPanel();
         jLabel_close_side_panel = new javax.swing.JLabel();
@@ -648,7 +648,6 @@ public class LoggedIN extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.persistence.EntityManager entityManager;
     private javax.swing.JButton jButton_CreateGroup;
     private javax.swing.JButton jButton_EnterGroup;
     private javax.swing.JButton jButton_JoinGroup;
