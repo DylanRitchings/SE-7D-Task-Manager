@@ -467,6 +467,9 @@ public class Task_Create extends javax.swing.JFrame {
       
     }
     
+    /**
+     * Gets the id of the just created task from the database.
+     */
     private void get_Task_ID() {
         
         String user_email = assignee_text_field.getText();
@@ -498,6 +501,37 @@ public class Task_Create extends javax.swing.JFrame {
         }
     }
     
+    /**
+     * Validates whether the specified user is in the provided group.
+     * 
+     * @return whether the validation was successful.
+     */
+    private boolean validate_user_in_group() {
+        String select = "SELECT * FROM `user_in_group` WHERE `Group_ID` = ? AND `User_ID` = ?";
+                
+        ResultSet rs;
+        
+        try (Connection con = DBConnect.databaseConnect();) {
+            
+            PreparedStatement pst = con.prepareStatement(select);
+            pst.setInt(1, group_ID);
+            pst.setInt(2, user_ID);
+            
+            rs = pst.executeQuery();
+            
+            if (rs.next()) {
+                return true;
+            }
+
+        } catch (SQLException ex) {
+
+            Logger lgr = Logger.getLogger(DBConnect.class.getName());
+            lgr.log(Level.SEVERE, ex.getMessage(), ex);
+
+        }
+        JOptionPane.showMessageDialog(null, "User is not in the group", "Input error", 2);
+        return false;
+    }
     /**
      * Calls the validate_days function to ensure that the corresponding day
      * combo box has the correct number of days in it.
@@ -558,7 +592,7 @@ public class Task_Create extends javax.swing.JFrame {
      */
     private void createTask_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createTask_buttonActionPerformed
         
-        if (validate_Inputs() && validate_Email()) {
+        if (validate_Inputs() && validate_Email() && validate_user_in_group()) {
             create_task();
         }
         
