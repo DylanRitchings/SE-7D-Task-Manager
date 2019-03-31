@@ -32,6 +32,8 @@ import javax.swing.JPanel;
 import javax.swing.ScrollPaneConstants;
 import v1.Group_utils;
 import v1.Leader;
+import v1.Task_Create;
+import v1.Task_View;
 
 /**
  *
@@ -338,7 +340,7 @@ public final class GroupPageLeader extends javax.swing.JFrame {
     }//GEN-LAST:event_viewProfileActionPerformed
 
     private void createTaskButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createTaskButtonActionPerformed
-        // TODO add your handling code here:
+        JFrame taskCreate = new Task_Create();
     }//GEN-LAST:event_createTaskButtonActionPerformed
 
     /**
