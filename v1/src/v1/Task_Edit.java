@@ -419,14 +419,6 @@ public class Task_Edit extends javax.swing.JFrame {
         Integer currentFinish_day= Integer.parseInt((String)currentFinishTime_day_comboBox.getSelectedItem());
         Integer newFinish_day = Integer.parseInt((String)newFinishTime_day_comboBox.getSelectedItem());
         
-        System.out.println(currentFinish_year);
-        System.out.println(newFinish_year);
-        System.out.println(currentFinish_month);
-        System.out.println(newFinish_month);
-        System.out.println(currentFinish_day);
-        System.out.println(newFinish_day);
-        System.out.println(currentFinish_year.equals(newFinish_year));
-                
         if (assignee_text_field.getText().trim().equals("")) {
             JOptionPane.showMessageDialog(null, "Assignee email field cannot be empty.", "Input Error", 2);
             return false;

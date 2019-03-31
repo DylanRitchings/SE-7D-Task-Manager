@@ -36,7 +36,7 @@ public class DBConnect {
      *
      */
 
-    private static Statement databaseConnect()
+    public static Connection databaseConnect()
     {
 
 
