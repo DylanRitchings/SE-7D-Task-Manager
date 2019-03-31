@@ -366,6 +366,7 @@ public class Login_Interface extends javax.swing.JFrame {
                 form.jLabel_displayEmail.setText(email);
                 form.jLabel_displayuserID.setText(rs.getString("User_ID"));
                 form.findYourGroups();
+                form.searchGroup();
                 //Close the current form (login form)
                 this.dispose();
             }
