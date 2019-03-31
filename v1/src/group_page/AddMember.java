@@ -11,7 +11,7 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import v1.Group_utils;
-import v2.Login.Register_Interface;
+import v1.Register_Interface;
 /**
  *
  * @author Dylan Ritchings
