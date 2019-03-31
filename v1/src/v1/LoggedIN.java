@@ -522,6 +522,7 @@ public class LoggedIN extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Group " + val + " has been deleted", "Group Deletion",2); 
             
             findYourGroups();
+            searchGroup();
             
         } catch (SQLException ex) {
             Logger.getLogger(loginConnect.class.getName()).log(Level.SEVERE, null, ex);
