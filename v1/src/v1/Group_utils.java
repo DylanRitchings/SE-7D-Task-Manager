@@ -13,8 +13,8 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import v2.Login.Register_Interface;
-import v2.Login.loginConnect;
+import v1.Register_Interface;
+import database_console.loginConnect;
 /**
  *
  * @author Dylan Ritchings
