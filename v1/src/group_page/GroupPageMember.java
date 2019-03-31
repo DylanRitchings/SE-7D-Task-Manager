@@ -309,7 +309,7 @@ public final class GroupPageMember extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    new GroupPageMember(128).setVisible(true);
+                    new GroupPageMember(132).setVisible(true);
                 } catch (SQLException ex) {
                     Logger.getLogger(GroupPageMember.class.getName()).log(Level.SEVERE, null, ex);
                 }
