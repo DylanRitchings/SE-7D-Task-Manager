@@ -10,7 +10,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
+import v1.Group_utils;
+import v2.Login.Register_Interface;
 /**
  *
  * @author Dylan Ritchings
@@ -41,6 +42,7 @@ public class AddMember extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         addUser = new javax.swing.JButton();
         errorMessage = new javax.swing.JLabel();
+        cancelButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -60,20 +62,29 @@ public class AddMember extends javax.swing.JFrame {
             }
         });
 
+        cancelButton.setText("Cancel");
+        cancelButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(addUser)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(errorMessage)
-                            .addComponent(userEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(cancelButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(addUser))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(errorMessage)
+                        .addComponent(userEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(42, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -85,9 +96,11 @@ public class AddMember extends javax.swing.JFrame {
                     .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(errorMessage)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(addUser)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(addUser)
+                    .addComponent(cancelButton))
+                .addContainerGap())
         );
 
         pack();
@@ -103,29 +116,42 @@ public class AddMember extends javax.swing.JFrame {
     private void addUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addUserActionPerformed
         
         String email = userEmail.getText();
-        String query1 = "SELECT User_ID FROM user WHERE User_Email ='"+email+"';";
-        String userID;
+        //boolean emailExists;
+        //emailExists = Group_utils.checkEmail(email);
         
-        ResultSet userCheckrs = DBConnect.databaseSelect(query1);
-        try {
-            System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAaa");
-            if(userCheckrs.next()){
-                userID = userCheckrs.getString("User_ID");
-                String query2 = "INSERT INTO user_in_group VALUES("+userID+","+groupID+","+0+");";
-                DBConnect.databaseInput(query2);
+        if (Group_utils.checkEmail(email)) {
+            String userID;
+            String query1 = "SELECT User_ID FROM user WHERE User_Email ='"+email+"';";
+            ResultSet userCheckrs = DBConnect.databaseSelect(query1);
+            try{
+                if(userCheckrs.next()){
+                
+                    userID = userCheckrs.getString("User_ID");
+                    String query2 = "INSERT INTO user_in_group VALUES("+userID+","+groupID+","+0+");";
+                    DBConnect.databaseInput(query2);
+                }
                 GroupPageLeader groupPage = new GroupPageLeader(groupID);
                 groupPage.setVisible(true);
                 this.setVisible(false);
-                }
-            
-            
-        } catch (SQLException ex){
-            errorMessage.setText("User does not exist with this email, please try again.");
+            } catch (SQLException ex){
             Logger.getLogger(AddMember.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
-
+        else{
+            errorMessage.setText("User does not exist with this email, please try again.");
+        }  
         
     }//GEN-LAST:event_addUserActionPerformed
+    
+    private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
+        try {
+            GroupPageLeader groupPage = new GroupPageLeader(groupID);
+            groupPage.setVisible(true);
+            this.setVisible(false);
+        } catch (SQLException ex) {
+            Logger.getLogger(AddMember.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_cancelButtonActionPerformed
     
     /**
      * @param args the command line arguments
@@ -165,6 +191,7 @@ public class AddMember extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addUser;
+    private javax.swing.JButton cancelButton;
     private javax.swing.JLabel errorMessage;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JTextField userEmail;
