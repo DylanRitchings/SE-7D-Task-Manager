@@ -7,37 +7,29 @@ package group_page;
 import database_console.DBConnect;
 import java.awt.BorderLayout;
 import java.util.ArrayList;
-import v1.Group_utils;
 import javax.swing.DefaultListModel;
-import static v1.Group_utils.getMemDetails;
-import java.awt.Component;
+
 import java.awt.Container;
-import java.awt.GridLayout;
-import java.awt.LayoutManager;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
-import java.util.Arrays;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.BoxLayout;
-import v1.Leader;
-/**
- *
- * @author Dylan Ritchings
- */
-import javax.swing.JComponent;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.ScrollPaneConstants;
+import javax.swing.SwingUtilities;
 import v1.Group_utils;
 import v1.Leader;
 import v1.Task_Create;
-import v1.Task_View;
 
 /**
  *
- * @author uDylo
+ * @author Dylan Ritchings
  */
 public final class GroupPageLeader extends javax.swing.JFrame {
     int groupID;
@@ -179,7 +171,7 @@ public final class GroupPageLeader extends javax.swing.JFrame {
 
         jMenuItem1 = new javax.swing.JMenuItem();
         jScrollPane1 = new javax.swing.JScrollPane();
-        memberList = new javax.swing.JList<String>();
+        memberList = new javax.swing.JList<>();
         removeMember = new javax.swing.JToggleButton();
         addMember = new javax.swing.JButton();
         taskPane = new javax.swing.JScrollPane();
@@ -187,6 +179,7 @@ public final class GroupPageLeader extends javax.swing.JFrame {
         nameLabel = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         createTaskButton = new javax.swing.JButton();
+        refreshButton = new javax.swing.JButton();
 
         jMenuItem1.setText("jMenuItem1");
 
@@ -240,6 +233,13 @@ public final class GroupPageLeader extends javax.swing.JFrame {
             }
         });
 
+        refreshButton.setText("Refresh");
+        refreshButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                refreshButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -249,9 +249,12 @@ public final class GroupPageLeader extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(nameLabel)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(taskPane, javax.swing.GroupLayout.PREFERRED_SIZE, 712, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(createTaskButton))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(refreshButton)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(createTaskButton)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(28, 28, 28)
@@ -276,7 +279,8 @@ public final class GroupPageLeader extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(addMember)
                     .addComponent(viewProfile)
-                    .addComponent(createTaskButton))
+                    .addComponent(createTaskButton)
+                    .addComponent(refreshButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(taskPane, javax.swing.GroupLayout.PREFERRED_SIZE, 373, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -344,6 +348,9 @@ public final class GroupPageLeader extends javax.swing.JFrame {
         taskCreate.setVisible(true);
     }//GEN-LAST:event_createTaskButtonActionPerformed
 
+    private void refreshButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshButtonActionPerformed
+    }//GEN-LAST:event_refreshButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -394,6 +401,7 @@ public final class GroupPageLeader extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JList<String> memberList;
     private javax.swing.JLabel nameLabel;
+    private javax.swing.JButton refreshButton;
     private javax.swing.JToggleButton removeMember;
     private javax.swing.JScrollPane taskPane;
     private javax.swing.JButton viewProfile;
