@@ -342,6 +342,7 @@ public final class GroupPageLeader extends javax.swing.JFrame {
     private void createTaskButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createTaskButtonActionPerformed
         JFrame taskCreate = new Task_Create(groupID);
         taskCreate.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_createTaskButtonActionPerformed
 
     /**
