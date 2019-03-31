@@ -44,7 +44,6 @@ public class Task_Lookup extends javax.swing.JFrame {
         jTextField_title = new javax.swing.JTextField();
         jButton_lookup_task = new javax.swing.JButton();
         jButton_edit_task = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -76,13 +75,6 @@ public class Task_Lookup extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("jButton1");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -100,12 +92,10 @@ public class Task_Lookup extends javax.swing.JFrame {
                             .addComponent(jTextField_assignee_email)
                             .addComponent(jTextField_title)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jButton_lookup_task)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jButton_edit_task, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton1)))))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jButton_lookup_task)
+                                    .addComponent(jButton_edit_task, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 0, Short.MAX_VALUE)))))
                 .addContainerGap(43, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -124,9 +114,7 @@ public class Task_Lookup extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jButton_lookup_task)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton_edit_task)
-                    .addComponent(jButton1))
+                .addComponent(jButton_edit_task)
                 .addContainerGap(13, Short.MAX_VALUE))
         );
 
@@ -347,11 +335,6 @@ public class Task_Lookup extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton_edit_taskActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        Task_Edit page = new Task_Edit(129);
-        page.setVisible(true);
-    }//GEN-LAST:event_jButton1ActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -389,7 +372,6 @@ public class Task_Lookup extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton_edit_task;
     private javax.swing.JButton jButton_lookup_task;
     private javax.swing.JLabel jLabel_email;
