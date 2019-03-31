@@ -12,7 +12,9 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import javax.swing.JFrame;
 import javax.swing.UIManager;
+import v1.Task_View;
 
 /**
  *
@@ -183,7 +185,8 @@ public class TaskViewMember extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // LINK TO TASK MORE INFO
+        JFrame taskView = new Task_View(Integer.parseInt(id));
+        taskView.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
