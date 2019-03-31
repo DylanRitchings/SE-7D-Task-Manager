@@ -12,7 +12,9 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import javax.swing.JFrame;
 import javax.swing.UIManager;
+import v1.*;
 
 /**
  *
@@ -104,8 +106,8 @@ public class TaskViewLeader extends javax.swing.JPanel {
         startLabel = new javax.swing.JLabel();
         endLabel = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        taskViewButton = new javax.swing.JButton();
+        taskEditButton = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         descLabel = new javax.swing.JTextPane();
         timeLeft = new javax.swing.JProgressBar();
@@ -116,17 +118,17 @@ public class TaskViewLeader extends javax.swing.JPanel {
 
         endLabel.setText("jLabel4");
 
-        jButton1.setText("View");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        taskViewButton.setText("View");
+        taskViewButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                taskViewButtonActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Edit");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        taskEditButton.setText("Edit");
+        taskEditButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                taskEditButtonActionPerformed(evt);
             }
         });
 
@@ -153,9 +155,9 @@ public class TaskViewLeader extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(taskViewButton, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(taskEditButton, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(endLabel))
                     .addComponent(timeLeft, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -172,9 +174,9 @@ public class TaskViewLeader extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jButton1)
+                        .addComponent(taskViewButton)
                         .addComponent(endLabel)
-                        .addComponent(jButton2))
+                        .addComponent(taskEditButton))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(timeLeft, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -182,23 +184,25 @@ public class TaskViewLeader extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // LINK TO TASK MORE INFO
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void taskViewButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_taskViewButtonActionPerformed
+        JFrame taskView = new Task_View(Integer.parseInt(id));
+        taskView.setVisible(true);
+    }//GEN-LAST:event_taskViewButtonActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    private void taskEditButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_taskEditButtonActionPerformed
+        JFrame taskEdit = new Task_Edit(Integer.parseInt(id));
+        taskEdit.setVisible(true);
+    }//GEN-LAST:event_taskEditButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextPane descLabel;
     private javax.swing.JLabel endLabel;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel startLabel;
+    private javax.swing.JButton taskEditButton;
+    private javax.swing.JButton taskViewButton;
     private javax.swing.JProgressBar timeLeft;
     private javax.swing.JLabel titleLabel;
     // End of variables declaration//GEN-END:variables
