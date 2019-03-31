@@ -12,6 +12,7 @@ import database_console.*;
 import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import group_page.GroupPageLeader;
 /**
  * This interface generates a form for the creation of a task with all the
  * required input fields.
@@ -586,7 +587,8 @@ public class Task_Create extends javax.swing.JFrame {
     
     /**
      * Calls the validation functions and if they pass calls the create_task
-     * function to create a new task within the database.
+     * function to create a new task within the database and loads up the tasks
+     * screen.
      * 
      * @param evt 
      */
@@ -594,6 +596,15 @@ public class Task_Create extends javax.swing.JFrame {
         
         if (validate_Inputs() && validate_Email() && validate_user_in_group()) {
             create_task();
+            
+            try {
+                GroupPageLeader groupPage = new GroupPageLeader(group_ID);
+                groupPage.setVisible(true);
+            }
+            catch (SQLException ex) {
+                Logger.getLogger(Task_Create.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
         }
         
     }//GEN-LAST:event_createTask_buttonActionPerformed
