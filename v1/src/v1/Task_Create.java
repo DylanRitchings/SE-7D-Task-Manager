@@ -19,11 +19,25 @@ import java.util.logging.Logger;
  * @author Konstantin Georgiev
  */
 public class Task_Create extends javax.swing.JFrame {
-
+    
+    int group_ID;
+    int user_ID;
+    int task_ID;
+    
     /**
      * Creates new form Task
      */
     public Task_Create() {
+        initComponents();
+    }
+    
+    /**
+     * Creates a new task from with a group id as a parameter
+     * 
+     * @param group_ID the id of a group within the database
+     */
+    public Task_Create(int group_ID) {
+        this.group_ID = group_ID;
         initComponents();
     }
 
@@ -366,6 +380,8 @@ public class Task_Create extends javax.swing.JFrame {
             
             if (rs.next()) {
                 
+                this.user_ID = rs.getInt("User_ID");
+                
                 return true;
             }
             else {
@@ -416,9 +432,64 @@ public class Task_Create extends javax.swing.JFrame {
             pst.executeUpdate();
             pst.close();
             
+        } catch (SQLException ex) {
+
+            Logger lgr = Logger.getLogger(DBConnect.class.getName());
+            lgr.log(Level.SEVERE, ex.getMessage(), ex);
+
+        }
+        
+        get_Task_ID();
+        
+        String insert_2 = "INSERT into user_member_group (Task_ID, Group_ID, User_ID)" +
+                          "VALUES (?, ?, ?)";
+        
+        try (Connection con = DBConnect.databaseConnect();) {
+            
+            PreparedStatement pst = con.prepareStatement(insert_2);
+            
+            pst.setInt(1, task_ID);
+            pst.setInt(2, group_ID);
+            pst.setInt(3, user_ID);
+            
+            pst.executeUpdate();
+            pst.close();
+            
             JOptionPane.showMessageDialog(null, "Task creation successful", "Task created", 1);
             this.dispose();
             
+        } catch (SQLException ex) {
+
+            Logger lgr = Logger.getLogger(DBConnect.class.getName());
+            lgr.log(Level.SEVERE, ex.getMessage(), ex);
+
+        }
+      
+    }
+    
+    private void get_Task_ID() {
+        
+        String user_email = assignee_text_field.getText();
+        String task_title = title_text_field.getText();
+        
+        String select = "SELECT * FROM `task` WHERE `assignee_email` = ? AND `Task_Title` = ?";
+                
+        ResultSet rs;
+        
+        try (Connection con = DBConnect.databaseConnect();) {
+            
+            PreparedStatement pst = con.prepareStatement(select);
+            pst.setString(1, user_email);
+            pst.setString(2, task_title);
+            
+            rs = pst.executeQuery();
+            
+            if (rs.next()) {
+                
+                this.task_ID = rs.getInt("Task_ID");
+                
+            }
+
         } catch (SQLException ex) {
 
             Logger lgr = Logger.getLogger(DBConnect.class.getName());
