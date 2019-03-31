@@ -504,31 +504,21 @@ public class LoggedIN extends javax.swing.JFrame {
     private void jButton_LeaveGroupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_LeaveGroupActionPerformed
         
         PreparedStatement st;
-        ResultSet rs;
         
-        int row = jTable_FindGroup.getSelectedRow();
-        String Table_click = (jTable_FindGroup.getModel().getValueAt(row, 1).toString());
+        int row = jTable_YourGroup.getSelectedRow();
+        String Table_click = (jTable_YourGroup.getModel().getValueAt(row, 1).toString());
         
         //Delete the selected group id 
-        String query = "DELETE * FROM group WHERE Group_ID = '"+Table_click+"'";
+        String query = "DELETE FROM user_in_group WHERE Group_ID = '"+Table_click+"'";
         
         try {
             
             st = loginConnect.getConnection().prepareStatement(query); 
-            rs = st.executeQuery();
+            int val = st.executeUpdate();
             
-            if(rs.next())
-            {                       
-                int currentid = rs.getInt("Group_ID");
-                String.valueOf(currentid); 
-                //Remove Message
-                JOptionPane.showMessageDialog(null, "The selected group has been removed from your group list", "Group Removed",2);
-            }
-            else
-            {
-                //error message
-                JOptionPane.showMessageDialog(null, "Invalid", "Error",2);
-            }
+            JOptionPane.showMessageDialog(null, "Group " + val + " has been deleted", "Group Deletion",2); 
+            
+            findYourGroups();
             
         } catch (SQLException ex) {
             Logger.getLogger(loginConnect.class.getName()).log(Level.SEVERE, null, ex);
