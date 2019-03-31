@@ -277,17 +277,19 @@ public class LoggedIN extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel_sidePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel_sidePanelLayout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jLabel_close_side_panel))
                     .addGroup(jPanel_sidePanelLayout.createSequentialGroup()
-                        .addGroup(jPanel_sidePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jButton_CreateGroup, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)
-                            .addComponent(jButton_logout1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton_EnterGroup, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton_Profile, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton_LeaveGroup, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel_sidePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel_sidePanelLayout.createSequentialGroup()
+                                .addGroup(jPanel_sidePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(jButton_CreateGroup, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)
+                                    .addComponent(jButton_logout1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jButton_EnterGroup, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jButton_Profile, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButton_LeaveGroup, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel2))
                         .addGap(0, 201, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(jPanel_sidePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -300,13 +302,10 @@ public class LoggedIN extends javax.swing.JFrame {
             jPanel_sidePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel_sidePanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel_sidePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel_sidePanelLayout.createSequentialGroup()
-                        .addComponent(jLabel_close_side_panel)
-                        .addGap(268, 268, 268))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel_sidePanelLayout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addGap(246, 246, 246)))
+                .addComponent(jLabel_close_side_panel)
+                .addGap(5, 5, 5)
+                .addComponent(jLabel2)
+                .addGap(234, 234, 234)
                 .addGroup(jPanel_sidePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton_CreateGroup)
                     .addComponent(jButton_LeaveGroup))
@@ -504,17 +503,21 @@ public class LoggedIN extends javax.swing.JFrame {
     private void jButton_LeaveGroupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_LeaveGroupActionPerformed
         
         PreparedStatement st;
+        PreparedStatement rt;
         
         int row = jTable_YourGroup.getSelectedRow();
         String Table_click = (jTable_YourGroup.getModel().getValueAt(row, 1).toString());
         
         //Delete the selected group id 
-        String query = "DELETE FROM user_in_group WHERE Group_ID = '"+Table_click+"'";
+        String Del_user_in_group = "DELETE FROM user_in_group WHERE Group_ID = '"+Table_click+"'";
+        String Del_groups = "DELETE FROM groups WHERE Group_ID = '"+Table_click+"'";
         
         try {
             
-            st = loginConnect.getConnection().prepareStatement(query); 
+            st = loginConnect.getConnection().prepareStatement(Del_user_in_group);
+            rt = loginConnect.getConnection().prepareStatement(Del_groups);
             int val = st.executeUpdate();
+            int val2 = rt.executeUpdate();
             
             JOptionPane.showMessageDialog(null, "Group " + val + " has been deleted", "Group Deletion",2); 
             
