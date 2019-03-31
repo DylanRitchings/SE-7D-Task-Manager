@@ -37,7 +37,7 @@ import v1.Task_View;
 
 /**
  *
- * @author uDylo
+ * @author Dylan Ritchings
  */
 public final class GroupPageLeader extends javax.swing.JFrame {
     int groupID;
@@ -340,7 +340,7 @@ public final class GroupPageLeader extends javax.swing.JFrame {
     }//GEN-LAST:event_viewProfileActionPerformed
 
     private void createTaskButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createTaskButtonActionPerformed
-        JFrame taskCreate = new Task_Create();
+        JFrame taskCreate = new Task_Create(groupID);
         taskCreate.setVisible(true);
     }//GEN-LAST:event_createTaskButtonActionPerformed
 
