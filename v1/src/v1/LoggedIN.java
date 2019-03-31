@@ -32,15 +32,18 @@ public class LoggedIN extends javax.swing.JFrame {
 
         initComponents();
         
-        // call findUsers function
-        findGroups();
+        // call findYourGroups function
+        findYourGroups();
+        
+        // call searchGroup function
+        searchGroup();
         
         //Sets the form in the centre
         this.setLocationRelativeTo(null);
     }
     
  // function to return users arraylist with particular data 
-    public ArrayList<Group_utils> ListUsers(String ValToSearch)
+    public ArrayList<Group_utils> ListUsers()
     {
         ArrayList<Group_utils> groupList = new ArrayList<Group_utils>();
         
@@ -48,7 +51,7 @@ public class LoggedIN extends javax.swing.JFrame {
         ResultSet rs;
         
         try{            
-            String searchQuery = "SELECT * FROM `user_in_group` WHERE CONCAT(`User_ID`, `Group_ID`, `Is_Leader`) LIKE '%"+ValToSearch+"%'";
+            String searchQuery = "SELECT * FROM `user_in_group` WHERE CONCAT(`User_ID`, `Group_ID`, `Is_Leader`) LIKE '"+jLabel_displayuserID.getText()+"%'";
             st = loginConnect.getConnection().prepareStatement(searchQuery);
             rs = st.executeQuery(searchQuery);
             
@@ -72,9 +75,9 @@ public class LoggedIN extends javax.swing.JFrame {
     }
     
     // function to display data in jtable
-    public final void findGroups()
+    public final void findYourGroups()
     {
-        ArrayList<Group_utils> users = ListUsers(jLabel_displayuserID.getText());
+        ArrayList<Group_utils> users = ListUsers();
         DefaultTableModel model = new DefaultTableModel();
         model.setColumnIdentifiers(new Object[]{"User_ID","Group_ID","Is_Leader"});
         Object[] row = new Object[4];
@@ -89,6 +92,58 @@ public class LoggedIN extends javax.swing.JFrame {
         jTable_YourGroup.setModel(model);
        
     }
+    
+    
+    // function to return users arraylist with particular data 
+    public ArrayList<SearchGroup> GroupList(String ValToSearch)
+    {
+        ArrayList<SearchGroup> searchlist = new ArrayList<SearchGroup>();
+        
+        Statement st;
+        ResultSet rs;
+        
+        try{            
+            String searchQuery = "SELECT * FROM `groups` WHERE CONCAT(`Group_ID`, `Group_Name`, `Group_Description`) LIKE '%"+ValToSearch+"%'";
+            st = loginConnect.getConnection().prepareStatement(searchQuery);
+            rs = st.executeQuery(searchQuery);
+            
+            SearchGroup groups;
+            
+            while(rs.next())
+            {
+                groups = new SearchGroup(
+                                 rs.getInt("Group_ID"),
+                                 rs.getString("Group_Name"),
+                                 rs.getString("Group_Description")
+                                );
+                searchlist.add(groups);
+            }
+            
+        }catch(Exception ex){
+            System.out.println(ex.getMessage());
+        }
+        
+        return searchlist;
+    }
+    
+    // function to display data in jtable
+    public final void searchGroup()
+    {
+        ArrayList<SearchGroup> users = GroupList(jTextField_searchGroup.getText());
+        DefaultTableModel model = new DefaultTableModel();
+        model.setColumnIdentifiers(new Object[]{"Group ID","Group Name","Group Description"});
+        Object[] row = new Object[4];
+        
+        for(int i = 0; i < users.size(); i++)
+        {
+            row[0] = users.get(i).getgroupId();
+            row[1] = users.get(i).getgroupName();
+            row[2] = users.get(i).getgroupDescription();
+            model.addRow(row);
+        }
+        jTable_FindGroup.setModel(model);
+       
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -99,6 +154,7 @@ public class LoggedIN extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        entityManager = java.beans.Beans.isDesignTime() ? null : javax.persistence.Persistence.createEntityManagerFactory("teammanagerdb?zeroDateTimeBehavior=convertToNullPU").createEntityManager();
         jPanel2 = new javax.swing.JPanel();
         jPanel_sidePanel = new javax.swing.JPanel();
         jLabel_close_side_panel = new javax.swing.JLabel();
@@ -109,19 +165,19 @@ public class LoggedIN extends javax.swing.JFrame {
         jButton_Profile = new javax.swing.JButton();
         jScrollPane4 = new javax.swing.JScrollPane();
         jTable_YourGroup = new javax.swing.JTable();
-        jLabel3 = new javax.swing.JLabel();
-        jButton_CreateGroup1 = new javax.swing.JButton();
-        jButton_JoinGroup1 = new javax.swing.JButton();
         jButton_LeaveGroup = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        jButton_JoinGroup1 = new javax.swing.JButton();
         jButton_logout2 = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jButton_show_side_Panel = new javax.swing.JButton();
         jLabel_displayEmail = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTable_GroupTable = new javax.swing.JTable();
+        jTable_FindGroup = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jLabel_displayuserID = new javax.swing.JLabel();
         jLabel_CurrentSelect = new javax.swing.JLabel();
+        jTextField_searchGroup = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(153, 153, 153));
@@ -206,6 +262,14 @@ public class LoggedIN extends javax.swing.JFrame {
         });
         jScrollPane4.setViewportView(jTable_YourGroup);
 
+        jButton_LeaveGroup.setText("Leave Group");
+        jButton_LeaveGroup.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
+        jButton_LeaveGroup.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_LeaveGroupActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel_sidePanelLayout = new javax.swing.GroupLayout(jPanel_sidePanel);
         jPanel_sidePanel.setLayout(jPanel_sidePanelLayout);
         jPanel_sidePanelLayout.setHorizontalGroup(
@@ -223,6 +287,8 @@ public class LoggedIN extends javax.swing.JFrame {
                             .addComponent(jButton_logout1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jButton_JoinGroup, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jButton_Profile, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton_LeaveGroup, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(jPanel_sidePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -242,12 +308,14 @@ public class LoggedIN extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel_sidePanelLayout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addGap(246, 246, 246)))
-                .addComponent(jButton_CreateGroup)
+                .addGroup(jPanel_sidePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton_CreateGroup)
+                    .addComponent(jButton_LeaveGroup))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton_JoinGroup)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton_Profile)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 202, Short.MAX_VALUE)
                 .addComponent(jButton_logout1)
                 .addContainerGap())
             .addGroup(jPanel_sidePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -258,26 +326,10 @@ public class LoggedIN extends javax.swing.JFrame {
         );
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel3.setText("Groups");
-
-        jButton_CreateGroup1.setText("Create Group");
-        jButton_CreateGroup1.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
-        jButton_CreateGroup1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton_CreateGroup1ActionPerformed(evt);
-            }
-        });
+        jLabel3.setText("Search Group");
 
         jButton_JoinGroup1.setText("Join Group");
         jButton_JoinGroup1.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
-
-        jButton_LeaveGroup.setText("Leave Group");
-        jButton_LeaveGroup.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
-        jButton_LeaveGroup.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton_LeaveGroupActionPerformed(evt);
-            }
-        });
 
         jButton_logout2.setText("Log out");
         jButton_logout2.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
@@ -300,19 +352,19 @@ public class LoggedIN extends javax.swing.JFrame {
 
         jLabel_displayEmail.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
 
-        jTable_GroupTable.setModel(new javax.swing.table.DefaultTableModel(
+        jTable_FindGroup.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "User ID", "Group ID", "Is Leader?"
+                "Group ID", "Group Name", "Group Description"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.Integer.class, java.lang.Boolean.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                false, true, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -323,18 +375,24 @@ public class LoggedIN extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jTable_GroupTable.addMouseListener(new java.awt.event.MouseAdapter() {
+        jTable_FindGroup.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTable_GroupTableMouseClicked(evt);
+                jTable_FindGroupMouseClicked(evt);
             }
         });
-        jScrollPane3.setViewportView(jTable_GroupTable);
+        jScrollPane3.setViewportView(jTable_FindGroup);
 
         jLabel1.setText("User's ID:");
 
         jLabel_displayuserID.setText("####");
 
         jLabel_CurrentSelect.setText("HHHHHHHHHHHHHH");
+
+        jTextField_searchGroup.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField_searchGroupActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -365,16 +423,15 @@ public class LoggedIN extends javax.swing.JFrame {
                                                 .addComponent(jLabel_displayuserID))))))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(52, 52, 52)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jButton_JoinGroup1, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jButton_CreateGroup1, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jButton_LeaveGroup, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jButton_JoinGroup1, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 618, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 618, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(0, 0, Short.MAX_VALUE))
-                                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                        .addComponent(jLabel3)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jTextField_searchGroup, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(0, 0, Short.MAX_VALUE)))
                         .addContainerGap())
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(345, 345, 345)
@@ -393,27 +450,25 @@ public class LoggedIN extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jLabel_displayuserID))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel_CurrentSelect, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3)
+                    .addComponent(jTextField_searchGroup, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(98, 98, 98)
-                        .addComponent(jButton_CreateGroup1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton_JoinGroup1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton_LeaveGroup)
-                        .addGap(182, 182, 182))
+                        .addComponent(jScrollPane3)
+                        .addGap(18, 18, 18))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel_CurrentSelect, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(15, 15, 15)
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButton_logout2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton_show_side_Panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addContainerGap())))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton_JoinGroup1)
+                        .addGap(233, 233, 233)))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jButton_logout2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton_show_side_Panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
             .addComponent(jPanel_sidePanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
@@ -434,10 +489,6 @@ public class LoggedIN extends javax.swing.JFrame {
     private void jButton_CreateGroupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_CreateGroupActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton_CreateGroupActionPerformed
-
-    private void jButton_CreateGroup1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_CreateGroup1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton_CreateGroup1ActionPerformed
 
     private void jButton_ProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_ProfileActionPerformed
         Profile profile_form = new Profile();
@@ -479,8 +530,8 @@ public class LoggedIN extends javax.swing.JFrame {
         PreparedStatement st;
         ResultSet rs;
         
-        int row = jTable_GroupTable.getSelectedRow();
-        String Table_click = (jTable_GroupTable.getModel().getValueAt(row, 1).toString());
+        int row = jTable_FindGroup.getSelectedRow();
+        String Table_click = (jTable_FindGroup.getModel().getValueAt(row, 1).toString());
         
         //Delete the selected group id 
         String query = "DELETE * FROM group WHERE Group_ID = '"+Table_click+"'";
@@ -510,7 +561,7 @@ public class LoggedIN extends javax.swing.JFrame {
         //
     }//GEN-LAST:event_jButton_LeaveGroupActionPerformed
 
-    private void jTable_GroupTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable_GroupTableMouseClicked
+    private void jTable_FindGroupMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable_FindGroupMouseClicked
 //        PreparedStatement st;
 //        ResultSet rs;
 //        
@@ -533,7 +584,7 @@ public class LoggedIN extends javax.swing.JFrame {
 //        
 //        JOptionPane.showMessageDialog(null, e);        
 //        }      
-    }//GEN-LAST:event_jTable_GroupTableMouseClicked
+    }//GEN-LAST:event_jTable_FindGroupMouseClicked
 
     private void jTable_YourGroupMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable_YourGroupMouseClicked
         PreparedStatement st;
@@ -563,6 +614,10 @@ public class LoggedIN extends javax.swing.JFrame {
     private void jButton_JoinGroupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_JoinGroupActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton_JoinGroupActionPerformed
+
+    private void jTextField_searchGroupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_searchGroupActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField_searchGroupActionPerformed
 
     /**
      * @param args the command line arguments
@@ -600,8 +655,8 @@ public class LoggedIN extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.persistence.EntityManager entityManager;
     private javax.swing.JButton jButton_CreateGroup;
-    private javax.swing.JButton jButton_CreateGroup1;
     private javax.swing.JButton jButton_JoinGroup;
     private javax.swing.JButton jButton_JoinGroup1;
     private javax.swing.JButton jButton_LeaveGroup;
@@ -621,7 +676,8 @@ public class LoggedIN extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel_sidePanel;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JTable jTable_GroupTable;
+    private javax.swing.JTable jTable_FindGroup;
     private javax.swing.JTable jTable_YourGroup;
+    private javax.swing.JTextField jTextField_searchGroup;
     // End of variables declaration//GEN-END:variables
 }
