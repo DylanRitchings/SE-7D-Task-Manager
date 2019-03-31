@@ -7,11 +7,14 @@ package v1;
 
 import java.util.*;
 import database_console.DBConnect;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
+import v2.Login.Register_Interface;
+import v2.Login.loginConnect;
 /**
  *
  * @author Dylan Ritchings
@@ -262,6 +265,37 @@ public class Group_utils {
         tDetails.add(tComp);
         return tDetails;
     }
+    
+    /**
+     * Checks if email exists. Created by Sanjog
+     * @param email
+     * @return 
+     */
+    public static boolean checkEmail(String email)
+    {
+        PreparedStatement st;
+        ResultSet rs;
+        boolean email_exist = false;
+        
+        String query = "SELECT * FROM `user` WHERE `User_Email` = ?";
+        
+        try {
+            st = loginConnect.getConnection().prepareStatement(query);
+            
+            st.setString(1, email);
+            rs = st.executeQuery();
+            
+            if(rs.next())
+            {
+                email_exist = true;
+                return true;
+            }       
+        } catch (SQLException ex) {
+            Logger.getLogger(Register_Interface.class.getName()).log(Level.SEVERE, null, ex);
+        }
+                            
+        return email_exist;
+    }
 
 
 }
@@ -275,4 +309,4 @@ public class Group_utils {
 //        return
 //
 //    }
-//
+
