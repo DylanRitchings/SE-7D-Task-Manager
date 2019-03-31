@@ -134,7 +134,7 @@ public class AddMember extends javax.swing.JFrame {
                 }
                 GroupPageLeader groupPage = new GroupPageLeader(groupID);
                 groupPage.setVisible(true);
-                this.setVisible(false);
+                this.dispose();
             } catch (SQLException ex){
             Logger.getLogger(AddMember.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -149,7 +149,7 @@ public class AddMember extends javax.swing.JFrame {
         try {
             GroupPageLeader groupPage = new GroupPageLeader(groupID);
             groupPage.setVisible(true);
-            this.setVisible(false);
+            this.dispose();
         } catch (SQLException ex) {
             Logger.getLogger(AddMember.class.getName()).log(Level.SEVERE, null, ex);
         }
