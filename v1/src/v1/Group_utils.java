@@ -20,6 +20,39 @@ import v2.Login.loginConnect;
  * @author Dylan Ritchings
  */
 public class Group_utils {
+  
+  ///////////////////////////////////////////////////UP818044//////////////////////////////////////////////
+    /**
+     * @param User_ID
+     * @param Group_ID
+     * @param Is_Leader
+     */
+    
+    private int User_ID;
+    private int Group_ID;
+    private Boolean Is_Leader;
+    
+    public Group_utils(int User_ID, int Group_ID ,Boolean Is_Leader)
+    {
+        this.User_ID = User_ID;
+        this.Group_ID = Group_ID;
+        this.Is_Leader = Is_Leader;
+    }
+    
+    public int getId()
+    {
+        return User_ID;
+    }
+    
+    public int getgroupId()
+    {
+        return Group_ID;
+    }
+    
+    public Boolean getIsleader()
+    {
+        return Is_Leader;
+    }
 //    protected String  groupName;
 //    protected ArrayList<String> memberList;
 //    protected String groupDescription;
@@ -309,4 +342,5 @@ public class Group_utils {
 //        return
 //
 //    }
+
 

@@ -36,7 +36,7 @@ public class DBConnect {
      *
      */
 
-    public static Connection databaseConnect()
+    private static Statement databaseConnect()
     {
 
 
@@ -48,6 +48,7 @@ public class DBConnect {
             Connection con = DriverManager.getConnection(host, uName, uPass);
             
             return con;
+
         }
             catch (SQLException e) {
             System.err.println("Got an exception! ");
@@ -62,14 +63,18 @@ public class DBConnect {
      * @throw SQLException
      * @pre
      * @modifies host, uName, uPass
+
      * @post
+     
      * @param query
      */
     public static void databaseInput(String query)
     {
         try{
+
             Connection con = databaseConnect();
             Statement stat = con.createStatement();
+
             stat.executeUpdate(query);
             stat.close();
         }
@@ -89,16 +94,20 @@ public class DBConnect {
      */
     public static ResultSet databaseSelect(String query)
     {
+
         Connection con = databaseConnect();
         try {
             Statement stat = con.createStatement();
+
             ResultSet rs = stat.executeQuery(query);
             return rs;
         } catch (SQLException ex) {
             Logger.getLogger(DBConnect.class.getName()).log(Level.SEVERE, null, ex);
             return null;
+
         }
     }
+
 
 }
 

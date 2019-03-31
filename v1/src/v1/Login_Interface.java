@@ -1,4 +1,4 @@
-package v2.Login;
+package v1;
 
 import java.awt.Color;
 import java.sql.PreparedStatement;
@@ -8,6 +8,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
+import v1.Register_Interface;
+import v1.loginConnect;
 
 /**
  *
@@ -363,7 +365,8 @@ public class Login_Interface extends javax.swing.JFrame {
                 //Passes the email to the LoggedIN interface
                 form.jLabel_displayEmail.setText(email);
                 form.jLabel_displayuserID.setText(rs.getString("User_ID"));
-                form.findGroups();
+                form.findYourGroups();
+                form.searchGroup();
                 //Close the current form (login form)
                 this.dispose();
             }
