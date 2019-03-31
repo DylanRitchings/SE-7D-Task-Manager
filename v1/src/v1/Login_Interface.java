@@ -9,7 +9,7 @@ import java.util.logging.Logger;
 import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
 import v1.Register_Interface;
-import v1.loginConnect;
+import database_console.loginConnect;
 
 /**
  *
