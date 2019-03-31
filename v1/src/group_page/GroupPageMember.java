@@ -34,7 +34,7 @@ import v1.Leader;
 
 /**
  *
- * @author uDylo
+ * @author Dylan Ritchings
  */
 public final class GroupPageMember extends javax.swing.JFrame {
     int groupID;
