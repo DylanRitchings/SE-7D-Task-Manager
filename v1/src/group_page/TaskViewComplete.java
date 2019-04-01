@@ -44,13 +44,19 @@ public class TaskViewComplete extends javax.swing.JPanel {
         start = tStart;
         end = tEnd;
         desc = tDesc;
-        comp = Boolean.parseBoolean(tComp);
+        if ( Integer.valueOf(tComp) == 1){
+            comp = true;
+        }
+        else{
+            comp = false;
+        }
         initComponents();
         titleLabel.setText("Task: "+title);
         descLabel.setText(desc);
         startLabel.setText("Start: "+start);
         endLabel.setText("Deadline: "+end);
         timeLeft.setStringPainted(true);
+ 
         if (comp == true){
             completeTask.setEnabled(false);
         }
