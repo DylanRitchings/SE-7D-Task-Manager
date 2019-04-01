@@ -460,8 +460,12 @@ public class LoggedIN extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton_CreateGroupActionPerformed
 
     private void jButton_ProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_ProfileActionPerformed
-        Profile profile_form = new Profile();
+        //Shows the User interface
+        int user_idx = Integer.parseInt(jLabel_displayuserID.getText());
+        String user_emailx = jLabel_displayEmail.getText();
+        User_Interface profile_form = new User_Interface(user_idx, user_emailx);
         profile_form.setVisible(true);
+        profile_form.pack();
         
         this.dispose();
     }//GEN-LAST:event_jButton_ProfileActionPerformed
