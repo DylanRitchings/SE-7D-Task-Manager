@@ -501,29 +501,52 @@ public class LoggedIN extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton_show_side_PanelMouseClicked
 
     private void jButton_LeaveGroupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_LeaveGroupActionPerformed
-        
         PreparedStatement st;
         PreparedStatement rt;
         
-        int row = jTable_YourGroup.getSelectedRow();
-        String Table_click = (jTable_YourGroup.getModel().getValueAt(row, 1).toString());
+        //This function will get the group id
+        int group_id = jTable_YourGroup.getSelectedRow();
+        String Table_click_For_Group = (jTable_YourGroup.getModel().getValueAt(group_id, 1).toString());
         
-        //Delete the selected group id 
-        String Del_user_in_group = "DELETE FROM user_in_group WHERE Group_ID = '"+Table_click+"'";
-        String Del_groups = "DELETE FROM groups WHERE Group_ID = '"+Table_click+"'";
+        //This function will get if the user is leader or not
+        int row = jTable_YourGroup.getSelectedRow();
+        String Table_click = (jTable_YourGroup.getModel().getValueAt(row, 2).toString());
+        boolean isleader;
+        if(Table_click == "true")
+        {
+            isleader = true;
+        }
+        else 
+        {
+            isleader = false;
+        }       
         
         try {
-            
-            st = loginConnect.getConnection().prepareStatement(Del_user_in_group);
-            rt = loginConnect.getConnection().prepareStatement(Del_groups);
-            int val = st.executeUpdate();
-            int val2 = rt.executeUpdate();
-            
-            JOptionPane.showMessageDialog(null, "Group " + val + " has been deleted", "Group Deletion",2); 
-            
-            findYourGroups();
-            searchGroup();
-            
+            if(isleader)
+            {                        
+                //Delete the selected group id
+                String Del_user_in_group = "DELETE FROM user_in_group WHERE Group_ID = '"+Table_click_For_Group+"'";
+                String Del_groups = "DELETE FROM groups WHERE Group_ID = '"+Table_click_For_Group+"'";    
+                st = loginConnect.getConnection().prepareStatement(Del_user_in_group);
+                rt = loginConnect.getConnection().prepareStatement(Del_groups);
+                int val = st.executeUpdate();
+                int val2 = rt.executeUpdate();
+                JOptionPane.showMessageDialog(null, "You have left the Group " + Table_click_For_Group + "and Group " + Table_click_For_Group + " has been deleted", "Group Deletion",2); 
+
+                findYourGroups();
+                searchGroup();
+            }
+            else
+            {       
+                //Delete the selected group id
+                String Del_user_in_group = "DELETE FROM user_in_group WHERE Group_ID = '"+Table_click_For_Group+"'";
+                st = loginConnect.getConnection().prepareStatement(Del_user_in_group);
+                int val = st.executeUpdate();
+                
+                JOptionPane.showMessageDialog(null, "You have left the Group " + Table_click_For_Group , "Group Deletion",2);
+                
+                findYourGroups();
+            }
         } catch (SQLException ex) {
             Logger.getLogger(loginConnect.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -584,61 +607,48 @@ public class LoggedIN extends javax.swing.JFrame {
     private void jButton_EnterGroupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_EnterGroupActionPerformed
         //Finding the selected group
         PreparedStatement ss;
-        ResultSet rs;
+        ResultSet rs;       
         
+        //This function will get the group id
+        int group_id = jTable_YourGroup.getSelectedRow();
+        String Table_click_For_Group = (jTable_YourGroup.getModel().getValueAt(group_id, 1).toString());
+        String GroupID = Table_click_For_Group;
         
-        try{                       
-            int row = jTable_YourGroup.getSelectedRow();
-            String Table_click = (jTable_YourGroup.getModel().getValueAt(row, 2).toString());
-            boolean isleader;
-            if(Table_click == "true")
-            {
-                isleader = true;
-            }
-            else 
-            {
-                isleader = false;
-            }
-            
-            System.out.println(isleader);
-            
-            System.out.println(Table_click);
-            
+        //This function will get if the user is leader or not
+        int row = jTable_YourGroup.getSelectedRow();
+        String Table_click = (jTable_YourGroup.getModel().getValueAt(row, 2).toString());
+        boolean isleader;
+        if(Table_click == "true")
+        {
+            isleader = true;
+        }
+        else 
+        {
+            isleader = false;
+        }
+        
+        try{                                                                     
             String searchQuery = "SELECT * FROM user_in_group WHERE Is_Leader ='"+Table_click+"' AND User_ID = "+jLabel_displayuserID.getText()+" ";
             ss = loginConnect.getConnection().prepareStatement(searchQuery);
-            rs = ss.executeQuery();
-            
-            System.out.println(jLabel_displayuserID.getText());
-            
+            rs = ss.executeQuery();                       
             
             if(rs.next()) {
                 if(isleader)
                 {     
-                    //int currentid = rs.getInt("Group_ID");
-                    //String.valueOf(currentid);
                     //Dylan's user interface for when they are a leader
-                    //Dylan's user interface for when they are not a leader
-                    JOptionPane.showMessageDialog(null, "You are in the Group and you are the leader", "Group Interface",2);
+                    JOptionPane.showMessageDialog(null, "You are in the Group " + GroupID + " and you are the leader", "Group Interface",2);
                     
                 }
                 else 
                     {
-                        //String.valueOf(currentid);
-                        //String.valueOf(isleader);
                         //Dylan's user interface for when they are not a leader
-                        JOptionPane.showMessageDialog(null, "You are in the Group" , "Group Interface",2);
-
+                        JOptionPane.showMessageDialog(null, "You are in the Group " + GroupID, "Group Interface",2);
                     }
             }
-            
-            
-        }
-        
-        catch(Exception e){
-        
+        }       
+        catch(Exception e){        
         JOptionPane.showMessageDialog(null, e);        
-        }  
-        
+        }        
     }//GEN-LAST:event_jButton_EnterGroupActionPerformed
 
     private void jButton_JoinGroupMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton_JoinGroupMouseClicked
