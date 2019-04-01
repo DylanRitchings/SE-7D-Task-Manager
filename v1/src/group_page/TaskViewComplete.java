@@ -6,6 +6,7 @@
 package group_page;
 
 
+import database_console.DBConnect;
 import java.awt.Color;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -199,6 +200,8 @@ public class TaskViewComplete extends javax.swing.JPanel {
 
     private void completeTaskActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_completeTaskActionPerformed
         completeTask.setEnabled(false);
+        String query = "UPDATE task SET Is_Complete = 1 WHERE Task_ID = "+id+";";
+        DBConnect.databaseInput(query);
     }//GEN-LAST:event_completeTaskActionPerformed
 
 
