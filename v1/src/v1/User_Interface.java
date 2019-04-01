@@ -6,6 +6,7 @@
 package v1;
 
 import database_console.DBConnect;
+import group_page.TaskViewComplete;
 import group_page.TaskViewLeader;
 import java.awt.BorderLayout;
 import java.awt.Container;
@@ -31,6 +32,14 @@ import v1.Group_utils;
  */
 public class User_Interface extends javax.swing.JFrame {
 
+    
+    
+     ArrayList<String> tID = new ArrayList<>();
+        ArrayList<String> tTitle = new ArrayList<>();
+        ArrayList<String> tStart = new ArrayList<>();
+        ArrayList<String> tEnd = new ArrayList<>();
+        ArrayList<String> tDesc = new ArrayList<>();
+        ArrayList<String> tComp = new ArrayList<>();
     /**
      *
      * @param userId
@@ -346,22 +355,22 @@ public class User_Interface extends javax.swing.JFrame {
      * Fill each task into the taskPanel
      * @throws ParseException 
      */
-//    public void fillTaskDetails() throws ParseException{
-//        Container cont = new Container();
-//        cont.setLayout(new BoxLayout(cont, BoxLayout.Y_AXIS));
-//        //BoxLayout taskLayout = new BoxLayout (taskPane,BoxLayout.Y_AXIS);
-//        taskPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-//        for (int count = 0; count < taskID.size(); count++){
-//            JPanel taskPanel  = new TaskViewLeader(taskID.get(count), taskTitle.get(count), taskStart.get(count), taskEnd.get(count), taskDesc.get(count), taskComp.get(count));
-//            cont.add(taskPanel, BorderLayout.LINE_START);
-//
-//           }
-//        taskPane.getViewport().setView(cont);
-//        //taskPane.add(cont);
-//        //taskPane.setVisible(true);
-//        taskPane.revalidate();
-//        taskPane.repaint();
-//    }
+    public void fillTaskDetails() throws ParseException{
+        Container cont = new Container();
+        cont.setLayout(new BoxLayout(cont, BoxLayout.Y_AXIS));
+        //BoxLayout taskLayout = new BoxLayout (taskPane,BoxLayout.Y_AXIS);
+        taskPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+        for (int count = 0; count < tID.size(); count++){
+            JPanel taskPanel  = new TaskViewComplete(tID.get(count), tTitle.get(count), tStart.get(count), tEnd.get(count), tDesc.get(count), tComp.get(count));
+            cont.add(taskPanel, BorderLayout.LINE_START);
+
+           }
+        taskPane.getViewport().setView(cont);
+        //taskPane.add(cont);
+        //taskPane.setVisible(true);
+        taskPane.revalidate();
+        taskPane.repaint();
+    }
     
     
     
@@ -373,12 +382,7 @@ public class User_Interface extends javax.swing.JFrame {
     public User_Interface(int userId) throws SQLException {
         initComponents();
         
-        ArrayList<String> tID = new ArrayList<>();
-        ArrayList<String> tTitle = new ArrayList<>();
-        ArrayList<String> tStart = new ArrayList<>();
-        ArrayList<String> tEnd = new ArrayList<>();
-        ArrayList<String> tDesc = new ArrayList<>();
-        ArrayList<String> tComp = new ArrayList<>();
+        
         jButtonDeleteAccount.setVisible(false);
         jButtonPasswordChange.setVisible(false);
 
@@ -395,9 +399,13 @@ public class User_Interface extends javax.swing.JFrame {
         
         getUserMemberTasksId(1);
         
-        getTaskDetails(getUserMemberGroupIds(userId));
-        
-        getUserMemberGroupIds(1);
+        ArrayList<ArrayList<String>> tDetails = getTaskDetails(getUserMemberGroupIds(userId));
+        ArrayList<String> tID = tDetails.get(0);
+        ArrayList<String> tTitle = tDetails.get(1);
+        ArrayList<String> tStart = tDetails.get(2);
+        ArrayList<String> tEnd = tDetails.get(3);
+        ArrayList<String> tDesc = tDetails.get(4);
+        ArrayList<String> tComp = tDetails.get(5);
 
 //         updateUserPasswordByEmail("hello","@");
         //deleteUserById(146);
