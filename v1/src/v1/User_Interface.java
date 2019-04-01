@@ -34,13 +34,14 @@ public class User_Interface extends javax.swing.JFrame {
 
     int user_id;
     String user_id_string;
-    
-     ArrayList<String> tID = new ArrayList<>();
-        ArrayList<String> tTitle = new ArrayList<>();
-        ArrayList<String> tStart = new ArrayList<>();
-        ArrayList<String> tEnd = new ArrayList<>();
-        ArrayList<String> tDesc = new ArrayList<>();
-        ArrayList<String> tComp = new ArrayList<>();
+    ArrayList taskIDs;
+    ArrayList<ArrayList<String>> tDetails;
+    ArrayList<String> tID;
+    ArrayList<String> tTitle;
+    ArrayList<String> tStart;
+    ArrayList<String> tEnd;
+    ArrayList<String> tDesc;
+    ArrayList<String> tComp;
     /**
      *
      * @param userId
@@ -311,7 +312,9 @@ public class User_Interface extends javax.swing.JFrame {
 //        tDetails.add(tEnd);
 //        tDetails.add(tDesc);
 //        tDetails.add(tComp);
-        return tIds;
+            System.out.println(tIds);
+            return tIds;
+        
     }
     
    public static ArrayList getTaskDetails(ArrayList taskIDs){
@@ -355,31 +358,51 @@ public class User_Interface extends javax.swing.JFrame {
     /**
      * Fill each task into the taskPanel
      * @throws ParseException 
+     * @author Dylan Ritchings
      */
-    public void fillTaskDetails() throws ParseException{
+    private void fillTaskDetails() throws ParseException{
         Container cont = new Container();
         cont.setLayout(new BoxLayout(cont, BoxLayout.Y_AXIS));
         //BoxLayout taskLayout = new BoxLayout (taskPane,BoxLayout.Y_AXIS);
-        taskPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-        for (int count = 0; count < tID.size()-1; count++){
+
+        taskPane1.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+        for (int count = 0; count < tID.size(); count++){
             JPanel taskPanel  = new TaskViewComplete(tID.get(count), tTitle.get(count), tStart.get(count), tEnd.get(count), tDesc.get(count), tComp.get(count));
             cont.add(taskPanel, BorderLayout.LINE_START);
             
 
            }
-        taskPane.getViewport().setView(cont);
+        taskPane1.getViewport().setView(cont);
         //taskPane.add(cont);
         //taskPane.setVisible(true);
-        taskPane.revalidate();
-        taskPane.repaint();
+        taskPane1.revalidate();
+        taskPane1.repaint();
     }
 
-public User_Interface() {
-    initComponents();
-}
-    
-public User_Interface(int userId, String userEmail)
+//public User_Interface() {
+//
+//        this.taskIDs = getUserMemberGroupIds(user_id);
+//        this.tDetails = getTaskDetails(taskIDs);
+//        this.tComp = tDetails.get(5);
+//        this.tDesc = tDetails.get(4);
+//        this.tEnd = tDetails.get(3);
+//        this.tStart = tDetails.get(2);
+//        this.tTitle = tDetails.get(1);
+//        this.tID = tDetails.get(0);
+//    initComponents();
+//}
+//    
+public User_Interface(int profileUserId, String userEmail)
     {
+        int userId = profileUserId;
+        this.taskIDs = getUserMemberGroupIds(userId);
+        this.tDetails = getTaskDetails(taskIDs);
+        this.tComp = tDetails.get(5);
+        this.tDesc = tDetails.get(4);
+        this.tEnd = tDetails.get(3);
+        this.tStart = tDetails.get(2);
+        this.tTitle = tDetails.get(1);
+        this.tID = tDetails.get(0);
         this.user_id = userId;
         this.user_id_string = Integer.toString(userId);
         
@@ -402,20 +425,7 @@ public User_Interface(int userId, String userEmail)
         
         getUserMemberTasksId(user_id);
         
-        ArrayList<ArrayList<String>> tDetails = getTaskDetails(getUserMemberGroupIds(userId));
-        ArrayList<String> tID = tDetails.get(0);
-        ArrayList<String> tTitle = tDetails.get(1);
-        ArrayList<String> tStart = tDetails.get(2);
-        ArrayList<String> tEnd = tDetails.get(3);
-        ArrayList<String> tDesc = tDetails.get(4);
-        ArrayList<String> tComp = tDetails.get(5);
-        System.out.println(tID);
-        System.out.println(tTitle);
-        System.out.println(tStart);
-        System.out.println(tEnd);
-        System.out.println(tDesc);
-        System.out.println(tComp);
-        System.out.println(name);
+        
         
         try {
              fillTaskDetails();
@@ -486,12 +496,13 @@ public User_Interface(int userId, String userEmail)
     private void initComponents() {
 
         jMenu1 = new javax.swing.JMenu();
+        taskPane = new javax.swing.JScrollPane();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        jComboBox1 = new javax.swing.JComboBox<String>();
+        jComboBox2 = new javax.swing.JComboBox<String>();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabelTopLeftUserIOd = new javax.swing.JLabel();
@@ -500,9 +511,12 @@ public User_Interface(int userId, String userEmail)
         jToggleButtonEdit = new javax.swing.JToggleButton();
         jButtonPasswordChange = new javax.swing.JButton();
         jButtonDeleteAccount = new javax.swing.JButton();
-        taskPane = new javax.swing.JScrollPane();
+        taskPane1 = new javax.swing.JScrollPane();
 
         jMenu1.setText("jMenu1");
+
+        taskPane.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        taskPane.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -514,9 +528,9 @@ public User_Interface(int userId, String userEmail)
 
         jLabel4.setText("Email:");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jComboBox2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox2ActionPerformed(evt);
@@ -554,6 +568,9 @@ public User_Interface(int userId, String userEmail)
             }
         });
 
+        taskPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        taskPane1.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -589,9 +606,7 @@ public User_Interface(int userId, String userEmail)
                                         .addGap(0, 355, Short.MAX_VALUE))))
                             .addGroup(layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(taskPane, javax.swing.GroupLayout.PREFERRED_SIZE, 686, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabelEmailField))
+                                .addComponent(jLabelEmailField)
                                 .addGap(0, 0, Short.MAX_VALUE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -608,6 +623,10 @@ public User_Interface(int userId, String userEmail)
                                 .addComponent(jLabelNameField)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addGap(24, 24, 24))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(taskPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 712, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(66, 66, 66))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -639,9 +658,9 @@ public User_Interface(int userId, String userEmail)
                     .addComponent(jLabel9)
                     .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8))
-                .addGap(34, 34, 34)
-                .addComponent(taskPane, javax.swing.GroupLayout.PREFERRED_SIZE, 336, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(76, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                .addComponent(taskPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 373, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(24, 24, 24))
         );
 
         pack();
@@ -720,7 +739,7 @@ public User_Interface(int userId, String userEmail)
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                    new User_Interface().setVisible(true);
+                    new User_Interface(1,"bobRob@gmail.com").setVisible(true);
             }
         });
     }
@@ -742,6 +761,7 @@ public User_Interface(int userId, String userEmail)
     private javax.swing.JMenu jMenu1;
     private javax.swing.JToggleButton jToggleButtonEdit;
     private javax.swing.JScrollPane taskPane;
+    private javax.swing.JScrollPane taskPane1;
     // End of variables declaration//GEN-END:variables
 
     private void getTaskDetails() {
