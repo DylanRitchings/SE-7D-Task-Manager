@@ -380,7 +380,7 @@ public final class GroupPageLeader extends javax.swing.JFrame {
             public void run() {
                 try {
 
-                    new GroupPageLeader(128).setVisible(true);
+                    new GroupPageLeader(131).setVisible(true);
 
                 } catch (SQLException ex) {
                     Logger.getLogger(GroupPageLeader.class.getName()).log(Level.SEVERE, null, ex);
