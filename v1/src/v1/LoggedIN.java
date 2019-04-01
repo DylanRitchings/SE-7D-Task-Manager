@@ -254,11 +254,6 @@ public class LoggedIN extends javax.swing.JFrame {
             }
         });
         jTable_YourGroup.getTableHeader().setReorderingAllowed(false);
-        jTable_YourGroup.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTable_YourGroupMouseClicked(evt);
-            }
-        });
         jScrollPane4.setViewportView(jTable_YourGroup);
 
         jButton_LeaveGroup.setText("Leave Group");
@@ -380,11 +375,6 @@ public class LoggedIN extends javax.swing.JFrame {
         });
         jTable_FindGroup.setColumnSelectionAllowed(true);
         jTable_FindGroup.getTableHeader().setReorderingAllowed(false);
-        jTable_FindGroup.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTable_FindGroupMouseClicked(evt);
-            }
-        });
         jScrollPane3.setViewportView(jTable_FindGroup);
         jTable_FindGroup.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
 
@@ -553,56 +543,6 @@ public class LoggedIN extends javax.swing.JFrame {
         
         //
     }//GEN-LAST:event_jButton_LeaveGroupActionPerformed
-
-    private void jTable_FindGroupMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable_FindGroupMouseClicked
-//        PreparedStatement st;
-//        ResultSet rs;
-//        
-//        try{                       
-//            int row = jTable_GroupTable.getSelectedRow();
-//            String Table_click = (jTable_GroupTable.getModel().getValueAt(row, 1).toString());
-//            
-//            String searchQuery = "SELECT * FROM user_in_group WHERE Group_ID ='"+Table_click+"'";
-//            st = loginConnect.getConnection().prepareStatement(searchQuery);             
-//            rs = st.executeQuery();
-//            
-//            if(rs.next())
-//            {     
-//                int currentid = rs.getInt("Group_ID");
-//                jLabel_CurrentSelect.setText(String.valueOf(currentid)); 
-//            }
-//            
-//        }
-//        catch(Exception e){
-//        
-//        JOptionPane.showMessageDialog(null, e);        
-//        }      
-    }//GEN-LAST:event_jTable_FindGroupMouseClicked
-
-    private void jTable_YourGroupMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable_YourGroupMouseClicked
-//        PreparedStatement st;
-//        ResultSet rs;
-//        
-//        try{                       
-//            int row = jTable_YourGroup.getSelectedRow();
-//            String Table_click = (jTable_YourGroup.getModel().getValueAt(row, 1).toString());
-//            
-//            String searchQuery = "SELECT * FROM user_in_group WHERE Group_ID ='"+Table_click+"'";
-//            st = loginConnect.getConnection().prepareStatement(searchQuery);           
-//            rs = st.executeQuery();
-//            
-//            if(rs.next())
-//            {     
-//                int currentid = rs.getInt("Group_ID");
-//                jLabel_CurrentSelect.setText(String.valueOf(currentid));
-//            }
-//            
-//        }
-//        catch(Exception e){
-//        
-//        JOptionPane.showMessageDialog(null, e);        
-//        }   
-    }//GEN-LAST:event_jTable_YourGroupMouseClicked
 
     private void jButton_EnterGroupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_EnterGroupActionPerformed
         //Finding the selected group
