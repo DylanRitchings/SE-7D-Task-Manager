@@ -259,6 +259,7 @@ public class LoggedIN extends javax.swing.JFrame {
             }
         });
         jTable_YourGroup.getTableHeader().setReorderingAllowed(false);
+        
         jScrollPane4.setViewportView(jTable_YourGroup);
 
         jButton_LeaveGroup.setText("Leave Group");
@@ -378,10 +379,8 @@ public class LoggedIN extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jTable_FindGroup.setColumnSelectionAllowed(true);
         jTable_FindGroup.getTableHeader().setReorderingAllowed(false);
         jScrollPane3.setViewportView(jTable_FindGroup);
-        jTable_FindGroup.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
 
         jLabel1.setText("User's ID:");
 
