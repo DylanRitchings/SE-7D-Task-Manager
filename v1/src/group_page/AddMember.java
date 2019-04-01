@@ -118,8 +118,10 @@ public class AddMember extends javax.swing.JFrame {
         String email = userEmail.getText();
         //boolean emailExists;
         //emailExists = Group_utils.checkEmail(email);
-        
-        if (Group_utils.checkEmail(email)) {
+        if ("".equals(email)){
+            errorMessage.setText("Please enter an email into the field");
+        }
+        else if (Group_utils.checkEmail(email)) {
             String userID;
             String query1 = "SELECT User_ID FROM user WHERE User_Email ='"+email+"';";
             ResultSet userCheckrs = DBConnect.databaseSelect(query1);
@@ -132,7 +134,7 @@ public class AddMember extends javax.swing.JFrame {
                 }
                 GroupPageLeader groupPage = new GroupPageLeader(groupID);
                 groupPage.setVisible(true);
-                this.setVisible(false);
+                this.dispose();
             } catch (SQLException ex){
             Logger.getLogger(AddMember.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -147,7 +149,7 @@ public class AddMember extends javax.swing.JFrame {
         try {
             GroupPageLeader groupPage = new GroupPageLeader(groupID);
             groupPage.setVisible(true);
-            this.setVisible(false);
+            this.dispose();
         } catch (SQLException ex) {
             Logger.getLogger(AddMember.class.getName()).log(Level.SEVERE, null, ex);
         }

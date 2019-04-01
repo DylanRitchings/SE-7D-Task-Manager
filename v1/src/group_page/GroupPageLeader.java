@@ -342,6 +342,7 @@ public final class GroupPageLeader extends javax.swing.JFrame {
     private void createTaskButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createTaskButtonActionPerformed
         JFrame taskCreate = new Task_Create(groupID);
         taskCreate.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_createTaskButtonActionPerformed
 
     /**
@@ -378,7 +379,9 @@ public final class GroupPageLeader extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
+
                     new GroupPageLeader(128).setVisible(true);
+
                 } catch (SQLException ex) {
                     Logger.getLogger(GroupPageLeader.class.getName()).log(Level.SEVERE, null, ex);
                 }

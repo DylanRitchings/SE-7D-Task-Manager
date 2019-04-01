@@ -155,7 +155,6 @@ public class LoggedIN extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        entityManager = java.beans.Beans.isDesignTime() ? null : javax.persistence.Persistence.createEntityManagerFactory("teammanagerdb?zeroDateTimeBehavior=convertToNullPU").createEntityManager();
         jPanel2 = new javax.swing.JPanel();
         jPanel_sidePanel = new javax.swing.JPanel();
         jLabel_close_side_panel = new javax.swing.JLabel();
@@ -186,7 +185,7 @@ public class LoggedIN extends javax.swing.JFrame {
         jPanel2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         jPanel_sidePanel.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel_sidePanel.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
+        jPanel_sidePanel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jLabel_close_side_panel.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         jLabel_close_side_panel.setText("X");
@@ -200,7 +199,7 @@ public class LoggedIN extends javax.swing.JFrame {
         jLabel2.setText("Your Groups");
 
         jButton_CreateGroup.setText("Create Group");
-        jButton_CreateGroup.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
+        jButton_CreateGroup.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jButton_CreateGroup.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton_CreateGroupActionPerformed(evt);
@@ -208,7 +207,7 @@ public class LoggedIN extends javax.swing.JFrame {
         });
 
         jButton_EnterGroup.setText("Enter Group");
-        jButton_EnterGroup.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
+        jButton_EnterGroup.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jButton_EnterGroup.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton_EnterGroupActionPerformed(evt);
@@ -216,7 +215,7 @@ public class LoggedIN extends javax.swing.JFrame {
         });
 
         jButton_logout1.setText("Log out");
-        jButton_logout1.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
+        jButton_logout1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jButton_logout1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton_logout1ActionPerformed(evt);
@@ -224,7 +223,7 @@ public class LoggedIN extends javax.swing.JFrame {
         });
 
         jButton_Profile.setText("Profile");
-        jButton_Profile.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
+        jButton_Profile.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jButton_Profile.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton_ProfileActionPerformed(evt);
@@ -263,7 +262,7 @@ public class LoggedIN extends javax.swing.JFrame {
         jScrollPane4.setViewportView(jTable_YourGroup);
 
         jButton_LeaveGroup.setText("Leave Group");
-        jButton_LeaveGroup.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
+        jButton_LeaveGroup.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jButton_LeaveGroup.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton_LeaveGroupActionPerformed(evt);
@@ -291,7 +290,7 @@ public class LoggedIN extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jButton_LeaveGroup, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jLabel2))
-                        .addGap(0, 201, Short.MAX_VALUE)))
+                        .addGap(0, 205, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(jPanel_sidePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel_sidePanelLayout.createSequentialGroup()
@@ -328,7 +327,7 @@ public class LoggedIN extends javax.swing.JFrame {
         jLabel3.setText("Search Group");
 
         jButton_JoinGroup.setText("Join Group");
-        jButton_JoinGroup.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
+        jButton_JoinGroup.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jButton_JoinGroup.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton_JoinGroupMouseClicked(evt);
@@ -336,7 +335,7 @@ public class LoggedIN extends javax.swing.JFrame {
         });
 
         jButton_logout2.setText("Log out");
-        jButton_logout2.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
+        jButton_logout2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jButton_logout2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton_logout2ActionPerformed(evt);
@@ -347,7 +346,7 @@ public class LoggedIN extends javax.swing.JFrame {
         jLabel4.setText("User's email:");
 
         jButton_show_side_Panel.setText("Show Side Panel");
-        jButton_show_side_Panel.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
+        jButton_show_side_Panel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jButton_show_side_Panel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton_show_side_PanelMouseClicked(evt);
@@ -452,7 +451,7 @@ public class LoggedIN extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -583,29 +582,63 @@ public class LoggedIN extends javax.swing.JFrame {
     }//GEN-LAST:event_jTable_YourGroupMouseClicked
 
     private void jButton_EnterGroupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_EnterGroupActionPerformed
-        PreparedStatement st;
+        //Finding the selected group
+        PreparedStatement ss;
         ResultSet rs;
+        
         
         try{                       
             int row = jTable_YourGroup.getSelectedRow();
-            String Table_click = (jTable_YourGroup.getModel().getValueAt(row, 1).toString());
-            
-            String searchQuery = "SELECT * FROM user_in_group WHERE Group_ID ='"+Table_click+"'";
-            st = loginConnect.getConnection().prepareStatement(searchQuery);           
-            rs = st.executeQuery();
-            
-            if(rs.next())
-            {     
-                int currentid = rs.getInt("Group_ID");
-                String.valueOf(currentid);
-                JOptionPane.showMessageDialog(null, "You are in the Group" + currentid, "Group Interface",2);               
+            String Table_click = (jTable_YourGroup.getModel().getValueAt(row, 2).toString());
+            boolean isleader;
+            if(Table_click == "true")
+            {
+                isleader = true;
+            }
+            else 
+            {
+                isleader = false;
             }
             
+            System.out.println(isleader);
+            
+            System.out.println(Table_click);
+            
+            String searchQuery = "SELECT * FROM user_in_group WHERE Is_Leader ='"+Table_click+"' AND User_ID = "+jLabel_displayuserID.getText()+" ";
+            ss = loginConnect.getConnection().prepareStatement(searchQuery);
+            rs = ss.executeQuery();
+            
+            System.out.println(jLabel_displayuserID.getText());
+            
+            
+            if(rs.next()) {
+                if(isleader)
+                {     
+                    //int currentid = rs.getInt("Group_ID");
+                    //String.valueOf(currentid);
+                    //Dylan's user interface for when they are a leader
+                    //Dylan's user interface for when they are not a leader
+                    JOptionPane.showMessageDialog(null, "You are in the Group and you are the leader", "Group Interface",2);
+                    
+                }
+                else 
+                    {
+                        //String.valueOf(currentid);
+                        //String.valueOf(isleader);
+                        //Dylan's user interface for when they are not a leader
+                        JOptionPane.showMessageDialog(null, "You are in the Group" , "Group Interface",2);
+
+                    }
+            }
+            
+            
         }
+        
         catch(Exception e){
         
         JOptionPane.showMessageDialog(null, e);        
-        }   
+        }  
+        
     }//GEN-LAST:event_jButton_EnterGroupActionPerformed
 
     private void jButton_JoinGroupMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton_JoinGroupMouseClicked
@@ -648,7 +681,6 @@ public class LoggedIN extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.persistence.EntityManager entityManager;
     private javax.swing.JButton jButton_CreateGroup;
     private javax.swing.JButton jButton_EnterGroup;
     private javax.swing.JButton jButton_JoinGroup;
