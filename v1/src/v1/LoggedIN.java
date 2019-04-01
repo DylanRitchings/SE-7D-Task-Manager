@@ -582,43 +582,63 @@ public class LoggedIN extends javax.swing.JFrame {
     }//GEN-LAST:event_jTable_YourGroupMouseClicked
 
     private void jButton_EnterGroupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_EnterGroupActionPerformed
-                        //Finding the selected group
+        //Finding the selected group
         PreparedStatement ss;
         ResultSet rs;
         
         
         try{                       
             int row = jTable_YourGroup.getSelectedRow();
-            String Table_click = (jTable_YourGroup.getModel().getValueAt(row, 1).toString());
+            String Table_click = (jTable_YourGroup.getModel().getValueAt(row, 2).toString());
+            boolean isleader;
+            if(Table_click == "true")
+            {
+                isleader = true;
+            }
+            else 
+            {
+                isleader = false;
+            }
             
-            String searchQuery = "SELECT * FROM user_in_group WHERE Is_Leader ='"+Table_click+"'";
+            System.out.println(isleader);
+            
+            System.out.println(Table_click);
+            
+            String searchQuery = "SELECT * FROM user_in_group WHERE Is_Leader ='"+Table_click+"' AND User_ID = "+jLabel_displayuserID.getText()+" ";
             ss = loginConnect.getConnection().prepareStatement(searchQuery);
             rs = ss.executeQuery();
             
-            boolean isleader = rs.getBoolean("Is_Leader");
+            System.out.println(jLabel_displayuserID.getText());
             
-            if(isleader = true)
-            {     
-                //int currentid = rs.getInt("Group_ID");
-                //String.valueOf(currentid);
-                //Dylan's user interface for when they are a leader
-                //Dylan's user interface for when they are not a leader
-                JOptionPane.showMessageDialog(null, "You are in the Group" + "and you are the leader", "Group Interface",2);
-                if(isleader = false)
-                {
+            
+            if(rs.next()) {
+                if(isleader)
+                {     
+                    //int currentid = rs.getInt("Group_ID");
                     //String.valueOf(currentid);
-                    //String.valueOf(isleader);
+                    //Dylan's user interface for when they are a leader
                     //Dylan's user interface for when they are not a leader
-                    JOptionPane.showMessageDialog(null, "You are in the Group" , "Group Interface",2);
+                    JOptionPane.showMessageDialog(null, "You are in the Group and you are the leader", "Group Interface",2);
                     
                 }
+                else 
+                    {
+                        //String.valueOf(currentid);
+                        //String.valueOf(isleader);
+                        //Dylan's user interface for when they are not a leader
+                        JOptionPane.showMessageDialog(null, "You are in the Group" , "Group Interface",2);
+
+                    }
             }
             
+            
         }
+        
         catch(Exception e){
         
         JOptionPane.showMessageDialog(null, e);        
         }  
+        
     }//GEN-LAST:event_jButton_EnterGroupActionPerformed
 
     private void jButton_JoinGroupMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton_JoinGroupMouseClicked
