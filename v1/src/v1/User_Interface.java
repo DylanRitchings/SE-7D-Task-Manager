@@ -6,15 +6,24 @@
 package v1;
 
 import database_console.DBConnect;
+import group_page.TaskViewLeader;
+import java.awt.BorderLayout;
+import java.awt.Container;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.BoxLayout;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.ScrollPaneConstants;
+import v1.Group_utils;
 
 /**
  *
@@ -218,19 +227,163 @@ public class User_Interface extends javax.swing.JFrame {
         }
 
     }
+    
+    public static int getUserMemberTasksId(int userId) {
 
+        int tasks = 0;
+
+//        //select from query
+        String select = "SELECT Task_ID FROM user_member_group where User_ID = ?";
+        ResultSet rs;
+
+        try (Connection con = DBConnect.databaseConnect();) {
+
+            PreparedStatement pst = con.prepareStatement(select);
+            pst.setInt(1, userId);
+
+            rs = pst.executeQuery();
+            while (rs.next()) {
+
+                tasks = rs.getInt("Task_ID");
+
+                System.out.format("%s,  \n", tasks);
+
+            }
+
+        } catch (SQLException ex) {
+
+            Logger lgr = Logger.getLogger(DBConnect.class.getName());
+            lgr.log(Level.SEVERE, ex.getMessage(), ex);
+
+        }
+
+        return tasks;
+    }
+
+    /**
+     *
+     * @param userId
+     * @return
+     */
+   
+    
+    public static ArrayList getUserMemberGroupIds(int userId){
+        //ArrayList taskIDs = getTaskIDs(groupID);
+       // ArrayList<ArrayList<String>> tIds = new ArrayList<>();
+        ArrayList<String> tIds = new ArrayList<>();
+//        ArrayList<String> tTitle = new ArrayList<>();
+//        ArrayList<String> tStart = new ArrayList<>();
+//        ArrayList<String> tEnd = new ArrayList<>();
+//        ArrayList<String> tDesc = new ArrayList<>();
+//        ArrayList<String> tComp = new ArrayList<>();
+       // for (Object taskID :taskIDs){
+            String query = "SELECT Task_ID FROM user_member_group where User_ID ="+ userId+";";
+            ResultSet tDetailsrs = DBConnect.databaseSelect(query);
+            try{
+                while (tDetailsrs.next()) {
+                    tIds.add(tDetailsrs.getString("Task_ID"));
+//                    tTitle.add(tDetailsrs.getString("Task_Title"));
+//                    tStart.add(tDetailsrs.getString("Task_Start"));
+//                    tEnd.add(tDetailsrs.getString("Task_Deadline"));
+//                    tDesc.add(tDetailsrs.getString("Task_Description"));
+//                    tComp.add(tDetailsrs.getString("Is_Complete"));
+                }
+                tDetailsrs.close();
+
+            }catch (SQLException ex) {
+                    Logger.getLogger(Group_utils.class.getName()).log(Level.SEVERE, null, ex);
+                    return null;
+                    }
+       // }
+        //tIds.add(tID);
+//        tDetails.add(tTitle);
+//        tDetails.add(tStart);
+//        tDetails.add(tEnd);
+//        tDetails.add(tDesc);
+//        tDetails.add(tComp);
+        return tIds;
+    }
+    
+   public static ArrayList getTaskDetails(ArrayList taskIDs){
+        //ArrayList taskIDs = getTaskIDs(TaskIDs);
+        ArrayList<ArrayList<String>> tDetails = new ArrayList<>();
+       ArrayList<String> tID = new ArrayList<>();
+        ArrayList<String> tTitle = new ArrayList<>();
+        ArrayList<String> tStart = new ArrayList<>();
+        ArrayList<String> tEnd = new ArrayList<>();
+        ArrayList<String> tDesc = new ArrayList<>();
+        ArrayList<String> tComp = new ArrayList<>();
+        for (Object taskID :taskIDs){
+            String query = "SELECT * FROM task where Task_ID ="+ taskID+";";
+           //System.out.print(taskIDs); 
+           ResultSet tDetailsrs = DBConnect.databaseSelect(query);
+            try{
+                while (tDetailsrs.next()) {
+                    tID.add(tDetailsrs.getString("Task_ID"));
+                    tTitle.add(tDetailsrs.getString("Task_Title"));
+                    tStart.add(tDetailsrs.getString("Task_Start"));
+                    tEnd.add(tDetailsrs.getString("Task_Deadline"));
+                    tDesc.add(tDetailsrs.getString("Task_Description"));
+                    tComp.add(tDetailsrs.getString("Is_Complete"));
+                }
+                tDetailsrs.close();
+
+            }catch (SQLException ex) {
+                    Logger.getLogger(Group_utils.class.getName()).log(Level.SEVERE, null, ex);
+                    return null;
+                    }
+        }
+        tDetails.add(tID);
+        tDetails.add(tTitle);
+        tDetails.add(tStart);
+        tDetails.add(tEnd);
+        tDetails.add(tDesc);
+        tDetails.add(tComp);
+        return tDetails;
+    } 
+   
+    /**
+     * Fill each task into the taskPanel
+     * @throws ParseException 
+     */
+//    public void fillTaskDetails() throws ParseException{
+//        Container cont = new Container();
+//        cont.setLayout(new BoxLayout(cont, BoxLayout.Y_AXIS));
+//        //BoxLayout taskLayout = new BoxLayout (taskPane,BoxLayout.Y_AXIS);
+//        taskPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+//        for (int count = 0; count < taskID.size(); count++){
+//            JPanel taskPanel  = new TaskViewLeader(taskID.get(count), taskTitle.get(count), taskStart.get(count), taskEnd.get(count), taskDesc.get(count), taskComp.get(count));
+//            cont.add(taskPanel, BorderLayout.LINE_START);
+//
+//           }
+//        taskPane.getViewport().setView(cont);
+//        //taskPane.add(cont);
+//        //taskPane.setVisible(true);
+//        taskPane.revalidate();
+//        taskPane.repaint();
+//    }
+    
+    
+    
     /**
      * Creates new form User_Interface
      *
      * @throws java.sql.SQLException
      */
-    public User_Interface() throws SQLException {
+    public User_Interface(int userId) throws SQLException {
         initComponents();
+        
+        ArrayList<String> tID = new ArrayList<>();
+        ArrayList<String> tTitle = new ArrayList<>();
+        ArrayList<String> tStart = new ArrayList<>();
+        ArrayList<String> tEnd = new ArrayList<>();
+        ArrayList<String> tDesc = new ArrayList<>();
+        ArrayList<String> tComp = new ArrayList<>();
         jButtonDeleteAccount.setVisible(false);
         jButtonPasswordChange.setVisible(false);
 
-        String userId = getUserIdById(1);
-        jLabelTopLeftUserIOd.setText(userId);
+        String userIdbyId = getUserIdById(1);
+        jLabelTopLeftUserIOd.setText(userIdbyId);
 
         String userEmail = getUserEmailById(1);
         jLabelEmailField.setText(userEmail);
@@ -239,6 +392,12 @@ public class User_Interface extends javax.swing.JFrame {
         jLabelNameField.setText(name);
 
         getUserGroupById(1);
+        
+        getUserMemberTasksId(1);
+        
+        getTaskDetails(getUserMemberGroupIds(userId));
+        
+        getUserMemberGroupIds(1);
 
 //         updateUserPasswordByEmail("hello","@");
         //deleteUserById(146);
@@ -254,17 +413,12 @@ public class User_Interface extends javax.swing.JFrame {
     private void initComponents() {
 
         jMenu1 = new javax.swing.JMenu();
-        jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
         jComboBox2 = new javax.swing.JComboBox<>();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabelTopLeftUserIOd = new javax.swing.JLabel();
@@ -273,14 +427,11 @@ public class User_Interface extends javax.swing.JFrame {
         jToggleButtonEdit = new javax.swing.JToggleButton();
         jButtonPasswordChange = new javax.swing.JButton();
         jButtonDeleteAccount = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
+        taskPane = new javax.swing.JScrollPane();
 
         jMenu1.setText("jMenu1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jButton1.setText("Invite");
 
         jLabel1.setText("Member");
 
@@ -298,14 +449,6 @@ public class User_Interface extends javax.swing.JFrame {
                 jComboBox2ActionPerformed(evt);
             }
         });
-
-        jLabel5.setText("Member");
-
-        jLabel6.setText("Member");
-
-        jLabel7.setText("profile");
-
-        jTextField4.setText("jTextField4");
 
         jLabel8.setText("Tasks for ");
 
@@ -338,28 +481,6 @@ public class User_Interface extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 226, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 223, Short.MAX_VALUE)
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -371,16 +492,16 @@ public class User_Interface extends javax.swing.JFrame {
                         .addComponent(jLabel4)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(22, 22, 22)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jToggleButtonEdit)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addGap(15, 15, 15)
-                                            .addComponent(jLabel9)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addGap(22, 22, 22)
+                                        .addComponent(jToggleButtonEdit))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(37, 37, 37)
+                                        .addComponent(jLabel9)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(12, 12, 12)))
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(0, 0, Short.MAX_VALUE)
@@ -388,19 +509,16 @@ public class User_Interface extends javax.swing.JFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(layout.createSequentialGroup()
+                                        .addGap(49, 49, 49)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addGap(199, 199, 199)
-                                                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addGap(49, 49, 49)
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(jButtonPasswordChange)
-                                                    .addComponent(jButtonDeleteAccount))))
-                                        .addGap(0, 0, Short.MAX_VALUE))))
+                                            .addComponent(jButtonPasswordChange)
+                                            .addComponent(jButtonDeleteAccount))
+                                        .addGap(0, 355, Short.MAX_VALUE))))
                             .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabelEmailField)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(taskPane, javax.swing.GroupLayout.PREFERRED_SIZE, 686, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabelEmailField))
                                 .addGap(0, 0, Short.MAX_VALUE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -415,67 +533,43 @@ public class User_Interface extends javax.swing.JFrame {
                                 .addComponent(jLabel3)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jLabelNameField)))
-                        .addGap(45, 45, 45)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel6))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel7)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addGap(24, 24, 24))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(8, 8, 8)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabelTopLeftUserIOd))
+                .addGap(27, 27, 27)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(4, 4, 4)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2)
-                            .addComponent(jButton1)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabelTopLeftUserIOd))
-                        .addGap(22, 22, 22)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabelNameField))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jLabelEmailField))
-                                .addGap(41, 41, 41))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jButtonPasswordChange)
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jToggleButtonEdit)
-                                    .addComponent(jButtonDeleteAccount)))))
+                            .addComponent(jLabel3)
+                            .addComponent(jLabelNameField))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabelEmailField))
+                        .addGap(41, 41, 41))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(26, 26, 26)
+                        .addComponent(jButtonPasswordChange)
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel7)
-                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jToggleButtonEdit)
+                            .addComponent(jButtonDeleteAccount))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel9)
                     .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(15, 15, 15)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(331, Short.MAX_VALUE))
+                .addGap(34, 34, 34)
+                .addComponent(taskPane, javax.swing.GroupLayout.PREFERRED_SIZE, 336, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(76, Short.MAX_VALUE))
         );
 
         pack();
@@ -555,7 +649,7 @@ public class User_Interface extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    new User_Interface().setVisible(true);
+                    new User_Interface(1).setVisible(true);
                 } catch (SQLException ex) {
                     Logger.getLogger(User_Interface.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -564,7 +658,6 @@ public class User_Interface extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonDeleteAccount;
     private javax.swing.JButton jButtonPasswordChange;
     private javax.swing.JComboBox<String> jComboBox1;
@@ -573,18 +666,17 @@ public class User_Interface extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JLabel jLabelEmailField;
     private javax.swing.JLabel jLabelNameField;
     private javax.swing.JLabel jLabelTopLeftUserIOd;
     private javax.swing.JMenu jMenu1;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JTextField jTextField4;
     private javax.swing.JToggleButton jToggleButtonEdit;
+    private javax.swing.JScrollPane taskPane;
     // End of variables declaration//GEN-END:variables
+
+    private void getTaskDetails() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
