@@ -50,7 +50,13 @@ public class TaskViewComplete extends javax.swing.JPanel {
         startLabel.setText("Start: "+start);
         endLabel.setText("Deadline: "+end);
         timeLeft.setStringPainted(true);
-        
+        if (comp == true){
+            completeTask.setEnabled(false);
+        }
+        else{
+            completeTask.setSelected(false);
+        }
+            
         timeLeftPb();
     }
 /**
@@ -136,6 +142,11 @@ public class TaskViewComplete extends javax.swing.JPanel {
         completeTask.setSelected(true);
         completeTask.setText("Complete");
         completeTask.setToolTipText("");
+        completeTask.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                completeTaskActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -185,6 +196,10 @@ public class TaskViewComplete extends javax.swing.JPanel {
         JFrame taskView = new Task_View(Integer.parseInt(id));
         taskView.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void completeTaskActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_completeTaskActionPerformed
+        completeTask.setEnabled(false);
+    }//GEN-LAST:event_completeTaskActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
