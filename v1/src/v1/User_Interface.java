@@ -360,9 +360,10 @@ public class User_Interface extends javax.swing.JFrame {
         cont.setLayout(new BoxLayout(cont, BoxLayout.Y_AXIS));
         //BoxLayout taskLayout = new BoxLayout (taskPane,BoxLayout.Y_AXIS);
         taskPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-        for (int count = 0; count < tID.size(); count++){
+        for (int count = 0; count < tID.size()-1; count++){
             JPanel taskPanel  = new TaskViewComplete(tID.get(count), tTitle.get(count), tStart.get(count), tEnd.get(count), tDesc.get(count), tComp.get(count));
             cont.add(taskPanel, BorderLayout.LINE_START);
+            
 
            }
         taskPane.getViewport().setView(cont);
@@ -377,6 +378,7 @@ public class User_Interface extends javax.swing.JFrame {
     /**
      * Creates new form User_Interface
      *
+     * @param userId
      * @throws java.sql.SQLException
      */
     public User_Interface(int userId) throws SQLException {
@@ -406,9 +408,19 @@ public class User_Interface extends javax.swing.JFrame {
         ArrayList<String> tEnd = tDetails.get(3);
         ArrayList<String> tDesc = tDetails.get(4);
         ArrayList<String> tComp = tDetails.get(5);
-
+        System.out.println(tID);
+        System.out.println(tTitle);
+        System.out.println(tStart);
+        System.out.println(tEnd);
+        System.out.println(tDesc);
+        System.out.println(tComp);
+         try {
+             fillTaskDetails();
 //         updateUserPasswordByEmail("hello","@");
-        //deleteUserById(146);
+//deleteUserById(146);
+         } catch (ParseException ex) {
+             Logger.getLogger(User_Interface.class.getName()).log(Level.SEVERE, null, ex);
+         }
     }
 
     /**
