@@ -227,6 +227,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="jLabel10"/>
       </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_SerializeTo" type="java.lang.String" value="User_Interface_jLabelNameField"/>
+      </AuxValues>
     </Component>
     <Component class="javax.swing.JToggleButton" name="jToggleButtonEdit">
       <Properties>

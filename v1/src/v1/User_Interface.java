@@ -32,7 +32,8 @@ import v1.Group_utils;
  */
 public class User_Interface extends javax.swing.JFrame {
 
-    
+    int user_id;
+    String user_id_string;
     
      ArrayList<String> tID = new ArrayList<>();
         ArrayList<String> tTitle = new ArrayList<>();
@@ -145,7 +146,7 @@ public class User_Interface extends javax.swing.JFrame {
             lgr.log(Level.SEVERE, ex.getMessage(), ex);
 
         }
-
+        System.out.println(userName);
         return userName;
     }
 
@@ -372,34 +373,34 @@ public class User_Interface extends javax.swing.JFrame {
         taskPane.revalidate();
         taskPane.repaint();
     }
+
+public User_Interface() {
+    initComponents();
+}
     
-    
-    
-    /**
-     * Creates new form User_Interface
-     *
-     * @param userId
-     * @throws java.sql.SQLException
-     */
-    public User_Interface(int userId) throws SQLException {
+public User_Interface(int userId, String userEmail)
+    {
+        this.user_id = userId;
+        this.user_id_string = Integer.toString(userId);
+        
         initComponents();
         
         
         jButtonDeleteAccount.setVisible(false);
         jButtonPasswordChange.setVisible(false);
 
-        String userIdbyId = getUserIdById(1);
+        String userIdbyId = getUserIdById(userId);
         jLabelTopLeftUserIOd.setText(userIdbyId);
 
-        String userEmail = getUserEmailById(1);
+        //String userEmail = getUserEmailById(1);
         jLabelEmailField.setText(userEmail);
 
-        String name = getUserNameById(1);
+        String name = getUserNameById(userId);
         jLabelNameField.setText(name);
 
-        getUserGroupById(1);
+        getUserGroupById(user_id);
         
-        getUserMemberTasksId(1);
+        getUserMemberTasksId(user_id);
         
         ArrayList<ArrayList<String>> tDetails = getTaskDetails(getUserMemberGroupIds(userId));
         ArrayList<String> tID = tDetails.get(0);
@@ -414,7 +415,9 @@ public class User_Interface extends javax.swing.JFrame {
         System.out.println(tEnd);
         System.out.println(tDesc);
         System.out.println(tComp);
-         try {
+        System.out.println(name);
+        
+        try {
              fillTaskDetails();
 //         updateUserPasswordByEmail("hello","@");
 //deleteUserById(146);
@@ -422,6 +425,56 @@ public class User_Interface extends javax.swing.JFrame {
              Logger.getLogger(User_Interface.class.getName()).log(Level.SEVERE, null, ex);
          }
     }
+    
+    
+//    /**
+//     * Creates new form User_Interface
+//     *
+//     * @param userId
+//     * @throws java.sql.SQLException
+//     */
+//    public User_Interface(int userId) throws SQLException {
+//        
+//        initComponents();
+//        
+//        
+//        jButtonDeleteAccount.setVisible(false);
+//        jButtonPasswordChange.setVisible(false);
+//
+//        String userIdbyId = getUserIdById(1);
+//        jLabelTopLeftUserIOd.setText(userIdbyId);
+//
+//        String userEmail = getUserEmailById(1);
+//        jLabelEmailField.setText(userEmail);
+//
+//        String name = getUserNameById(1);
+//        jLabelNameField.setText(name);
+//
+//        getUserGroupById(1);
+//        
+//        getUserMemberTasksId(1);
+//        
+//        ArrayList<ArrayList<String>> tDetails = getTaskDetails(getUserMemberGroupIds(userId));
+//        ArrayList<String> tID = tDetails.get(0);
+//        ArrayList<String> tTitle = tDetails.get(1);
+//        ArrayList<String> tStart = tDetails.get(2);
+//        ArrayList<String> tEnd = tDetails.get(3);
+//        ArrayList<String> tDesc = tDetails.get(4);
+//        ArrayList<String> tComp = tDetails.get(5);
+//        System.out.println(tID);
+//        System.out.println(tTitle);
+//        System.out.println(tStart);
+//        System.out.println(tEnd);
+//        System.out.println(tDesc);
+//        System.out.println(tComp);
+//         try {
+//             fillTaskDetails();
+////         updateUserPasswordByEmail("hello","@");
+////deleteUserById(146);
+//         } catch (ParseException ex) {
+//             Logger.getLogger(User_Interface.class.getName()).log(Level.SEVERE, null, ex);
+//         }
+//    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -581,7 +634,6 @@ public class User_Interface extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jToggleButtonEdit)
                             .addComponent(jButtonDeleteAccount))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel9)
@@ -668,11 +720,7 @@ public class User_Interface extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                try {
-                    new User_Interface(1).setVisible(true);
-                } catch (SQLException ex) {
-                    Logger.getLogger(User_Interface.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                    new User_Interface().setVisible(true);
             }
         });
     }
