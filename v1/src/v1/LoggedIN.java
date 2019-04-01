@@ -200,6 +200,11 @@ public class LoggedIN extends javax.swing.JFrame {
 
         jButton_CreateGroup.setText("Create Group");
         jButton_CreateGroup.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jButton_CreateGroup.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton_CreateGroupMouseClicked(evt);
+            }
+        });
         jButton_CreateGroup.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton_CreateGroupActionPerformed(evt);
@@ -595,6 +600,13 @@ public class LoggedIN extends javax.swing.JFrame {
         //
         //
     }//GEN-LAST:event_jButton_JoinGroupMouseClicked
+
+    private void jButton_CreateGroupMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton_CreateGroupMouseClicked
+        //Shows the Create Group interface
+        Create_Group create_group_form = new Create_Group();
+        create_group_form.setVisible(true);
+        create_group_form.pack();
+    }//GEN-LAST:event_jButton_CreateGroupMouseClicked
    /**
      * @param args the command line arguments
      */
@@ -631,6 +643,7 @@ public class LoggedIN extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.persistence.EntityManager entityManager;
     private javax.swing.JButton jButton_CreateGroup;
     private javax.swing.JButton jButton_EnterGroup;
     private javax.swing.JButton jButton_JoinGroup;
