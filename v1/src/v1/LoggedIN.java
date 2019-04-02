@@ -6,6 +6,8 @@
 package v1;
 
 import database_console.loginConnect;
+import group_page.GroupPageLeader;
+import group_page.GroupPageMember;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -18,7 +20,6 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import v1.Login_Interface;
-import v1.Profile;
 
 /**
  *
@@ -185,7 +186,7 @@ public class LoggedIN extends javax.swing.JFrame {
         jPanel2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         jPanel_sidePanel.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel_sidePanel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel_sidePanel.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
 
         jLabel_close_side_panel.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         jLabel_close_side_panel.setText("X");
@@ -199,7 +200,7 @@ public class LoggedIN extends javax.swing.JFrame {
         jLabel2.setText("Your Groups");
 
         jButton_CreateGroup.setText("Create Group");
-        jButton_CreateGroup.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jButton_CreateGroup.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
         jButton_CreateGroup.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton_CreateGroupMouseClicked(evt);
@@ -212,7 +213,7 @@ public class LoggedIN extends javax.swing.JFrame {
         });
 
         jButton_EnterGroup.setText("Enter Group");
-        jButton_EnterGroup.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jButton_EnterGroup.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
         jButton_EnterGroup.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton_EnterGroupActionPerformed(evt);
@@ -220,7 +221,7 @@ public class LoggedIN extends javax.swing.JFrame {
         });
 
         jButton_logout1.setText("Log out");
-        jButton_logout1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jButton_logout1.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
         jButton_logout1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton_logout1ActionPerformed(evt);
@@ -228,7 +229,7 @@ public class LoggedIN extends javax.swing.JFrame {
         });
 
         jButton_Profile.setText("Profile");
-        jButton_Profile.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jButton_Profile.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
         jButton_Profile.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton_ProfileActionPerformed(evt);
@@ -259,11 +260,10 @@ public class LoggedIN extends javax.swing.JFrame {
             }
         });
         jTable_YourGroup.getTableHeader().setReorderingAllowed(false);
-        
         jScrollPane4.setViewportView(jTable_YourGroup);
 
         jButton_LeaveGroup.setText("Leave Group");
-        jButton_LeaveGroup.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jButton_LeaveGroup.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
         jButton_LeaveGroup.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton_LeaveGroupActionPerformed(evt);
@@ -328,7 +328,7 @@ public class LoggedIN extends javax.swing.JFrame {
         jLabel3.setText("Search Group");
 
         jButton_JoinGroup.setText("Join Group");
-        jButton_JoinGroup.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jButton_JoinGroup.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
         jButton_JoinGroup.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton_JoinGroupMouseClicked(evt);
@@ -336,7 +336,7 @@ public class LoggedIN extends javax.swing.JFrame {
         });
 
         jButton_logout2.setText("Log out");
-        jButton_logout2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jButton_logout2.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
         jButton_logout2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton_logout2ActionPerformed(evt);
@@ -347,7 +347,7 @@ public class LoggedIN extends javax.swing.JFrame {
         jLabel4.setText("User's email:");
 
         jButton_show_side_Panel.setText("Show Side Panel");
-        jButton_show_side_Panel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jButton_show_side_Panel.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
         jButton_show_side_Panel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton_show_side_PanelMouseClicked(evt);
@@ -356,6 +356,7 @@ public class LoggedIN extends javax.swing.JFrame {
 
         jLabel_displayEmail.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
 
+        jTable_FindGroup.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
         jTable_FindGroup.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -400,8 +401,8 @@ public class LoggedIN extends javax.swing.JFrame {
                             .addComponent(jLabel1))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel_displayuserID)
-                            .addComponent(jLabel_displayEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel_displayEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel_displayuserID, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(24, 24, 24))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(142, 142, 142)
@@ -456,7 +457,15 @@ public class LoggedIN extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton_CreateGroupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_CreateGroupActionPerformed
-        // TODO add your handling code here:
+        Create_Group g_form = new Create_Group();
+        g_form.setVisible(true);
+        g_form.pack();
+        
+        g_form.jLabel_Email.setText(jLabel_displayEmail.getText());
+        g_form.jLabel_ID.setText(jLabel_displayuserID.getText());
+        
+        this.dispose();
+        
     }//GEN-LAST:event_jButton_CreateGroupActionPerformed
 
     private void jButton_ProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_ProfileActionPerformed
@@ -527,8 +536,8 @@ public class LoggedIN extends javax.swing.JFrame {
                 String Del_groups = "DELETE FROM groups WHERE Group_ID = '"+Table_click_For_Group+"'";    
                 st = loginConnect.getConnection().prepareStatement(Del_user_in_group);
                 rt = loginConnect.getConnection().prepareStatement(Del_groups);
-                int val = st.executeUpdate();
-                int val2 = rt.executeUpdate();
+                st.executeUpdate();
+                rt.executeUpdate();
                 JOptionPane.showMessageDialog(null, "You have left the Group " + Table_click_For_Group + "and Group " + Table_click_For_Group + " has been deleted", "Group Deletion",2); 
 
                 findYourGroups();
@@ -539,7 +548,7 @@ public class LoggedIN extends javax.swing.JFrame {
                 //Delete the selected group id
                 String Del_user_in_group = "DELETE FROM user_in_group WHERE Group_ID = '"+Table_click_For_Group+"'";
                 st = loginConnect.getConnection().prepareStatement(Del_user_in_group);
-                int val = st.executeUpdate();
+                st.executeUpdate();
                 
                 JOptionPane.showMessageDialog(null, "You have left the Group " + Table_click_For_Group , "Group Deletion",2);
                 
@@ -584,12 +593,21 @@ public class LoggedIN extends javax.swing.JFrame {
                 if(isleader)
                 {     
                     //Dylan's user interface for when they are a leader
+                    System.out.println(GroupID);
+                    GroupPageLeader leader_form = new GroupPageLeader(Integer.parseInt(GroupID));
+                    leader_form.setVisible(true);
+                    leader_form.pack();
+                    
                     JOptionPane.showMessageDialog(null, "You are in the Group " + GroupID + " and you are the leader", "Group Interface",2);
                     
                 }
                 else 
                     {
                         //Dylan's user interface for when they are not a leader
+                        GroupPageMember member_form = new GroupPageMember(Integer.parseInt(GroupID));
+                        member_form.setVisible(true);
+                        member_form.pack();
+                        
                         JOptionPane.showMessageDialog(null, "You are in the Group " + GroupID, "Group Interface",2);
                     }
             }
@@ -646,7 +664,6 @@ public class LoggedIN extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.persistence.EntityManager entityManager;
     private javax.swing.JButton jButton_CreateGroup;
     private javax.swing.JButton jButton_EnterGroup;
     private javax.swing.JButton jButton_JoinGroup;

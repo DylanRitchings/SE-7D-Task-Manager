@@ -42,6 +42,7 @@ public class User_Interface extends javax.swing.JFrame {
     ArrayList<String> tEnd;
     ArrayList<String> tDesc;
     ArrayList<String> tComp;
+    String userEmail;
     /**
      *
      * @param userId
@@ -394,6 +395,7 @@ public class User_Interface extends javax.swing.JFrame {
 //    
 public User_Interface(int profileUserId, String userEmail)
     {
+        this.userEmail = getUserEmailById(user_id);
         int userId = profileUserId;
         this.taskIDs = getUserMemberGroupIds(userId);
         this.tDetails = getTaskDetails(taskIDs);
@@ -435,7 +437,51 @@ public User_Interface(int profileUserId, String userEmail)
              Logger.getLogger(User_Interface.class.getName()).log(Level.SEVERE, null, ex);
          }
     }
-    
+
+public User_Interface(int profileUserId)
+    {
+        this.userEmail = getUserEmailById(user_id);
+        int userId = profileUserId;
+        this.taskIDs = getUserMemberGroupIds(userId);
+        this.tDetails = getTaskDetails(taskIDs);
+        this.tComp = tDetails.get(5);
+        this.tDesc = tDetails.get(4);
+        this.tEnd = tDetails.get(3);
+        this.tStart = tDetails.get(2);
+        this.tTitle = tDetails.get(1);
+        this.tID = tDetails.get(0);
+        this.user_id = userId;
+        this.user_id_string = Integer.toString(userId);
+        
+        initComponents();
+        
+        
+        jButtonDeleteAccount.setVisible(false);
+        jButtonPasswordChange.setVisible(false);
+
+        String userIdbyId = getUserIdById(userId);
+        jLabelTopLeftUserIOd.setText(userIdbyId);
+
+        //String userEmail = getUserEmailById(1);
+        jLabelEmailField.setText(userEmail);
+
+        String name = getUserNameById(userId);
+        jLabelNameField.setText(name);
+
+        getUserGroupById(user_id);
+        
+        getUserMemberTasksId(user_id);
+        
+        
+        
+        try {
+             fillTaskDetails();
+//         updateUserPasswordByEmail("hello","@");
+//deleteUserById(146);
+         } catch (ParseException ex) {
+             Logger.getLogger(User_Interface.class.getName()).log(Level.SEVERE, null, ex);
+         }
+    }
     
 //    /**
 //     * Creates new form User_Interface
@@ -703,7 +749,7 @@ public User_Interface(int profileUserId, String userEmail)
         if (newPword == null) {
             System.out.println("The user canceled");
         } else {
-            updateUserPasswordByEmail(newPword, "@");
+            updateUserPasswordByEmail(newPword, userEmail);
 
     }//GEN-LAST:event_jButtonPasswordChangeActionPerformed
     }
