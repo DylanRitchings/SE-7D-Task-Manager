@@ -59,7 +59,9 @@ public final class GroupPageLeader extends javax.swing.JFrame {
     ArrayList<String> taskDesc;
     ArrayList<String> taskComp;
     
-    
+    public GroupPageLeader(){
+        
+    }
     
     
     /**
@@ -179,7 +181,7 @@ public final class GroupPageLeader extends javax.swing.JFrame {
 
         jMenuItem1 = new javax.swing.JMenuItem();
         jScrollPane1 = new javax.swing.JScrollPane();
-        memberList = new javax.swing.JList<String>();
+        memberList = new javax.swing.JList<>();
         removeMember = new javax.swing.JToggleButton();
         addMember = new javax.swing.JButton();
         taskPane = new javax.swing.JScrollPane();
@@ -187,6 +189,7 @@ public final class GroupPageLeader extends javax.swing.JFrame {
         nameLabel = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         createTaskButton = new javax.swing.JButton();
+        closeButton = new javax.swing.JButton();
 
         jMenuItem1.setText("jMenuItem1");
 
@@ -240,6 +243,13 @@ public final class GroupPageLeader extends javax.swing.JFrame {
             }
         });
 
+        closeButton.setText("Close");
+        closeButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                closeButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -249,9 +259,12 @@ public final class GroupPageLeader extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(nameLabel)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(taskPane, javax.swing.GroupLayout.PREFERRED_SIZE, 712, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(createTaskButton))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(closeButton)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(createTaskButton)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(28, 28, 28)
@@ -276,8 +289,9 @@ public final class GroupPageLeader extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(addMember)
                     .addComponent(viewProfile)
-                    .addComponent(createTaskButton))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(createTaskButton)
+                    .addComponent(closeButton))
+                .addGap(45, 45, 45)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(taskPane, javax.swing.GroupLayout.PREFERRED_SIZE, 373, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
@@ -287,7 +301,7 @@ public final class GroupPageLeader extends javax.swing.JFrame {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(removeMember)))
-                .addContainerGap(132, Short.MAX_VALUE))
+                .addContainerGap(93, Short.MAX_VALUE))
         );
 
         pack();
@@ -345,6 +359,10 @@ public final class GroupPageLeader extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_createTaskButtonActionPerformed
 
+    private void closeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeButtonActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_closeButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -378,19 +396,16 @@ public final class GroupPageLeader extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                try {
 
-                    new GroupPageLeader(131).setVisible(true);
+                new GroupPageLeader().setVisible(true);
 
-                } catch (SQLException ex) {
-                    Logger.getLogger(GroupPageLeader.class.getName()).log(Level.SEVERE, null, ex);
-                }
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addMember;
+    private javax.swing.JButton closeButton;
     private javax.swing.JButton createTaskButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenuItem jMenuItem1;

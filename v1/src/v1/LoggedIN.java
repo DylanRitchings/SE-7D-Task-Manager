@@ -593,7 +593,8 @@ public class LoggedIN extends javax.swing.JFrame {
                 if(isleader)
                 {     
                     //Dylan's user interface for when they are a leader
-                    GroupPageLeader leader_form = new GroupPageLeader(group_id);
+                    System.out.println(GroupID);
+                    GroupPageLeader leader_form = new GroupPageLeader(Integer.parseInt(GroupID));
                     leader_form.setVisible(true);
                     leader_form.pack();
                     
@@ -603,7 +604,7 @@ public class LoggedIN extends javax.swing.JFrame {
                 else 
                     {
                         //Dylan's user interface for when they are not a leader
-                        GroupPageMember member_form = new GroupPageMember(group_id);
+                        GroupPageMember member_form = new GroupPageMember(Integer.parseInt(GroupID));
                         member_form.setVisible(true);
                         member_form.pack();
                         
@@ -663,7 +664,6 @@ public class LoggedIN extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.persistence.EntityManager entityManager;
     private javax.swing.JButton jButton_CreateGroup;
     private javax.swing.JButton jButton_EnterGroup;
     private javax.swing.JButton jButton_JoinGroup;
