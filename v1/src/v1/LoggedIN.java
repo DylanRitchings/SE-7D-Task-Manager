@@ -6,6 +6,8 @@
 package v1;
 
 import database_console.loginConnect;
+import group_page.GroupPageLeader;
+import group_page.GroupPageMember;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -354,6 +356,7 @@ public class LoggedIN extends javax.swing.JFrame {
 
         jLabel_displayEmail.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
 
+        jTable_FindGroup.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
         jTable_FindGroup.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -398,8 +401,8 @@ public class LoggedIN extends javax.swing.JFrame {
                             .addComponent(jLabel1))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel_displayuserID)
-                            .addComponent(jLabel_displayEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel_displayEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel_displayuserID, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(24, 24, 24))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(142, 142, 142)
@@ -590,12 +593,20 @@ public class LoggedIN extends javax.swing.JFrame {
                 if(isleader)
                 {     
                     //Dylan's user interface for when they are a leader
+                    GroupPageLeader leader_form = new GroupPageLeader(group_id);
+                    leader_form.setVisible(true);
+                    leader_form.pack();
+                    
                     JOptionPane.showMessageDialog(null, "You are in the Group " + GroupID + " and you are the leader", "Group Interface",2);
                     
                 }
                 else 
                     {
                         //Dylan's user interface for when they are not a leader
+                        GroupPageMember member_form = new GroupPageMember(group_id);
+                        member_form.setVisible(true);
+                        member_form.pack();
+                        
                         JOptionPane.showMessageDialog(null, "You are in the Group " + GroupID, "Group Interface",2);
                     }
             }

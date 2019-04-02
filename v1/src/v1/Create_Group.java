@@ -183,7 +183,9 @@ public class Create_Group extends javax.swing.JFrame {
     private void jButton1DoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1DoneActionPerformed
         if (validate_Inputs()) {
             create_group();
-            group_creator();
+            
+//            group_creator();
+            
             //Show a new form
             LoggedIN form = new LoggedIN();
             form.setVisible(true);
@@ -194,6 +196,8 @@ public class Create_Group extends javax.swing.JFrame {
             form.jLabel_displayuserID.setText(jLabel_ID.getText());
             form.findYourGroups();
             form.searchGroup();
+            
+            
         }
     }//GEN-LAST:event_jButton1DoneActionPerformed
  
@@ -278,41 +282,38 @@ public class Create_Group extends javax.swing.JFrame {
         }
     }  
      
- private void group_creator()
- {
-//     int userID = Integer.valueOf(jLabel_Email.getText());
-//     Boolean isleader = true;
-     
-     String select = "SELECT Group_ID FROM groups WHERE Group_Name = "+jTextField1GroupName.getText()+"";
-     
-//     String insertGroup = "INSERT INTO user_in_group(User_ID, Group_ID, Is_Leader) "
-//                + "VALUES(?, ?, ?)";
-     
-     try (Connection con = DBConnect.databaseConnect();) {
-            
-            PreparedStatement pst = con.prepareStatement(select);
-            
-            ResultSet g_ID = pst.executeQuery();
-            
-            System.out.println(g_ID);
-            
-//            PreparedStatement st = con.prepareStatement(insertGroup);
-//            st.setInt(1, userID);
-//            st.setInt(2, g_ID); 
-//            st.setBoolean(2, isleader); 
-//            st.executeUpdate();
-//            st.close();
-            
-            JOptionPane.showMessageDialog(null, "Group creation successful", "Group created", 1);
-            this.dispose();
-            
-        } catch (SQLException ex) {
-
-            Logger lgr = Logger.getLogger(DBConnect.class.getName());
-            lgr.log(Level.SEVERE, ex.getMessage(), ex);
-
-        }
- }
+//     private void group_creator()
+//     {
+//         int userID = Integer.valueOf(jLabel_Email.getText());
+//         Boolean isleader = true;
+//
+//         String select = "SELECT Group_ID FROM groups WHERE Group_Name = bob";
+//
+//         String insertGroup = "INSERT INTO user_in_group(User_ID, Group_ID, Is_Leader) "
+//                    + "VALUES(?, ?, ?)";
+//
+//         try (Connection con = DBConnect.databaseConnect();) {
+//
+//                PreparedStatement pst = con.prepareStatement(select);
+//
+//                int g_ID = pst.executeUpdate();
+//
+//                System.out.println(g_ID);
+//
+//                PreparedStatement st = con.prepareStatement(insertGroup);
+//                st.setInt(1, userID);
+//                st.setInt(2, g_ID); 
+//                st.setBoolean(2, isleader); 
+//                st.executeUpdate();
+//                st.close();
+//
+//            } catch (SQLException ex) {
+//
+//                Logger lgr = Logger.getLogger(DBConnect.class.getName());
+//                lgr.log(Level.SEVERE, ex.getMessage(), ex);
+//
+//            }
+//     }
     
 private boolean validate_Inputs () {
     
