@@ -219,7 +219,6 @@ public class User_Interface extends javax.swing.JFrame {
 
 //        //select from query
         String select = "update User set User_Password = ? where User_Email = ?";
-        System.out.println("update" + pWord + "em" + eMail);
         try (Connection con = DBConnect.databaseConnect();) {
 
             PreparedStatement pst = con.prepareStatement(select);
