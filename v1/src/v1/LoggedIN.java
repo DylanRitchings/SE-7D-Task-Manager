@@ -565,7 +565,7 @@ public class LoggedIN extends javax.swing.JFrame {
         //Finding the selected group
         PreparedStatement ss;
         ResultSet rs;       
-        
+        int user_idx = Integer.parseInt(jLabel_displayuserID.getText());
         //This function will get the group id
         int group_id = jTable_YourGroup.getSelectedRow();
         String Table_click_For_Group = (jTable_YourGroup.getModel().getValueAt(group_id, 1).toString());
@@ -594,7 +594,7 @@ public class LoggedIN extends javax.swing.JFrame {
                 {     
                     //Dylan's user interface for when they are a leader
                     System.out.println(GroupID);
-                    GroupPageLeader leader_form = new GroupPageLeader(Integer.parseInt(GroupID));
+                    GroupPageLeader leader_form = new GroupPageLeader(Integer.parseInt(GroupID),user_idx);
                     leader_form.setVisible(true);
                     leader_form.pack();
                     
@@ -604,7 +604,7 @@ public class LoggedIN extends javax.swing.JFrame {
                 else 
                     {
                         //Dylan's user interface for when they are not a leader
-                        GroupPageMember member_form = new GroupPageMember(Integer.parseInt(GroupID));
+                        GroupPageMember member_form = new GroupPageMember(Integer.parseInt(GroupID),user_idx);
                         member_form.setVisible(true);
                         member_form.pack();
                         

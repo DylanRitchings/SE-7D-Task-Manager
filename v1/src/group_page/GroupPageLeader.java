@@ -22,6 +22,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.BoxLayout;
 import v1.Leader;
+import v1.User_View;
 /**
  *
  * @author Dylan Ritchings
@@ -383,8 +384,19 @@ public final class GroupPageLeader extends javax.swing.JFrame {
     private void viewProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewProfileActionPerformed
         int memIndex = memberList.getSelectedIndex();
         Integer memID = Integer.valueOf(id.get(memIndex));
-        User_Interface page = new User_Interface(memID);
-        page.setVisible(true);
+        System.out.println(memID);
+        System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+        System.out.println(currentId);
+        if (memID == currentId){
+            System.out.println("B");
+            User_Interface page = new User_Interface(memID);
+            page.setVisible(true);
+        }
+        else{
+            System.out.println("C");
+            User_View page2 = new User_View(memID);
+            page2.setVisible(true);
+        }
     }//GEN-LAST:event_viewProfileActionPerformed
 
     private void createTaskButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createTaskButtonActionPerformed
