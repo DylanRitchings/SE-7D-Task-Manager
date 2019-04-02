@@ -52,14 +52,14 @@ public final class GroupPageLeader extends javax.swing.JFrame {
     ArrayList<ArrayList<String>> memDetails;
 
     DefaultListModel memberLm;
-
+    
     ArrayList<String> taskID;
     ArrayList<String> taskTitle;
     ArrayList<String> taskStart;
     ArrayList<String> taskEnd;
     ArrayList<String> taskDesc;
     ArrayList<String> taskComp;
-    
+    int currentId;
     /**
      *
      */
@@ -101,7 +101,36 @@ public final class GroupPageLeader extends javax.swing.JFrame {
         }
         groupName();
     }
-
+    public GroupPageLeader(int currentGroupID,int currentUserID) throws SQLException {
+        this.groupID = currentGroupID;
+        this.memDetails = Group_utils.getMemDetails(groupID);
+        this.memberLm = new DefaultListModel();
+        
+        this.id = memDetails.get(0);
+        this.forename = memDetails.get(1);
+        this.surname = memDetails.get(2);
+        this.email = memDetails.get(3);
+        this.tasksDone = memDetails.get(4);
+        
+        ArrayList<ArrayList<String>> taskDetails = Group_utils.getTaskDetails(groupID);
+        this.taskID = taskDetails.get(0);
+        this.taskTitle = taskDetails.get(1);
+        this.taskStart = taskDetails.get(2);
+        this.taskEnd = taskDetails.get(3);
+        this.taskDesc = taskDetails.get(4);
+        this.taskComp = taskDetails.get(5);
+        
+        currentId = currentUserID;
+        
+        initComponents();
+        fillMemDetails();
+        try {
+            fillTaskDetails();
+        } catch (ParseException ex) {
+            Logger.getLogger(GroupPageLeader.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        groupName();
+    }
     /**
      *
      * @throws SQLException
