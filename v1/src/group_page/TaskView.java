@@ -33,6 +33,7 @@ public class TaskView extends javax.swing.JPanel {
      * @param tEnd
      * @param tDesc
      * @param tComp
+     * @throws java.text.ParseException
      */
     public TaskView(String tId, String tTitle, String tStart, String tEnd, String tDesc, String tComp) throws ParseException {
         id = tId;
