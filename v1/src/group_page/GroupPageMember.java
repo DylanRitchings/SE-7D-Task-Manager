@@ -62,6 +62,7 @@ public final class GroupPageMember extends javax.swing.JFrame {
     
     /**
      * Creates new form GroupPage
+     * @param groupID
      * @throws java.sql.SQLException
      */
     public GroupPageMember(int groupID) throws SQLException {
@@ -94,7 +95,7 @@ public final class GroupPageMember extends javax.swing.JFrame {
     }
 
     /**
-     *
+     * Gets the group name using the groupID.
      * @throws SQLException
      */
     public void groupName() throws SQLException{
