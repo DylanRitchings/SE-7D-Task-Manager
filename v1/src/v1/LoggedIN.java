@@ -5,6 +5,7 @@
  */
 package v1;
 
+import database_console.DBConnect;
 import database_console.loginConnect;
 import group_page.GroupPageLeader;
 import group_page.GroupPageMember;
@@ -146,7 +147,36 @@ public class LoggedIN extends javax.swing.JFrame {
         jTable_FindGroup.setModel(model);
        
     }
+    
+    public void JoinGroup()
+    {
+        PreparedStatement ss;
 
+            int ID = Integer.parseInt(jLabel_displayuserID.getText());
+
+            int row = jTable_FindGroup.getSelectedRow();
+            String Table_click = (jTable_FindGroup.getModel().getValueAt(row, 0).toString());
+            int gID = Integer.parseInt(Table_click);       
+
+            boolean leader = false;
+
+            try{     
+                String insertQuery = "INSERT INTO user_in_group(User_ID, Group_ID, Is_Leader) VALUES(?, ?, ?)";
+                ss = loginConnect.getConnection().prepareStatement(insertQuery);                               
+
+                ss.setInt(1, ID);
+                ss.setInt(2, gID);
+                ss.setBoolean(3, leader);
+
+                ss.executeUpdate();    
+           
+                findYourGroups();
+           
+            } catch (SQLException ex) {
+
+                Logger.getLogger(loginConnect.class.getName()).log(Level.SEVERE, null, ex);
+            }
+    }
     /**
      * This method is called from within the constructor to initialise the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -618,8 +648,36 @@ public class LoggedIN extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton_EnterGroupActionPerformed
 
     private void jButton_JoinGroupMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton_JoinGroupMouseClicked
-        //
-        //
+        
+        PreparedStatement st;
+        ResultSet rs;
+        
+        int group_id = jTable_FindGroup.getSelectedRow();
+        String Table_click_For_Group = (jTable_FindGroup.getModel().getValueAt(group_id, 0).toString());
+        String GroupID = Table_click_For_Group;
+        
+        boolean already_in_group = false;
+        
+        String searchQuery = "SELECT * FROM user_in_group WHERE Group_ID = ?";
+        
+        try {
+            st = loginConnect.getConnection().prepareStatement(searchQuery);
+            
+            st.setString(1, GroupID);
+            rs = st.executeQuery();
+            
+            if(rs.next())
+            {
+                already_in_group = true;
+                JOptionPane.showMessageDialog(null, "You are already in the group", "Error", 2);
+            }      
+            else
+            {
+                JoinGroup();
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Register_Interface.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButton_JoinGroupMouseClicked
 
     private void jButton_CreateGroupMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton_CreateGroupMouseClicked
