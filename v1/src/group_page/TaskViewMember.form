@@ -28,8 +28,8 @@
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="jScrollPane1" min="-2" pref="289" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="jButton1" min="-2" pref="59" max="-2" attributes="0"/>
-                      <EmptySpace pref="132" max="32767" attributes="0"/>
+                      <Component id="jButton1" min="-2" pref="71" max="-2" attributes="0"/>
+                      <EmptySpace pref="120" max="32767" attributes="0"/>
                       <Component id="endLabel" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Component id="timeLeft" alignment="0" max="32767" attributes="0"/>
