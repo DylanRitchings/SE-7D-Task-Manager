@@ -32,6 +32,7 @@ import javax.swing.ScrollPaneConstants;
 import v1.Group_utils;
 import v1.Leader;
 import v1.User_Interface;
+import v1.User_View;
 
 /**
  *
@@ -314,8 +315,14 @@ public final class GroupPageMember extends javax.swing.JFrame {
     private void viewProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewProfileActionPerformed
         int memIndex = memberList.getSelectedIndex();
         Integer memID = Integer.valueOf(id.get(memIndex));
-        User_Interface page = new User_Interface(memID);
-        page.setVisible(true);
+        if (memID == currentId){
+            User_Interface page = new User_Interface(memID);
+            page.setVisible(true);
+        }
+        else{
+            User_View page = new User_View(memID);
+            page.setVisible(true);
+        }
     }//GEN-LAST:event_viewProfileActionPerformed
 
     private void closeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeButtonActionPerformed
