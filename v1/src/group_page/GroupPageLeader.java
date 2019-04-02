@@ -34,6 +34,7 @@ import v1.Group_utils;
 import v1.Leader;
 import v1.Task_Create;
 import v1.Task_View;
+import v1.User_Interface;
 
 /**
  *
@@ -336,7 +337,8 @@ public final class GroupPageLeader extends javax.swing.JFrame {
     private void viewProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewProfileActionPerformed
         int memIndex = memberList.getSelectedIndex();
         Integer memID = Integer.valueOf(id.get(memIndex));
-        //CONNECT TO USER PROFILE
+        User_Interface page = new User_Interface(memID);
+        page.setVisible(true);
     }//GEN-LAST:event_viewProfileActionPerformed
 
     private void createTaskButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createTaskButtonActionPerformed
