@@ -219,15 +219,14 @@ public class User_Interface extends javax.swing.JFrame {
 
 //        //select from query
         String select = "update User set User_Password = ? where User_Email = ?";
-        int rs;
-
+        System.out.println("update" + pWord + "em" + eMail);
         try (Connection con = DBConnect.databaseConnect();) {
 
             PreparedStatement pst = con.prepareStatement(select);
             pst.setString(1, pWord);
             pst.setString(2, eMail);
 
-            rs = pst.executeUpdate();
+            pst.executeUpdate();
 
             System.out.print("password changed");
 
@@ -380,22 +379,22 @@ public class User_Interface extends javax.swing.JFrame {
         taskPane1.repaint();
     }
 
-//public User_Interface() {
-//
-//        this.taskIDs = getUserMemberGroupIds(user_id);
-//        this.tDetails = getTaskDetails(taskIDs);
-//        this.tComp = tDetails.get(5);
-//        this.tDesc = tDetails.get(4);
-//        this.tEnd = tDetails.get(3);
-//        this.tStart = tDetails.get(2);
-//        this.tTitle = tDetails.get(1);
-//        this.tID = tDetails.get(0);
-//    initComponents();
-//}
-//    
+public User_Interface() {
+
+        this.taskIDs = getUserMemberGroupIds(user_id);
+        this.tDetails = getTaskDetails(taskIDs);
+        this.tComp = tDetails.get(5);
+        this.tDesc = tDetails.get(4);
+        this.tEnd = tDetails.get(3);
+        this.tStart = tDetails.get(2);
+        this.tTitle = tDetails.get(1);
+        this.tID = tDetails.get(0);
+    initComponents();
+}
+    
 public User_Interface(int profileUserId, String userEmail)
     {
-        this.userEmail = getUserEmailById(user_id);
+        this.userEmail = userEmail;
         int userId = profileUserId;
         this.taskIDs = getUserMemberGroupIds(userId);
         this.tDetails = getTaskDetails(taskIDs);
@@ -745,7 +744,9 @@ public User_Interface(int profileUserId)
 
     private void jButtonPasswordChangeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPasswordChangeActionPerformed
         // TODO add your handling code here:
-        String newPword = JOptionPane.showInputDialog(null, "enter new password", "");
+        String newPword;
+        newPword = JOptionPane.showInputDialog(null, "enter new password", "");
+        System.out.println("Hello?" + newPword + " " + userEmail);
         if (newPword == null) {
             System.out.println("The user canceled");
         } else {
@@ -785,7 +786,7 @@ public User_Interface(int profileUserId)
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                    new User_Interface(1,"bobRob@gmail.com").setVisible(true);
+                    new User_Interface().setVisible(true);
             }
         });
     }
