@@ -60,6 +60,9 @@ public final class GroupPageLeader extends javax.swing.JFrame {
     ArrayList<String> taskDesc;
     ArrayList<String> taskComp;
     
+    /**
+     *
+     */
     public GroupPageLeader(){
         
     }
