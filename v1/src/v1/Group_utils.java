@@ -21,11 +21,12 @@ import database_console.loginConnect;
  */
 public class Group_utils {
   
-  ///////////////////////////////////////////////////UP818044//////////////////////////////////////////////
     /**
+     * 
      * @param User_ID
      * @param Group_ID
      * @param Is_Leader
+     * @author UP818044
      */
     
     private int User_ID;
