@@ -29,6 +29,7 @@ import v1.User_View;
  */
 import javax.swing.JComponent;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.ScrollPaneConstants;
 import v1.Group_utils;
@@ -347,17 +348,23 @@ public GroupPageLeader(int currentGroupID,int currentUserID, String currentUserE
      * @param evt 
      */
     private void removeMemberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeMemberActionPerformed
+
         int memIndex = memberList.getSelectedIndex();
         Integer memID = Integer.valueOf(id.get(memIndex));
-        Leader.deleteMember(memID, groupID);
-        id.remove(memIndex);
-        forename.remove(memIndex);
-        surname.remove(memIndex); 
-        email.remove(memIndex);
-        tasksDone.remove(memIndex);
-        memberLm.removeElement(memIndex);
-        ((DefaultListModel) memberList.getModel()).remove(memIndex);
-        
+        if(currentId == memID){
+            JOptionPane.showMessageDialog(null, "Cannot remove leader of group", "Error", 2);
+
+        }
+        else{
+            Leader.deleteMember(memID, groupID);
+            id.remove(memIndex);
+            forename.remove(memIndex);
+            surname.remove(memIndex); 
+            email.remove(memIndex);
+            tasksDone.remove(memIndex);
+            memberLm.removeElement(memIndex);
+            ((DefaultListModel) memberList.getModel()).remove(memIndex);
+        }
     }//GEN-LAST:event_removeMemberActionPerformed
 
    
