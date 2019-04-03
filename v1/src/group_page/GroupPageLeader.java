@@ -102,7 +102,7 @@ public final class GroupPageLeader extends javax.swing.JFrame {
         }
         groupName();
     }
-    public GroupPageLeader(int currentGroupID,int currentUserID) throws SQLException {
+public GroupPageLeader(int currentGroupID,int currentUserID, String currentUserEmail) throws SQLException {        
         this.groupID = currentGroupID;
         this.memDetails = Group_utils.getMemDetails(groupID);
         this.memberLm = new DefaultListModel();
