@@ -169,7 +169,9 @@ public class LoggedIN extends javax.swing.JFrame {
                 ss.setBoolean(3, leader);
 
                 ss.executeUpdate();    
-           
+                
+                JOptionPane.showMessageDialog(null, "You have Joined the Group", "Group Joined",2);
+                
                 findYourGroups();
            
             } catch (SQLException ex) {
