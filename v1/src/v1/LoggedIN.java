@@ -588,13 +588,13 @@ public class LoggedIN extends javax.swing.JFrame {
             String searchQuery = "SELECT * FROM user_in_group WHERE Is_Leader ='"+Table_click+"' AND User_ID = "+jLabel_displayuserID.getText()+" ";
             ss = loginConnect.getConnection().prepareStatement(searchQuery);
             rs = ss.executeQuery();                       
-            
+            String email = jLabel_displayEmail.getText();
             if(rs.next()) {
                 if(isleader)
                 {     
                     //Dylan's user interface for when they are a leader
                     System.out.println(GroupID);
-                    GroupPageLeader leader_form = new GroupPageLeader(Integer.parseInt(GroupID),user_idx);
+                    GroupPageLeader leader_form = new GroupPageLeader(Integer.parseInt(GroupID),user_idx,email);
                     leader_form.setVisible(true);
                     leader_form.pack();
                     
@@ -604,7 +604,7 @@ public class LoggedIN extends javax.swing.JFrame {
                 else 
                     {
                         //Dylan's user interface for when they are not a leader
-                        GroupPageMember member_form = new GroupPageMember(Integer.parseInt(GroupID),user_idx);
+                        GroupPageMember member_form = new GroupPageMember(Integer.parseInt(GroupID),user_idx,email);
                         member_form.setVisible(true);
                         member_form.pack();
                         
