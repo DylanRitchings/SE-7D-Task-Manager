@@ -95,7 +95,7 @@ public final class GroupPageMember extends javax.swing.JFrame {
         }
         groupName();
     }
-    public GroupPageMember(int currentGroupID,int currentUserID) throws SQLException {
+    public GroupPageMember(int currentGroupID,int currentUserID, String currentUserEmail) throws SQLException {
         this.groupID = currentGroupID;
         this.memDetails = Group_utils.getMemDetails(groupID);
         this.memberLm = new DefaultListModel();
