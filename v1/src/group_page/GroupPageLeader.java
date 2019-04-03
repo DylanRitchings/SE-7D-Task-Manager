@@ -61,6 +61,7 @@ public final class GroupPageLeader extends javax.swing.JFrame {
     ArrayList<String> taskDesc;
     ArrayList<String> taskComp;
     int currentId;
+    private String currentUserEmail;
     /**
      *
      */
@@ -102,7 +103,7 @@ public final class GroupPageLeader extends javax.swing.JFrame {
         }
         groupName();
     }
-    public GroupPageLeader(int currentGroupID,int currentUserID) throws SQLException {
+public GroupPageLeader(int currentGroupID,int currentUserID, String currentUserEmail) throws SQLException {        
         this.groupID = currentGroupID;
         this.memDetails = Group_utils.getMemDetails(groupID);
         this.memberLm = new DefaultListModel();
@@ -120,7 +121,7 @@ public final class GroupPageLeader extends javax.swing.JFrame {
         this.taskEnd = taskDetails.get(3);
         this.taskDesc = taskDetails.get(4);
         this.taskComp = taskDetails.get(5);
-        
+        this.currentUserEmail = currentUserEmail;
         currentId = currentUserID;
         
         initComponents();
@@ -384,16 +385,11 @@ public final class GroupPageLeader extends javax.swing.JFrame {
     private void viewProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewProfileActionPerformed
         int memIndex = memberList.getSelectedIndex();
         Integer memID = Integer.valueOf(id.get(memIndex));
-        System.out.println(memID);
-        System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
-        System.out.println(currentId);
         if (memID == currentId){
-            System.out.println("B");
-            User_Interface page = new User_Interface(memID);
+            User_Interface page = new User_Interface(memID,currentUserEmail);
             page.setVisible(true);
         }
         else{
-            System.out.println("C");
             User_View page2 = new User_View(memID);
             page2.setVisible(true);
         }
