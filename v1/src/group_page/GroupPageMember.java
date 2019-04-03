@@ -59,6 +59,7 @@ public final class GroupPageMember extends javax.swing.JFrame {
     ArrayList<String> taskComp;
     
     int currentId;
+    private String currentUserEmail;
     
     
     
@@ -113,7 +114,7 @@ public final class GroupPageMember extends javax.swing.JFrame {
         this.taskEnd = taskDetails.get(3);
         this.taskDesc = taskDetails.get(4);
         this.taskComp = taskDetails.get(5);
-        
+        this.currentUserEmail = currentUserEmail;
         currentId = currentUserID;
         
         initComponents();
@@ -316,7 +317,7 @@ public final class GroupPageMember extends javax.swing.JFrame {
         int memIndex = memberList.getSelectedIndex();
         Integer memID = Integer.valueOf(id.get(memIndex));
         if (memID == currentId){
-            User_Interface page = new User_Interface(memID);
+            User_Interface page = new User_Interface(memID,currentUserEmail);
             page.setVisible(true);
         }
         else{
