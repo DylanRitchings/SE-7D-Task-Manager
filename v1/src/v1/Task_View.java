@@ -138,6 +138,7 @@ public class Task_View extends javax.swing.JFrame {
         jTextField_start_date = new javax.swing.JTextField();
         jTextField_finish_date = new javax.swing.JTextField();
         jLabel_current_status = new javax.swing.JLabel();
+        jButton_Back = new javax.swing.JButton();
 
         javax.swing.GroupLayout jFrame1Layout = new javax.swing.GroupLayout(jFrame1.getContentPane());
         jFrame1.getContentPane().setLayout(jFrame1Layout);
@@ -241,6 +242,13 @@ public class Task_View extends javax.swing.JFrame {
         jLabel_current_status.setBackground(new java.awt.Color(0, 0, 0));
         jLabel_current_status.setText("Complete");
 
+        jButton_Back.setText("Back");
+        jButton_Back.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_BackActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -268,6 +276,10 @@ public class Task_View extends javax.swing.JFrame {
                                 .addComponent(jTextField_start_date, javax.swing.GroupLayout.Alignment.LEADING)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap(45, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton_Back)
+                .addGap(208, 208, 208))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -298,7 +310,9 @@ public class Task_View extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel_status)
                     .addComponent(jLabel_current_status))
-                .addContainerGap(44, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton_Back)
+                .addContainerGap(14, Short.MAX_VALUE))
         );
 
         pack();
@@ -311,6 +325,10 @@ public class Task_View extends javax.swing.JFrame {
     private void jTextField_start_dateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_start_dateActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField_start_dateActionPerformed
+
+    private void jButton_BackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_BackActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_jButton_BackActionPerformed
 
     /**
      * @param args the command line arguments
@@ -354,6 +372,7 @@ public class Task_View extends javax.swing.JFrame {
     private javax.swing.JTextArea description_text_field;
     private javax.swing.JLabel finish_time_label;
     private javax.swing.JLabel heading_label;
+    private javax.swing.JButton jButton_Back;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JDialog jDialog1;
     private javax.swing.JDialog jDialog2;
