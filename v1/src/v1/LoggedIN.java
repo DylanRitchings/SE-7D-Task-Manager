@@ -54,7 +54,7 @@ public class LoggedIN extends javax.swing.JFrame {
         ResultSet rs;
         
         try{            
-            String searchQuery = "SELECT * FROM `user_in_group` WHERE CONCAT(`User_ID`, `Group_ID`, `Is_Leader`) LIKE '"+jLabel_displayuserID.getText()+"%'";
+            String searchQuery = "SELECT * FROM `user_in_group` WHERE `User_ID` = "+jLabel_displayuserID.getText()+"";
             st = loginConnect.getConnection().prepareStatement(searchQuery);
             rs = st.executeQuery(searchQuery);
             
@@ -505,10 +505,7 @@ public class LoggedIN extends javax.swing.JFrame {
         int user_idx = Integer.parseInt(jLabel_displayuserID.getText());
         String user_emailx = jLabel_displayEmail.getText();
         User_Interface profile_form = new User_Interface(user_idx, user_emailx);
-        profile_form.setVisible(true);
-        profile_form.pack();
-        
-        this.dispose();
+        profile_form.setVisible(true);       
     }//GEN-LAST:event_jButton_ProfileActionPerformed
 
     private void jButton_logout1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_logout1ActionPerformed
