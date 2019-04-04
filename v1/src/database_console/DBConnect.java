@@ -18,8 +18,6 @@ import java.sql.Statement;
 *@since 1/3/2019
 *@version 1.3
 *@author Dylan Ritchings,
-*@see
-*@inv
 */
 
 
@@ -29,13 +27,8 @@ public class DBConnect {
     /**
      * Creates a connection to the database
      * @return Connection
-     * @throw SQLException
-     * @pre
-     * @modifies host, uName, uPass
-     * @post
      *
      */
-
     public static Connection databaseConnect()
     {
 
@@ -60,13 +53,7 @@ public class DBConnect {
 
     /**
      * Executes statement to database.
-     * @throw SQLException
-     * @pre
-     * @modifies host, uName, uPass
-
-     * @post
-     
-     * @param query
+     * @param query the query that is going to be made to the database
      */
     public static void databaseInput(String query)
     {
@@ -88,9 +75,8 @@ public class DBConnect {
 
     /**
      * Returns the ResultSet of a given query
-     * @param query
+     * @param query the query that is going to be made to the database
      * @return ResultSet
-     * @throw SQLException
      */
     public static ResultSet databaseSelect(String query)
     {

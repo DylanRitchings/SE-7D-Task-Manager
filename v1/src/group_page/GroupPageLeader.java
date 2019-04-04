@@ -73,7 +73,7 @@ public final class GroupPageLeader extends javax.swing.JFrame {
     
     /**
      * Creates new form GroupPage
-     * @param currentGroupID
+     * @param currentGroupID ID of the group for which information is going to be displayed
      * @throws java.sql.SQLException Exception if a problem occurs
      */
     public GroupPageLeader(int currentGroupID) throws SQLException {

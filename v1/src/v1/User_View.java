@@ -46,8 +46,8 @@ public class User_View extends javax.swing.JFrame {
     
     /**
      *
-     * @param userId
-     * @return
+     * @param userId the ID of the user within the database in int format
+     * @return the ID of the user within the database in String format
      */
     public static String getUserIdById(int userId) {
         int userID = 0;
@@ -80,8 +80,8 @@ public class User_View extends javax.swing.JFrame {
 
     /**
      *
-     * @param userId
-     * @return
+     * @param userId the ID of the user for whom to get the email from the database
+     * @return the email of the specified user from the database
      */
     public static String getUserEmailById(int userId) {
         String userEmail = null;
@@ -115,8 +115,8 @@ public class User_View extends javax.swing.JFrame {
 
     /**
      *
-     * @param userId
-     * @return
+     * @param userId the ID of the user within the database
+     * @return the username of the specified user within the database
      */
     public static String getUserNameById(int userId) {
 
@@ -154,8 +154,8 @@ public class User_View extends javax.swing.JFrame {
 
     /**
      *
-     * @param userId
-     * @return
+     * @param userId the ID of the user within the database
+     * @return the group ID of the group that is displayed in String format
      */
     public static String getUserGroupById(int userId) {
 
@@ -195,7 +195,7 @@ public class User_View extends javax.swing.JFrame {
 
     /**
      *
-     * @param userId
+     * @param userId the ID of the user within the database
      */
     public static void deleteUserById(int userId) {
         try {
@@ -212,8 +212,8 @@ public class User_View extends javax.swing.JFrame {
 
     /**
      *
-     * @param pWord
-     * @param eMail
+     * @param pWord the new password to be set
+     * @param eMail the email of the user within the database for which the password to be set
      */
     public static void updateUserPasswordByEmail(String pWord, String eMail) {
 

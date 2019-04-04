@@ -30,13 +30,13 @@ public class TaskViewComplete extends javax.swing.JPanel {
     Boolean comp;
     /**
      * Creates new form TaskView
-     * @param tId 
-     * @param tTitle
-     * @param tStart
-     * @param tEnd
-     * @param tDesc
-     * @param tComp
-     * @throws java.text.ParseException
+     * @param tId ID of the task within the database
+     * @param tTitle title of the task within the database
+     * @param tStart start time of the task within the database
+     * @param tEnd end time of the task within the database
+     * @param tDesc description of the task within the database
+     * @param tComp whether the task is marked 
+     * @throws java.text.ParseException Exception if a problem occurs
      */
     public TaskViewComplete(String tId, String tTitle, String tStart, String tEnd, String tDesc, String tComp) throws ParseException {
         id = tId;

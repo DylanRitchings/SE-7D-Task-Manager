@@ -26,12 +26,7 @@ public class Register_Interface extends javax.swing.JFrame {
     }
 
     /**
-     * @param Fname
-     * @param Sname
-     * @param email
-     * @param pass1
-     * @param pass2
-     * @return 
+     * @return whether the input fields were validated.
      */
     //This function will verify the empty fields
     public boolean verifyFields()
@@ -69,11 +64,10 @@ public class Register_Interface extends javax.swing.JFrame {
     }
     
     /**
-     *
-     * @param email
-     * @return 
+     * This function will check if the email entered already exists in the database 
+     * @param email the email to be checked within the database
+     * @return whether the email exists in the database
      */
-    //This function will check if the email entered already exists in the database 
     public boolean checkEmail(String email)
     {
         PreparedStatement st;

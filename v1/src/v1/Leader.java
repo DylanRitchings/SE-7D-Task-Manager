@@ -3,11 +3,8 @@ import database_console.DBConnect;
 import java.util.*;
 
 /**
- * @since 
  * @author up818044, Dylan Ritchings
  * @version 1
- * @see
-
  */
 public class Leader 
 {
@@ -20,13 +17,8 @@ public class Leader
     
     /**
     *  Remove a member from a group
-    * @param memberID
-    * @param groupID
-    * @throw 
-    * @pre 
-    * @modifies 
-    * @post 
-    * @bound 
+    * @param memberID the ID of the member within the database to be removed
+    * @param groupID the ID of the group within the database from which the member is getting removed
     */
     public static void deleteMember(int memberID, int groupID){
         
@@ -36,14 +28,9 @@ public class Leader
         
     /**
     *  Assign a task to a member
-    * @param taskID
-    * @param groupID
-    * @param userID
-    * @throw 
-    * @pre 
-    * @modifies 
-    * @post 
-    * @bound 
+    * @param taskID ID of the task within the database which is to be assigned
+    * @param groupID ID of the group within the database which the task is going to be in
+    * @param userID ID of the user within the database to who the task is going to be assigned
     */
 
     public static void assignTaskToMember(int taskID, int groupID, int userID)

@@ -74,13 +74,8 @@ public class Group_utils {
 
     /**
      * Creates an ArrayList of memberIDs that are in a group.
-     * @param groupID
-     * @return ArrayList
-     * @throw Exception
-     * @pre
-     * @modifies
-     * @post
-     * @bound
+     * @param groupID ID of the group within the database for which to get the list of ID's of its members
+     * @return ArrayList List of ID's of the members of the specified group.
      *
      */
 
@@ -107,10 +102,9 @@ public class Group_utils {
     }
 
     /**
-     * Creates and array list of array lists each containing information about members in a specified group.
-     * @param groupID
-     * @return memDetails
-     * @throw SQLException
+     * Creates an array list of array lists each containing information about members in a specified group.
+     * @param groupID ID of the group within the database for which to get the details of its members
+     * @return memDetails List of the details of the members of the group.
      *
      */
     public static ArrayList getMemDetails(int groupID)
@@ -163,15 +157,11 @@ public class Group_utils {
 
     /**
      * Creates a group and assigns the user who created the group as a leader
-     * @param name
-     * @param description
-     * @return String
+     * @param name of the group to be created
+     * @param description of the group to be created
+     * @return String result of the group creation
      *
      */
-
-
-
-
     public static String createGroup(String name, String description){
             String insertGroup = "INSERT INTO Groups (Group_Name, Group_Description) VALUES('"+name+ "','" + description +"');";
             try{
@@ -237,11 +227,9 @@ public class Group_utils {
     }
     /**
      * Gets the skill names using the skillIDs
-     * @param groupID
-     * @return skills
+     * @param groupID the ID of the group within the database for which to get the skills
+     * @return skills of the group
      */
-
-
     public static ArrayList getSkills(int groupID){
         ArrayList skillIDList = Group_utils.getSkillIDs(groupID);
         ArrayList<String> skills = new ArrayList<>();
@@ -260,8 +248,8 @@ public class Group_utils {
     }
     /**
      *  Creates and array list of array lists each containing information about tasks in a specified group.
-     * @param groupID
-     * @return tDetailsList
+     * @param groupID the ID of the group within the database for which to get information about its tasks
+     * @return tDetailsList list with the details of the tasks for the specified group
      */
     public static ArrayList getTaskDetails(int groupID){
         ArrayList taskIDs = getTaskIDs(groupID);
@@ -302,8 +290,8 @@ public class Group_utils {
     
     /**
      * Checks if email exists. Created by Sanjog
-     * @param email
-     * @return 
+     * @param email the email which to check
+     * @return whether the email exists within the database
      */
     public static boolean checkEmail(String email)
     {
