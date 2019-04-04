@@ -19,10 +19,6 @@ public class V1 {
      */
     public static void main(String[] args) throws SQLException {
         
-//        Task_View page = new Task_View(129);
-//        page.setVisible(true);
-        //Leader.assignTaskToMember(123, 123, 123);
-        //System.out.println(Group_utils.getMemberDetails(123));
         Login_Interface page = new Login_Interface ();
         page.setVisible(true);
 
