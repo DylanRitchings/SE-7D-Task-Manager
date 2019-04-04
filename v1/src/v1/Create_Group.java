@@ -24,7 +24,7 @@ public class Create_Group extends javax.swing.JFrame {
      * Creates new form Create_Group
      */
     public Create_Group() {
-        initComponents();
+        initComponents();       
     }
 
     /**
@@ -182,10 +182,8 @@ public class Create_Group extends javax.swing.JFrame {
 
     private void jButton1DoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1DoneActionPerformed
         if (validate_Inputs()) {
-            create_group();
-            
-            group_creator();
-            
+            create_group();            
+            new_group();                     
             //Show a new form
             LoggedIN form = new LoggedIN();
             form.setVisible(true);
@@ -255,66 +253,72 @@ public class Create_Group extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     
-     private void create_group () {
-        String group_name = jTextField1GroupName.getText();
-        String group_desc = jTextArea1GroupDesc.getText();
-       
-        String insert = "INSERT INTO groups(Group_Name,Group_Description) "
-                + "VALUES(?, ?)";
-        
-        try (Connection con = DBConnect.databaseConnect();) {
-            
-            PreparedStatement pst = con.prepareStatement(insert);
+ private void create_group () {
+    String group_name = jTextField1GroupName.getText();
+    String group_desc = jTextArea1GroupDesc.getText();
+
+    String insert = "INSERT INTO groups(Group_Name,Group_Description) "
+            + "VALUES(?, ?)";
+
+    try (Connection con = DBConnect.databaseConnect();) {
+
+        PreparedStatement pst = con.prepareStatement(insert);
+        pst.setString(1, group_name);
+        pst.setString(2, group_desc);           
+
+        pst.executeUpdate();
+        pst.close();
+
+        JOptionPane.showMessageDialog(null, "Group creation successful", "Group created", 1);
+        this.dispose();
+
+    } catch (SQLException ex) {
+
+        Logger lgr = Logger.getLogger(DBConnect.class.getName());
+        lgr.log(Level.SEVERE, ex.getMessage(), ex);
+
+    }
+}  
+     
+ private void new_group()
+ {
+     String group_name = jTextField1GroupName.getText();
+
+     String select = "SELECT `Group_ID` FROM `groups` WHERE `Group_Name` = ?";
+
+     try (Connection con = DBConnect.databaseConnect();) {
+
+            PreparedStatement pst = con.prepareStatement(select);
+
             pst.setString(1, group_name);
-            pst.setString(2, group_desc);           
+
+            ResultSet rs = pst.executeQuery();
             
-            pst.executeUpdate();
-            pst.close();
-            
-            JOptionPane.showMessageDialog(null, "Group creation successful", "Group created", 1);
-            this.dispose();
-            
+            while(rs.next())
+            {
+                int s = rs.getInt("Group_ID"); 
+                Boolean isleader = true;               
+                int userID = Integer.parseInt(jLabel_ID.getText());
+         
+                String insertGroup = "INSERT INTO `user_in_group` (User_ID, Group_ID, Is_Leader) VALUES (?, ?, ?)";
+                
+                PreparedStatement st = con.prepareStatement(insertGroup); 
+
+                st.setInt(1, userID);
+                st.setInt(2, s); 
+                st.setBoolean(3, isleader);
+                
+                st.executeUpdate();               
+            }
+
         } catch (SQLException ex) {
 
-            Logger lgr = Logger.getLogger(DBConnect.class.getName());
-            lgr.log(Level.SEVERE, ex.getMessage(), ex);
+        Logger lgr = Logger.getLogger(DBConnect.class.getName());
+        lgr.log(Level.SEVERE, ex.getMessage(), ex);
 
         }
-    }  
+ }
      
-     private void group_creator()
-     {
-         String group_name = jTextField1GroupName.getText();
-         int userID = Integer.valueOf(jLabel_Email.getText());
-         Boolean isleader = true;
-
-         String select = "SELECT Group_ID FROM groups WHERE Group_Name = "+group_name+"";
-
-         String insertGroup = "INSERT INTO user_in_group(User_ID, Group_ID, Is_Leader) "
-                    + "VALUES(?, ?, ?)";
-
-         try (Connection con = DBConnect.databaseConnect();) {
-
-                PreparedStatement pst = con.prepareStatement(select);
-
-                int g_ID = pst.executeUpdate();               
-
-                System.out.println(pst);
-
-             try (PreparedStatement st = con.prepareStatement(insertGroup)) {
-                 st.setInt(1, userID);
-                 st.setInt(2, g_ID);
-                 st.setBoolean(2, isleader);
-                 st.executeUpdate();
-                }
-
-            } catch (SQLException ex) {
-
-                Logger lgr = Logger.getLogger(DBConnect.class.getName());
-                lgr.log(Level.SEVERE, ex.getMessage(), ex);
-
-            }
-     }
     
 private boolean validate_Inputs () {
     
