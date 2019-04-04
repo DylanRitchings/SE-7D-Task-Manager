@@ -182,9 +182,10 @@ public class Create_Group extends javax.swing.JFrame {
 
     private void jButton1DoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1DoneActionPerformed
         if (validate_Inputs()) {
-            System.out.print("hello");
-            create_group();            
-            new_group();                     
+            create_group();
+            
+            new_group();
+                         
             //Show a new form
             LoggedIN form = new LoggedIN();
             form.setVisible(true);
@@ -319,7 +320,6 @@ public class Create_Group extends javax.swing.JFrame {
 
         }
  }
-     
     
 private boolean validate_Inputs () {
     
