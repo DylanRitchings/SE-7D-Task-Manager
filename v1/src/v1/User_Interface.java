@@ -277,25 +277,12 @@ public class User_Interface extends javax.swing.JFrame {
    
     
     public static ArrayList getUserMemberGroupIds(int userId){
-        //ArrayList taskIDs = getTaskIDs(groupID);
-       // ArrayList<ArrayList<String>> tIds = new ArrayList<>();
         ArrayList<String> tIds = new ArrayList<>();
-//        ArrayList<String> tTitle = new ArrayList<>();
-//        ArrayList<String> tStart = new ArrayList<>();
-//        ArrayList<String> tEnd = new ArrayList<>();
-//        ArrayList<String> tDesc = new ArrayList<>();
-//        ArrayList<String> tComp = new ArrayList<>();
-       // for (Object taskID :taskIDs){
             String query = "SELECT Task_ID FROM user_member_group where User_ID ="+ userId+";";
             ResultSet tDetailsrs = DBConnect.databaseSelect(query);
             try{
                 while (tDetailsrs.next()) {
                     tIds.add(tDetailsrs.getString("Task_ID"));
-//                    tTitle.add(tDetailsrs.getString("Task_Title"));
-//                    tStart.add(tDetailsrs.getString("Task_Start"));
-//                    tEnd.add(tDetailsrs.getString("Task_Deadline"));
-//                    tDesc.add(tDetailsrs.getString("Task_Description"));
-//                    tComp.add(tDetailsrs.getString("Is_Complete"));
                 }
                 tDetailsrs.close();
 
@@ -303,20 +290,12 @@ public class User_Interface extends javax.swing.JFrame {
                     Logger.getLogger(Group_utils.class.getName()).log(Level.SEVERE, null, ex);
                     return null;
                     }
-       // }
-        //tIds.add(tID);
-//        tDetails.add(tTitle);
-//        tDetails.add(tStart);
-//        tDetails.add(tEnd);
-//        tDetails.add(tDesc);
-//        tDetails.add(tComp);
             System.out.println(tIds);
             return tIds;
         
     }
     
    public static ArrayList getTaskDetails(ArrayList taskIDs){
-        //ArrayList taskIDs = getTaskIDs(TaskIDs);
         ArrayList<ArrayList<String>> tDetails = new ArrayList<>();
        ArrayList<String> tID = new ArrayList<>();
         ArrayList<String> tTitle = new ArrayList<>();
@@ -326,7 +305,6 @@ public class User_Interface extends javax.swing.JFrame {
         ArrayList<String> tComp = new ArrayList<>();
         for (Object taskID :taskIDs){
             String query = "SELECT * FROM task where Task_ID ="+ taskID+";";
-           //System.out.print(taskIDs); 
            ResultSet tDetailsrs = DBConnect.databaseSelect(query);
             try{
                 while (tDetailsrs.next()) {
@@ -361,7 +339,6 @@ public class User_Interface extends javax.swing.JFrame {
     private void fillTaskDetails() throws ParseException{
         Container cont = new Container();
         cont.setLayout(new BoxLayout(cont, BoxLayout.Y_AXIS));
-        //BoxLayout taskLayout = new BoxLayout (taskPane,BoxLayout.Y_AXIS);
 
         taskPane1.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
         for (int count = 0; count < tID.size(); count++){
@@ -371,8 +348,6 @@ public class User_Interface extends javax.swing.JFrame {
 
            }
         taskPane1.getViewport().setView(cont);
-        //taskPane.add(cont);
-        //taskPane.setVisible(true);
         taskPane1.revalidate();
         taskPane1.repaint();
     }
@@ -428,8 +403,6 @@ public User_Interface(int profileUserId, String userEmail)
         
         try {
              fillTaskDetails();
-//         updateUserPasswordByEmail("hello","@");
-//deleteUserById(146);
          } catch (ParseException ex) {
              Logger.getLogger(User_Interface.class.getName()).log(Level.SEVERE, null, ex);
          }
@@ -473,62 +446,11 @@ public User_Interface(int profileUserId)
         
         try {
              fillTaskDetails();
-//         updateUserPasswordByEmail("hello","@");
-//deleteUserById(146);
          } catch (ParseException ex) {
              Logger.getLogger(User_Interface.class.getName()).log(Level.SEVERE, null, ex);
          }
     }
     
-//    /**
-//     * Creates new form User_Interface
-//     *
-//     * @param userId
-//     * @throws java.sql.SQLException
-//     */
-//    public User_Interface(int userId) throws SQLException {
-//        
-//        initComponents();
-//        
-//        
-//        jButtonDeleteAccount.setVisible(false);
-//        jButtonPasswordChange.setVisible(false);
-//
-//        String userIdbyId = getUserIdById(1);
-//        jLabelTopLeftUserIOd.setText(userIdbyId);
-//
-//        String userEmail = getUserEmailById(1);
-//        jLabelEmailField.setText(userEmail);
-//
-//        String name = getUserNameById(1);
-//        jLabelNameField.setText(name);
-//
-//        getUserGroupById(1);
-//        
-//        getUserMemberTasksId(1);
-//        
-//        ArrayList<ArrayList<String>> tDetails = getTaskDetails(getUserMemberGroupIds(userId));
-//        ArrayList<String> tID = tDetails.get(0);
-//        ArrayList<String> tTitle = tDetails.get(1);
-//        ArrayList<String> tStart = tDetails.get(2);
-//        ArrayList<String> tEnd = tDetails.get(3);
-//        ArrayList<String> tDesc = tDetails.get(4);
-//        ArrayList<String> tComp = tDetails.get(5);
-//        System.out.println(tID);
-//        System.out.println(tTitle);
-//        System.out.println(tStart);
-//        System.out.println(tEnd);
-//        System.out.println(tDesc);
-//        System.out.println(tComp);
-//         try {
-//             fillTaskDetails();
-////         updateUserPasswordByEmail("hello","@");
-////deleteUserById(146);
-//         } catch (ParseException ex) {
-//             Logger.getLogger(User_Interface.class.getName()).log(Level.SEVERE, null, ex);
-//         }
-//    }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
