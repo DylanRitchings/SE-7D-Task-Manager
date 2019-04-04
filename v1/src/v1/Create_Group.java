@@ -182,6 +182,7 @@ public class Create_Group extends javax.swing.JFrame {
 
     private void jButton1DoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1DoneActionPerformed
         if (validate_Inputs()) {
+            System.out.print("hello");
             create_group();            
             new_group();                     
             //Show a new form
@@ -294,13 +295,13 @@ public class Create_Group extends javax.swing.JFrame {
 
             ResultSet rs = pst.executeQuery();
             
-            while(rs.next())
+            if(rs.next())
             {
                 int s = rs.getInt("Group_ID"); 
                 Boolean isleader = true;               
                 int userID = Integer.parseInt(jLabel_ID.getText());
          
-                String insertGroup = "INSERT INTO `user_in_group` (User_ID, Group_ID, Is_Leader) VALUES (?, ?, ?)";
+                String insertGroup = "INSERT INTO `user_in_group`(User_ID, Group_ID, Is_Leader) VALUES (?, ?, ?)";
                 
                 PreparedStatement st = con.prepareStatement(insertGroup); 
 
