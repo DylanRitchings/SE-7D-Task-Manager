@@ -74,7 +74,7 @@ public final class GroupPageLeader extends javax.swing.JFrame {
     /**
      * Creates new form GroupPage
      * @param currentGroupID
-     * @throws java.sql.SQLException
+     * @throws java.sql.SQLException Exception if a problem occurs
      */
     public GroupPageLeader(int currentGroupID) throws SQLException {
         this.groupID = currentGroupID;
@@ -136,7 +136,7 @@ public GroupPageLeader(int currentGroupID,int currentUserID, String currentUserE
     }
     /**
      *
-     * @throws SQLException
+     * @throws SQLException Exception if a problem occurs
      */
     public void groupName() throws SQLException{
         String query = "SELECT Group_Name FROM groups WHERE Group_ID="+ groupID +";";
@@ -149,7 +149,7 @@ public GroupPageLeader(int currentGroupID,int currentUserID, String currentUserE
     }
     /**
      * Fill each task into the taskPanel
-     * @throws ParseException 
+     * @throws ParseException  Exception if a problem occurs
      */
     public void fillTaskDetails() throws ParseException{
         Container cont = new Container();
@@ -184,7 +184,7 @@ public GroupPageLeader(int currentGroupID,int currentUserID, String currentUserE
     }
     /**
      * Creates an array containing names of people in a group.
-     * @param groupID
+     * @param groupID the ID of the group within the database for which to get the names of its members
      * @return memNames
      */
      public String[] getMemNames(int groupID)

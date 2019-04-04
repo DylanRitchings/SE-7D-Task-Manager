@@ -27,13 +27,12 @@ public class TaskView extends javax.swing.JPanel {
     Boolean comp;
     /**
      * Creates new form TaskView
-     * @param tId 
-     * @param tTitle
-     * @param tStart
-     * @param tEnd
-     * @param tDesc
-     * @param tComp
-     * @throws java.text.ParseException
+     * @param tId the ID of the task within the database
+     * @param tTitle the title of the task within the database
+     * @param tStart the start time of the task within the database
+     * @param tEnd the end time of the task within the database
+     * @param tDesc the description of the task within the database
+     * @param tComp whether the task is marked as completed within the database
      */
     public TaskView(String tId, String tTitle, String tStart, String tEnd, String tDesc, String tComp) throws ParseException {
         id = tId;
@@ -53,7 +52,7 @@ public class TaskView extends javax.swing.JPanel {
     }
 /**
  * Sets the values for the timeLeft ProgressBar
- * @throws ParseException 
+ * @throws Exception if a problem occurs 
  */
     private void timeLeftPb() throws ParseException{
         

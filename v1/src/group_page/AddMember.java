@@ -22,7 +22,7 @@ public class AddMember extends javax.swing.JFrame {
 
     /**
      * Creates new form AddMember
-     * @param groupID
+     * @param groupID the ID of the group within the database to which the member is going to be added
      */
     public AddMember(int groupID) {
         initComponents();

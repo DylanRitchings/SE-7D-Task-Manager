@@ -56,7 +56,7 @@ public final class GroupPage extends javax.swing.JFrame {
     
     /**
      * Creates new form GroupPage
-     * @throws java.sql.SQLException
+     * @throws java.sql.SQLException  Exception if a problem occurs
      */
     public GroupPage() throws SQLException {
         this.groupID = 123;
@@ -98,7 +98,7 @@ public final class GroupPage extends javax.swing.JFrame {
     }
     /**
      * Fill each task into the taskPanel
-     * @throws ParseException 
+     * @throws ParseException  Exception if a problem occurs
      */
     public void fillTaskDetails() throws ParseException{
         Container cont = new Container();
@@ -133,7 +133,7 @@ public final class GroupPage extends javax.swing.JFrame {
     }
     /**
      * Creates an array containing names of people in a group.
-     * @param groupID
+     * @param groupID the ID of the group within the database for which to get the names of its members.
      * @return memNames
      */
      public String[] getMemNames(int groupID)

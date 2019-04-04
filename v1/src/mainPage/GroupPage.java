@@ -45,8 +45,8 @@ public final class GroupPage extends javax.swing.JFrame {
 
         /**
      * Creates an array containing names of people in a group.
-     * @param groupID
-     * @return memNames
+     * @param groupID the ID of the group within the database for which to get the names of the members
+     * @return memNames an array of the first and last names of the members of the group
      */
      public String[] getMemNames(int groupID)
     {
