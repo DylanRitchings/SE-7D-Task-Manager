@@ -15,6 +15,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 /**
+*Used to create a connection to the database.
 *@since 1/3/2019
 *@version 1.3
 *@author Dylan Ritchings,
